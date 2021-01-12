@@ -1,6 +1,9 @@
 @extends('frontend.layouts.master')
 
 @section('content')
+                <!-- Begin Slider With Banner Area -->
+                @include('frontend.layouts.partials.slider')
+                <!-- Slider With Banner Area End Here -->
                 <!-- product-area start -->
                 <div class="product-area pt-55 pb-25 pt-xs-50">
                 <div class="container">
