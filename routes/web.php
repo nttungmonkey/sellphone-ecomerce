@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
+Route::get('pages/contact', 'Frontend\PageController@contact') -> name('pages.contact');
+Route::post('pages/email_to_contact', 'Frontend\PageController@email_to_contact') -> name('pages.email_to_contact');

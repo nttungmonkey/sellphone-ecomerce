@@ -1,8 +1,15 @@
 # Thông tin về Tác giả
 Mã sinh viên: ...
-Họ tên: ...
+Họ tên: Trần Huỳnh Anh
+Mã sinh viên: ...
+Họ tên: Nguyễn Thanh Tùng
 
 # Hướng dẫn cách sử dụng dự án
+
+## Step 0: Set up môi trường
+PHP v7.4
+Composer v2.0
+
 ## Step 1: Clone source dự án
 Thực thi câu lệnh sau:
 ```
@@ -10,14 +17,15 @@ git clone <link đường dẫn github>
 ```
 
 ## Step 2: Khởi tạo, kết nối database
-Hiệu chỉnh file .env
+Hiệu chỉnh file .env, nếu không có file .env thì copy file .env.example về
+Nếu chưa có key thì thực hiện câu lệnh php artisan generate:key
 ```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=tendatabase
-DB_USERNAME=root
-DB_PASSWORD=matkhau
+DB_DATABASE=sellphone-ecommerce
+DB_USERNAME=admin
+DB_PASSWORD=t7kZ@Uz=!nRYDS3z
 ```
 
 ## Step 3: Tạo database, thực hiện migrate
@@ -34,7 +42,7 @@ php artisan db:seed
 ```
 
 ## Step 5: tạo domain ảo
-- Tạo domain ảo với <tengido.local>
+- Tạo domain ảo với phonetn.com
 
 ## Step 6: thông tin tài khoản truy cập hệ thống
 Tài khoản Admin:
@@ -46,3 +54,5 @@ kho / 123456
 Tài khoản Khách hàng:
 khachhang / 123456
 ...
+
+
