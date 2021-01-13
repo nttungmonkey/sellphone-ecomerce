@@ -80,15 +80,15 @@
                                     <ul class="des">
                                         <li>
                                             <span>Address: </span>
-                                            6688Princess Road, London, Greater London BAS 23JK, UK
+                                            01 Ly Tu Trong Street, Ninh Kieu District, Can Tho City
                                         </li>
                                         <li>
                                             <span>Phone: </span>
-                                            <a href="#">(+123) 123 321 345</a>
+                                            <a href="#">(+84) 964 318 083</a>
                                         </li>
                                         <li>
                                             <span>Email: </span>
-                                            <a href="mailto://info@yourdomain.com">info@yourdomain.com</a>
+                                            <a href="mailto://info@yourdomain.com">phonetn@gmail.com</a>
                                         </li>
                                     </ul>
                                 </div>

@@ -5,7 +5,7 @@
   <head>
       <meta charset="utf-8">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
-      <title>Home</title>
+      <title>@yield('title')</title>
       <meta name="description" content="">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- Favicon -->
@@ -49,9 +49,7 @@
         <!-- Begin Body Wrapper -->
         <div class="body-wrapper">
             @include('frontend.layouts.partials.header')
-            <!-- Begin Slider With Banner Area -->
-            @include('frontend.layouts.partials.slider')
-            <!-- Slider With Banner Area End Here -->
+            
             @yield('content')
             
             @include('frontend.layouts.partials.footer')
@@ -211,6 +209,7 @@
         <script src="{{ asset('themes/limupa/js/scrollUp.min.js') }}"></script>
         <!-- Main/Activator js -->
         <script src="{{ asset('themes/limupa/js/main.js') }}"></script>
+        @yield('custom-scripts')
     </body>
 
 <!-- index-431:47-->

@@ -36,7 +36,7 @@
                                             <div class="language ht-language">
                                                 <ul class="ht-setting-list">
                                                     <li class="active"><a href="#"><img src="{{ asset('storage/images/customer/menu/flag-icon/1.jpg') }}" alt="">English</a></li>
-                                                    <li><a href="#"><img src="{{ asset('storage/images/customer/menu/flag-icon/2.jpg') }}" alt="">Vietnamese</a></li>
+                                                    <li><a href="#"><img src="{{ asset('storage/images/customer/menu/flag-icon/2.jpg') }}" alt="">Vietnam</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -57,7 +57,7 @@
                             <div class="col-lg-3">
                                 <div class="logo pb-sm-30 pb-xs-30">
                                     <a href="index.html">
-                                        <img src="{{ asset('storage/images/customer/menu/logo/2.jpg') }}" alt="">
+                                        <img src="{{ asset('storage/images/customer/menu/logo/logo1.png') }}" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -328,7 +328,7 @@
                                                </ul> -->
                                            </li>
                                            <li><a href="about-us.html">About Us</a></li>
-                                           <li><a href="contact.html">Contact</a></li>
+                                           <li><a href="{{ route('pages.contact') }}">Contact</a></li>
                                            <li><a href="shop-left-sidebar.html">Smartwatch</a></li>
                                            <li><a href="shop-left-sidebar.html">Accessories</a></li>
                                        </ul>
