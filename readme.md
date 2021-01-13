@@ -1,7 +1,7 @@
 # Thông tin về Tác giả
-Mã sinh viên: ...
+Mã sinh viên: D20212
 Họ tên: Trần Huỳnh Anh
-Mã sinh viên: ...
+Mã sinh viên: D20213
 Họ tên: Nguyễn Thanh Tùng
 
 # Hướng dẫn cách sử dụng dự án
