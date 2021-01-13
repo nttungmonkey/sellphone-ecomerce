@@ -35,8 +35,8 @@
                                             <div class="ht-language-trigger"><span>English</span></div>
                                             <div class="language ht-language">
                                                 <ul class="ht-setting-list">
-                                                    <li class="active"><a href="#"><img src="images/menu/flag-icon/1.jpg" alt="">English</a></li>
-                                                    <li><a href="#"><img src="images/menu/flag-icon/2.jpg" alt="">Vietnamese</a></li>
+                                                    <li class="active"><a href="#"><img src="{{ asset('storage/images/customer/menu/flag-icon/1.jpg') }}" alt="">English</a></li>
+                                                    <li><a href="#"><img src="{{ asset('storage/images/customer/menu/flag-icon/2.jpg') }}" alt="">Vietnamese</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -57,7 +57,7 @@
                             <div class="col-lg-3">
                                 <div class="logo pb-sm-30 pb-xs-30">
                                     <a href="index.html">
-                                        <img src="images/menu/logo/2.jpg" alt="">
+                                        <img src="{{ asset('storage/images/customer/menu/logo/2.jpg') }}" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -166,7 +166,7 @@
                                                 <ul class="minicart-product-list">
                                                     <li>
                                                         <a href="single-product.html" class="minicart-product-image">
-                                                            <img src="images/product/small-size/1.jpg" alt="cart products">
+                                                            <img src="{{ asset('storage/images/customer/product/small-size/1.jpg') }}" alt="cart products">
                                                         </a>
                                                         <div class="minicart-product-details">
                                                             <h6><a href="single-product.html">Aenean eu tristique</a></h6>
@@ -178,7 +178,7 @@
                                                     </li>
                                                     <li>
                                                         <a href="single-product.html" class="minicart-product-image">
-                                                            <img src="images/product/small-size/2.jpg" alt="cart products">
+                                                            <img src="{{ asset('storage/images/customer/product/small-size/2.jpg') }}" alt="cart products">
                                                         </a>
                                                         <div class="minicart-product-details">
                                                             <h6><a href="single-product.html">Aenean eu tristique</a></h6>
