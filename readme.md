@@ -14,7 +14,7 @@ Composer v2.0
 Thực thi câu lệnh sau:
 ```
 git clone <link đường dẫn github>
-```
+https://github.com/nttungmonkey/sellphone-ecommerce.git
 
 ## Step 2: Khởi tạo, kết nối database
 Hiệu chỉnh file .env, nếu không có file .env thì copy file .env.example về
