@@ -147,7 +147,7 @@
                                     <ul class="hm-menu">
                                         <!-- Begin Header Middle Wishlist Area -->
                                         <li class="hm-wishlist">
-                                            <a href="wishlist.html">
+                                            <a href="{{ route('pages.wish_list') }}">
                                                 <span class="cart-item-count wishlist-item-count">0</span>
                                                 <i class="fa fa-heart-o"></i>
                                             </a>
@@ -219,8 +219,8 @@
                                <div class="hb-menu">
                                    <nav>
                                        <ul>
-                                           <li><a href="index.html">Home</a></li>
-                                           <li><a href="shop-left-sidebar.html">Shop</a>
+                                           <li><a href="{{ route('pages.home') }}">Home</a></li>
+                                           <li><a href="{{ route('pages.home_list') }}">Shop</a>
                                                <!-- <ul class="megamenu hb-megamenu">
                                                    <li><a href="shop-left-sidebar.html">Shop Page Layout</a>
                                                        <ul>

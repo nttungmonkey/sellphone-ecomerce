@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+Route::get('/', 'Frontend\PageController@index') -> name('pages.home');
+Route::get('pages/home_list', 'Frontend\PageController@home_list') -> name('pages.home_list');
+Route::get('pages/wish_list', 'Frontend\PageController@wish_list') -> name('pages.wish_list');
 Route::get('pages/contact', 'Frontend\PageController@contact') -> name('pages.contact');
 Route::get('pages/faq', 'Frontend\PageController@FAQ') -> name('pages.faq');
 Route::get('pages/about', 'Frontend\PageController@about') -> name('pages.about');
