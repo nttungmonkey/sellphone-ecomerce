@@ -36,7 +36,7 @@
                                             <div class="language ht-language">
                                                 <ul class="ht-setting-list">
                                                     <li class="active"><a href="#"><img src="{{ asset('storage/images/customer/menu/flag-icon/1.jpg') }}" alt="">English</a></li>
-                                                    <li><a href="#"><img src="{{ asset('storage/images/customer/menu/flag-icon/2.jpg') }}" alt="">Vietnam</a></li>
+                                                    <li><a href="#"><img src="{{ asset('storage/images/customer/menu/flag-icon/3.png') }}" alt="">Vietnam</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -147,7 +147,7 @@
                                     <ul class="hm-menu">
                                         <!-- Begin Header Middle Wishlist Area -->
                                         <li class="hm-wishlist">
-                                            <a href="wishlist.html">
+                                            <a href="{{ route('pages.wish_list') }}">
                                                 <span class="cart-item-count wishlist-item-count">0</span>
                                                 <i class="fa fa-heart-o"></i>
                                             </a>
@@ -219,8 +219,8 @@
                                <div class="hb-menu">
                                    <nav>
                                        <ul>
-                                           <li><a href="index.html">Home</a></li>
-                                           <li><a href="shop-left-sidebar.html">Shop</a>
+                                           <li><a href="{{ route('pages.home') }}">Home</a></li>
+                                           <li><a href="{{ route('pages.home_list') }}">Shop</a>
                                                <!-- <ul class="megamenu hb-megamenu">
                                                    <li><a href="shop-left-sidebar.html">Shop Page Layout</a>
                                                        <ul>
@@ -327,9 +327,9 @@
                                                    </li>
                                                </ul> -->
                                            </li>
-                                           <li><a href="about-us.html">About Us</a></li>
+                                           <li><a href="{{ route('pages.about') }}">About Us</a></li>
                                            <li><a href="{{ route('pages.contact') }}">Contact</a></li>
-                                           <li><a href="shop-left-sidebar.html">Smartwatch</a></li>
+                                           <li><a href="{{ route('pages.faq') }}">FAQ</a></li>
                                            <li><a href="shop-left-sidebar.html">Accessories</a></li>
                                        </ul>
                                    </nav>

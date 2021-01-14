@@ -86,7 +86,7 @@
 @endsection
 @section('custom-scripts')
     <!-- Google Map -->
-    <script src="https://maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.22&amp;key=AIzaSyChs2QWiAhnzz0a4OEhzqCXwx_qA9ST_lE"></script>
+    <script src="https://maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.22&amp;key=AIzaSyBplDQpKmeCkIDzoPcW-B_MhqKllonyHlw"></script>
             
     <script>
         // When the window has finished loading create our google map below
@@ -99,7 +99,7 @@
                 zoom: 12,
                 scrollwheel: false,
                 // The latitude and longitude to center the map (always required)
-                center: new google.maps.LatLng(40.740610, -73.935242), // New York
+                center: new google.maps.LatLng(10.033682, 105.779897), // Can Tho, Viet Nam
                 // How you would like to style the map. 
                 // This is where you would paste any style found on
                 styles: [{
