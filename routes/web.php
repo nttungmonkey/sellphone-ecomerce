@@ -12,8 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('frontend.pages.faq');
+    return view('frontend.index');
 });
 Route::get('pages/contact', 'Frontend\PageController@contact') -> name('pages.contact');
 Route::get('pages/faq', 'Frontend\PageController@FAQ') -> name('pages.faq');
+Route::get('pages/about', 'Frontend\PageController@about') -> name('pages.about');
 Route::post('pages/email_to_contact', 'Frontend\PageController@email_to_contact') -> name('pages.email_to_contact');

@@ -327,7 +327,7 @@
                                                    </li>
                                                </ul> -->
                                            </li>
-                                           <li><a href="about-us.html">About Us</a></li>
+                                           <li><a href="{{ route('pages.about') }}">About Us</a></li>
                                            <li><a href="{{ route('pages.contact') }}">Contact</a></li>
                                            <li><a href="{{ route('pages.faq') }}">FAQ</a></li>
                                            <li><a href="shop-left-sidebar.html">Accessories</a></li>
