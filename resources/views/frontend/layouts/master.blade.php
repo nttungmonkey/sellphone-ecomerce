@@ -1,5 +1,5 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
+<!doctype html> 
+<html class="no-js" lang="zxx" ng-app="phonetnApp">
     
 <!-- index-431:41-->
   <head>
@@ -209,6 +209,23 @@
         <script src="{{ asset('themes/limupa/js/scrollUp.min.js') }}"></script>
         <!-- Main/Activator js -->
         <script src="{{ asset('themes/limupa/js/main.js') }}"></script>
+        <!-- Sweetalert js -->
+        <script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
+        <!-- Include AngularJS -->
+        <script src="{{ asset('vendor/angularjs/angular.min.js') }}"></script>
+        <!-- Include thư viện quản lý Cart - AngularJS -->
+        <script src="{{ asset('vendor/ngCart/dist/ngCart.js') }}"></script>
+
+        <script>
+            // Khởi tạo ứng dụng AngularJS, sử dụng plugin ngCart
+            // Do Laravel và AngularJS đều sử dụng dấu `Double bracket` để render dữ liệu
+            // => để tránh bị xung đột cú pháp, ta sẽ đổi cú pháp render dữ liệu của AngularJS thành <% %>
+            var app = angular.module('phonetnApp', ['ngCart'],
+                function($interpolateProvider) {
+                    $interpolateProvider.startSymbol('<%');
+                    $interpolateProvider.endSymbol('%>');
+                });
+        </script>
         @yield('custom-scripts')
     </body>
 

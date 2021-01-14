@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Mail;
+use App\Mail\ContactMailer;
 
 class PageController extends Controller
 {
@@ -28,9 +30,11 @@ class PageController extends Controller
         return view('frontend.pages.contact');
     }
     //Page email to contact
-    public function email_to_contact()
+    public function email_to_contact(Request $request)
     {
-        return view('frontend.pages.email_to_contact');
+        $input = $request->all();
+        Mail::to('phonetn2020@gmail.com')->send(new ContactMailer($input));
+        return $input;
     }
     //Page FAQ
     public function FAQ()

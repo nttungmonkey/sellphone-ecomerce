@@ -7,6 +7,12 @@
             color: #ffffff;
             margin-bottom: 0px;
         }
+        .error {
+            color: red;
+        }
+        .valid {
+            color: green;
+        }
     </style>
 @endsection
 @section('content')
@@ -25,7 +31,7 @@
             <!-- Begin Contact Main Page Area -->
             <div class="contact-main-page mt-60 mb-40 mb-md-40 mb-sm-40 mb-xs-40">
                 <div class="container mb-60">
-                    <div id="google-map"></div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d292.00945951364787!2d105.77981789640458!3d10.033741947759388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfa43fbeb2b00ca73!2sCUSC%20-%20Cantho%20University%20Software%20Center!5e0!3m2!1sen!2s!4v1610622825433!5m2!1sen!2s" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                 </div>
                 <div class="container">
                     <div class="row">
@@ -44,39 +50,45 @@
                                 </div>
                                 <div class="single-contact-block last-child">
                                     <h4><i class="fa fa-envelope-o"></i> Email</h4>
-                                    <p>phonetn@gmail.com</p>
+                                    <p>phonetn2020@gmail.com</p>
                                     <p>support@phonetn.company</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-12 order-2 order-lg-1">
+                        <div class="col-lg-6 col-md-12 order-2 order-lg-1" ng-controller="contactController">
                             <div class="contact-form-content pt-sm-55 pt-xs-55">
                                 <h3 class="contact-page-title">Tell Us Your Message</h3>
                                 <div class="contact-form">
-                                    <form  id="contact-form" action="{{ route('pages.email_to_contact') }}" method="post">
-                                        {{ csrf_field() }}
+                                    <form name="contactForm" ng-submit="submitContactForm()" novalidate>
                                         <div class="form-group">
                                             <label>Your Name <span class="required">*</span></label>
-                                            <input type="text" name="customerName" id="customername" required>
+                                            <input type="text" name="customerName" id="customerName" ng-model="customerName" ng-minlength="2" ng-maxlength="50" ng-required="true">
+                                            <span class="error" ng-show="contactForm.customerName.$error.required">Vui lòng nhập họ tên</span>
+                                            <span class="error" ng-show="contactForm.customerName.$error.minlength">Họ tên tối thiểu 2 ký tự</span>
+                                            <span class="error" ng-show="contactForm.customerName.$error.maxlength">Họ tên tối đa  ký tự</span>   
+                                            <span class="valid" ng-show="contactForm.customerName.$valid">Hợp lệ</span>      
                                         </div>
                                         <div class="form-group">
                                             <label>Your Email <span class="required">*</span></label>
-                                            <input type="email" name="customerEmail" id="customerEmail" required>
+                                            <input type="text" name="customerEmail" id="customerEmail" ng-model="customerEmail" ng-pattern="/^.+@gmail.com$/" ng-required=true>
+                                            <span class="error" ng-show="contactForm.customerEmail.$error.required">Vui lòng nhập email</span>
+                                            <span class="error" ng-show="!contactForm.customerEmail.$error.required&&contactForm.customerEmail.$error.pattern">Chỉ
+                                                chấp nhập GMAIL, vui lòng kiểm tra lại</span>
+                                            <span class="valid" ng-show="contactForm.customerEmail.$valid">Hợp lệ</span>
                                         </div>
                                         <div class="form-group">
                                             <label>Subject</label>
-                                            <input type="text" name="contactSubject" id="contactSubject">
+                                            <input type="text" name="contactSubject" id="contactSubject" ng-model="contactSubject">
                                         </div>
                                         <div class="form-group mb-30">
                                             <label>Your Message</label>
-                                            <textarea name="contactMessage" id="contactMessage" ></textarea>
+                                            <textarea name="contactMessage" id="contactMessage" ng-model="contactMessage"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" value="submit" id="submit" class="li-btn-3" name="submit">Send</button>
+                                            <button type="submit" class="li-btn-3" ng-disabled="contactForm.$invalid">Send</button>
                                         </div>
                                     </form>
                                 </div>
-                                <p class="form-messege"></p>
                             </div>
                         </div>
                     </div>
@@ -86,198 +98,32 @@
 @endsection
 @section('custom-scripts')
     <!-- Google Map -->
-    <script src="https://maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.22&amp;key=AIzaSyBplDQpKmeCkIDzoPcW-B_MhqKllonyHlw"></script>
-            
+    
     <script>
-        // When the window has finished loading create our google map below
-        google.maps.event.addDomListener(window, 'load', init);
-        function init() {
-            // Basic options for a simple Google Map
-            // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-            var mapOptions = {
-                // How zoomed in you want the map to start at (always required)
-                zoom: 12,
-                scrollwheel: false,
-                // The latitude and longitude to center the map (always required)
-                center: new google.maps.LatLng(10.033682, 105.779897), // Can Tho, Viet Nam
-                // How you would like to style the map. 
-                // This is where you would paste any style found on
-                styles: [{
-                        "featureType": "water",
-                        "elementType": "geometry",
-                        "stylers": [{
-                                "color": "#e9e9e9"
-                            },
-                            {
-                                "lightness": 17
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "landscape",
-                        "elementType": "geometry",
-                        "stylers": [{
-                                "color": "#f5f5f5"
-                            },
-                            {
-                                "lightness": 20
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road.highway",
-                        "elementType": "geometry.fill",
-                        "stylers": [{
-                                "color": "#ffffff"
-                            },
-                            {
-                                "lightness": 17
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road.highway",
-                        "elementType": "geometry.stroke",
-                        "stylers": [{
-                                "color": "#ffffff"
-                            },
-                            {
-                                "lightness": 29
-                            },
-                            {
-                                "weight": 0.2
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road.arterial",
-                        "elementType": "geometry",
-                        "stylers": [{
-                                "color": "#ffffff"
-                            },
-                            {
-                                "lightness": 18
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road.local",
-                        "elementType": "geometry",
-                        "stylers": [{
-                                "color": "#ffffff"
-                            },
-                            {
-                                "lightness": 16
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "poi",
-                        "elementType": "geometry",
-                        "stylers": [{
-                                "color": "#f5f5f5"
-                            },
-                            {
-                                "lightness": 21
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "poi.park",
-                        "elementType": "geometry",
-                        "stylers": [{
-                                "color": "#dedede"
-                            },
-                            {
-                                "lightness": 21
-                            }
-                        ]
-                    },
-                    {
-                        "elementType": "labels.text.stroke",
-                        "stylers": [{
-                                "visibility": "on"
-                            },
-                            {
-                                "color": "#ffffff"
-                            },
-                            {
-                                "lightness": 16
-                            }
-                        ]
-                    },
-                    {
-                        "elementType": "labels.text.fill",
-                        "stylers": [{
-                                "saturation": 36
-                            },
-                            {
-                                "color": "#333333"
-                            },
-                            {
-                                "lightness": 40
-                            }
-                        ]
-                    },
-                    {
-                        "elementType": "labels.icon",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    },
-                    {
-                        "featureType": "transit",
-                        "elementType": "geometry",
-                        "stylers": [{
-                                "color": "#f2f2f2"
-                            },
-                            {
-                                "lightness": 19
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "administrative",
-                        "elementType": "geometry.fill",
-                        "stylers": [{
-                                "color": "#fefefe"
-                            },
-                            {
-                                "lightness": 20
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "administrative",
-                        "elementType": "geometry.stroke",
-                        "stylers": [{
-                                "color": "#fefefe"
-                            },
-                            {
-                                "lightness": 17
-                            },
-                            {
-                                "weight": 1.2
-                            }
-                        ]
+        app.controller('contactController', function($scope, $http){
+            $scope.submitContactForm = function(){
+                if ($scope.contactForm.$valid){
+                    var dataInputContactForm = {
+                        "customerName": $scope.contactForm.customerName.$viewValue,
+                        "customerEmail": $scope.contactForm.customerEmail.$viewValue,
+                        "contactSubject": $scope.contactForm.contactSubject.$viewValue,
+                        "contactMessage": $scope.contactForm.contactMessage.$viewValue,
+                        "_token": "{{ csrf_token() }}"
                     }
-                ]
-            };
-
-            // Get the HTML DOM element that will contain your map 
-            // We are using a div with id="map" seen below in the <body>
-            var mapElement = document.getElementById('google-map');
-
-            // Create the Google Map using our element and options defined above
-            var map = new google.maps.Map(mapElement, mapOptions);
-
-            // Let's also add a marker while we're at it
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(10.033682, 105.779897),
-                map: map,
-                title: 'Limupa',
-                animation: google.maps.Animation.BOUNCE
-            });
-        }
-    </script>
+                    $http({
+                        url: "{{ route('pages.email_to_contact') }}",
+                        method: "POST",
+                        data: JSON.stringify(dataInputContactForm)
+                    }).then(function successCallback(response){
+                        swal('Successfully!', 'We will reply to you in the shortest time.', 'success');
+                    },
+                    function successCallback(response){
+                        swal('There is an error in the processing!', 'Please try again in a few minutes.', 'error');
+                        console.log(response);
+                    });
+                }
+            }
+            
+        });
+    </script>      
 @endsection
