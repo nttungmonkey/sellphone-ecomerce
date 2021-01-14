@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImportDetailTable extends Migration
+class CreateExportDetailTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateImportDetailTable extends Migration
      */
     public function up()
     {
-        Schema::create('import_detail', function (Blueprint $table) {
-            $table->bigIncrements('imd_id');
-            $table->unsignedInteger('imd_price')->comment('Giá mua # Giá mua mỗi sản phẩm, đơn vị Ngàn VND');
-            $table->unsignedsmallInteger('imd_amount')->comment('Số lượng # Số lượng sản phẩm nhập');
+        Schema::create('export_detail', function (Blueprint $table) {
+            $table->bigIncrements('emd_id');
+            $table->unsignedInteger('emd_price')->comment('Giá bán # Giá bán mỗi sản phẩm, đơn vị Ngàn VND');
+            $table->unsignedTinyInteger('emd_amount')->comment('Số lượng # Số lượng sản phẩm bán trên mỗi đơn hàng');
 
             $table->string('pro_sku', 14);
-            $table->bigInt('bii_id');
+            $table->unsignedBigInteger('bii_id');
 
             $table->foreign('pro_sku') 
                     ->references('pro_sku')->on('product') 
@@ -32,7 +32,7 @@ class CreateImportDetailTable extends Migration
                     ->onUpdate('CASCADE');
 
         });
-        DB::statement("ALTER TABLE `import_detail` comment 'Chi tiết nhập # Chi tiết hóa đơn nhập'");
+        DB::statement("ALTER TABLE `export_detail` comment 'Chi tiết xuất # Chi tiết đơn hàng xuất'");
     }
 
     /**
@@ -42,6 +42,6 @@ class CreateImportDetailTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('import_detail');
+        Schema::dropIfExists('export_detail');
     }
 }

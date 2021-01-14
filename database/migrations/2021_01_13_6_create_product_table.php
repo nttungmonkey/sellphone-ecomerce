@@ -25,8 +25,8 @@ class CreateProductTable extends Migration
             $table->timestamp('pro_updated')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật thông tin sản phẩm gần nhất');
             $table->unsignedTinyInteger('pro_status')->default('3')->comment('Trạng thái # Trạng thái sản phẩm: 1-Đang bán, 2-Đang vận chuyển, 3-Đã bán, 4-chưa bán');
             
-            $table->integer('mod_id');
-            $table->smallInteger('sup_id');
+            $table->unsignedInteger('mod_id');
+            $table->unsignedSmallInteger('sup_id');
 
             $table->foreign('mod_id') 
                     ->references('mod_id')->on('model') 

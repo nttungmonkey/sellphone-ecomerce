@@ -15,13 +15,13 @@ class CreateAccountTable extends Migration
     {
         Schema::create('account', function (Blueprint $table) {
             $table->bigIncrements('acc_id');
-            $table->string('acc_user', 50);
-            $table->string('acc_password', 250);
-            $table->string('acc_fullname', 100);
+            $table->string('acc_user', 50)->comment('Tài khoản người dùng # Tài khoản người dùng');
+            $table->string('acc_password', 250)->comment('Mật khẩu đăng nhập # Mật khẩu đã mã hóa');
+            $table->string('acc_fullname', 100)->comment('Tên đầy đủ # Tên đầy đủ của người dùng');
             $table->unsignedTinyInteger('acc_sex')->default('1')->comment('Giới tính # Giới tính: 0-Nữ, 1-Nam, 2-Khác');
             $table->dateTime('acc_birthday')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Ngày sinh # Ngày sinh');
-            $table->string('acc_phonenum', 11);
-            $table->string('acc_email', 100);
+            $table->string('acc_phonenum', 11)->nullable()->comment('Số điện thoại # Số điện thoại người dùng');
+            $table->string('acc_email', 100)->nullable()->comment('Địa chỉ Email # Địa chỉ Email người dùng');
             $table->string('acc_picture', 50);
             $table->timestamp('acc_created')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo tài khoản');
             $table->timestamp('acc_updated')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật thông tin tài khoản gần nhất');

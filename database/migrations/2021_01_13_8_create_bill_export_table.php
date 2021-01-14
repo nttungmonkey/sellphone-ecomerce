@@ -20,7 +20,7 @@ class CreateBillExportTable extends Migration
             $table->timestamp('bie_updated')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật thông tin đơn hàng xuất gần nhất');
             $table->unsignedTinyInteger('bie_status')->default('1')->comment('Trạng thái # Trạng thái hóa đơn: 1-Khách hàng tạo, 2-Nhân viên xác nhận, 3-Đã giao hàng, 4-Đã hủy');
             
-            $table->bigInt('acc_id');
+            $table->unsignedBigInteger('acc_id');
 
             $table->foreign('acc_id') 
                     ->references('acc_id')->on('account') 

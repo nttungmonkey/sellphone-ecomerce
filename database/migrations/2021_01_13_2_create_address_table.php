@@ -19,7 +19,7 @@ class CreateAddressTable extends Migration
 
             $table->timestamp('adr_created')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo địa chỉ');
             $table->timestamp('adr_updated')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật địa chỉ gần nhất');
-            $table->bigint('acc_id');
+            $table->unsignedBigInteger('acc_id');
 
             $table->foreign('acc_id') 
                     ->references('acc_id')->on('account') 

@@ -20,7 +20,7 @@ class CreateBillImportTable extends Migration
             $table->timestamp('bii_updated')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật thông tin hóa đơn nhập gần nhất');
             $table->unsignedTinyInteger('bii_status')->default('1')->comment('Trạng thái # Trạng thái hóa đơn: 1-Khả dụng, 2-Đã xóa');
             
-            $table->bigInt('acc_id');
+            $table->unsignedBigInteger('acc_id');
 
             $table->foreign('acc_id') 
                     ->references('acc_id')->on('account') 
