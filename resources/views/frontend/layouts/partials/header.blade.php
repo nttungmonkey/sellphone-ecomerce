@@ -36,7 +36,7 @@
                                             <div class="language ht-language">
                                                 <ul class="ht-setting-list">
                                                     <li class="active"><a href="#"><img src="{{ asset('storage/images/customer/menu/flag-icon/1.jpg') }}" alt="">English</a></li>
-                                                    <li><a href="#"><img src="{{ asset('storage/images/customer/menu/flag-icon/2.jpg') }}" alt="">Vietnam</a></li>
+                                                    <li><a href="#"><img src="{{ asset('storage/images/customer/menu/flag-icon/3.png') }}" alt="">Vietnam</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -329,7 +329,7 @@
                                            </li>
                                            <li><a href="about-us.html">About Us</a></li>
                                            <li><a href="{{ route('pages.contact') }}">Contact</a></li>
-                                           <li><a href="shop-left-sidebar.html">Smartwatch</a></li>
+                                           <li><a href="{{ route('pages.faq') }}">FAQ</a></li>
                                            <li><a href="shop-left-sidebar.html">Accessories</a></li>
                                        </ul>
                                    </nav>

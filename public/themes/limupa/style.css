@@ -1426,10 +1426,10 @@ textarea:focus {
 	margin-bottom: 10px;
 }
 .ht-setting-list > li:hover > a {
-	color: #ffffff;
+	color: #0c0000;
 }
 .ht-setting-list > li.active > a {
-	color: #fff;
+	color: #0c0000;
 }
 .ht-setting-list > li > a > img {
 	padding-right: 5px;

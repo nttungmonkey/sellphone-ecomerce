@@ -17,4 +17,9 @@ class PageController extends Controller
     {
         return view('frontend.pages.email_to_contact');
     }
+    //Page FAQ
+    public function FAQ()
+    {
+        return view('frontend.pages.faq');
+    }
 }
