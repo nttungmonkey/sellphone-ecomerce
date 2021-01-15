@@ -23,8 +23,8 @@
                                             <div class="setting ht-setting">
                                                 <ul class="ht-setting-list">
                                                     <li><a href="login-register.html">My Account</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
-                                                    <li><a href="login-register.html">Sign In</a></li>
+                                                    <li><a href="{{ route('pages.checkout') }}">Checkout</a></li>
+                                                    <li><a href="{{ route('pages.login') }}">Sign In</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -56,7 +56,7 @@
                             <!-- Begin Header Logo Area -->
                             <div class="col-lg-3">
                                 <div class="logo pb-sm-30 pb-xs-30">
-                                    <a href="index.html">
+                                    <a href="{{ route('pages.home') }}">
                                         <img src="{{ asset('storage/images/customer/menu/logo/logo1.png') }}" alt="">
                                     </a>
                                 </div>
@@ -147,7 +147,7 @@
                                     <ul class="hm-menu">
                                         <!-- Begin Header Middle Wishlist Area -->
                                         <li class="hm-wishlist">
-                                            <a href="{{ route('pages.wish_list') }}">
+                                            <a href="{{ route('pages.wish-list') }}">
                                                 <span class="cart-item-count wishlist-item-count">0</span>
                                                 <i class="fa fa-heart-o"></i>
                                             </a>
@@ -191,10 +191,10 @@
                                                 </ul>
                                                 <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
                                                 <div class="minicart-button">
-                                                    <a href="checkout.html" class="li-button li-button-dark li-button-fullwidth li-button-sm">
+                                                    <a href="{{ route('pages.cart') }}" class="li-button li-button-dark li-button-fullwidth li-button-sm">
                                                         <span>View Full Cart</span>
                                                     </a>
-                                                    <a href="checkout.html" class="li-button li-button-fullwidth li-button-sm">
+                                                    <a href="{{ route('pages.checkout') }}" class="li-button li-button-fullwidth li-button-sm">
                                                         <span>Checkout</span>
                                                     </a>
                                                 </div>
@@ -220,7 +220,7 @@
                                    <nav>
                                        <ul>
                                            <li><a href="{{ route('pages.home') }}">Home</a></li>
-                                           <li><a href="{{ route('pages.home_list') }}">Shop</a>
+                                           <li><a href="{{ route('pages.home-list') }}">Shop</a>
                                                <!-- <ul class="megamenu hb-megamenu">
                                                    <li><a href="shop-left-sidebar.html">Shop Page Layout</a>
                                                        <ul>

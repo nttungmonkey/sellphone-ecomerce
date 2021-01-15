@@ -14,15 +14,20 @@ class PageController extends Controller
     { 
         return view('frontend.index');
     }
-    //Page home_list
-    public function home_list()
+    //Page login
+    public function login()
     { 
-        return view('frontend.pages.home_list');
+        return view('frontend.pages.login');
+    }
+    //Page home_list
+    public function homelist()
+    { 
+        return view('frontend.pages.home-list');
     }
     //Page wish_list
-    public function wish_list()
+    public function wishlist()
     { 
-        return view('frontend.pages.wish_list');
+        return view('frontend.pages.wish-list');
     }
     //Page contact
     public function contact()
@@ -30,10 +35,13 @@ class PageController extends Controller
         return view('frontend.pages.contact');
     }
     //Page email to contact
-    public function email_to_contact(Request $request)
+    public function emailToContact(Request $request)
     {
+        if ($request["contactSubject"] == ''){
+            $request["contactSubject"] = "Contact";
+        } 
         $input = $request->all();
-        Mail::to('phonetn2020@gmail.com')->send(new ContactMailer($input));
+        Mail::to('nttung240197@gmail.com')->send(new ContactMailer($input));
         return $input;
     }
     //Page FAQ
@@ -41,8 +49,19 @@ class PageController extends Controller
     {
         return view('frontend.pages.faq');
     }
+    //Page about
     public function about()
     {
         return view('frontend.pages.about');
+    }
+    //Page checkout
+    public function checkout()
+    {
+        return view('frontend.pages.checkout');
+    }
+    //Page cart
+    public function cart()
+    {
+        return view('frontend.pages.shopping-cart');
     }
 }

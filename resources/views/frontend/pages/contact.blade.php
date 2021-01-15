@@ -21,7 +21,7 @@
                 <div class="container">
                     <div class="breadcrumb-content">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{ route('pages.home') }}">Home</a></li>
                             <li class="active">Contact</li>
                         </ul>
                     </div>
@@ -111,7 +111,7 @@
                         "_token": "{{ csrf_token() }}"
                     }
                     $http({
-                        url: "{{ route('pages.email_to_contact') }}",
+                        url: "{{ route('pages.email-to-contact') }}",
                         method: "POST",
                         data: JSON.stringify(dataInputContactForm)
                     }).then(function successCallback(response){
