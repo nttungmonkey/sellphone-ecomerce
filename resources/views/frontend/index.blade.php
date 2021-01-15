@@ -27,7 +27,7 @@
                                         <!-- single-product-wrap start -->
                                         <div class="single-product-wrap">
                                             <div class="product-image">
-                                                <a href="single-product.html">
+                                                <a href="{{ route('pages.single-product') }}">
                                                     <img src="{{ asset('storage/images/customer/product/large-size/1.jpg') }}" alt="Li's Product Image">
                                                 </a>
                                                 <span class="sticker">New</span>

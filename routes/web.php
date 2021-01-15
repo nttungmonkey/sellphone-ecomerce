@@ -20,4 +20,5 @@ Route::get('pages/faq', 'Frontend\PageController@FAQ') -> name('pages.faq');
 Route::get('pages/about', 'Frontend\PageController@about') -> name('pages.about');
 Route::get('pages/checkout', 'Frontend\PageController@checkout') -> name('pages.checkout');
 Route::get('pages/cart', 'Frontend\PageController@cart') -> name('pages.cart');
+Route::get('pages/single-product', 'Frontend\PageController@singleProduct') -> name('pages.single-product');
 Route::post('pages/email-to-contact', 'Frontend\PageController@emailToContact') -> name('pages.email-to-contact');

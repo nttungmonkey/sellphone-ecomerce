@@ -64,4 +64,8 @@ class PageController extends Controller
     {
         return view('frontend.pages.shopping-cart');
     }
+    //Page single-product
+    public function singleProduct(){
+        return view('frontend.pages.single-product');
+    }
 }
