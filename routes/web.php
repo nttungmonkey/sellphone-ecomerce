@@ -22,3 +22,13 @@ Route::get('pages/checkout', 'Frontend\PageController@checkout') -> name('pages.
 Route::get('pages/cart', 'Frontend\PageController@cart') -> name('pages.cart');
 Route::get('pages/single-product', 'Frontend\PageController@singleProduct') -> name('pages.single-product');
 Route::post('pages/email-to-contact', 'Frontend\PageController@emailToContact') -> name('pages.email-to-contact');
+Route::get('setLocale/{locale}', function ($locale) {
+    if (in_array($locale, Config::get('app.locales'))) {
+      Session::put('locale', $locale);
+    } 
+    return redirect()->back();
+})->name('app.setLocale');
+
+
+Route::get('/admin/report/orders', 'Backend\ReportController@orders')->name('backend.report.orders');
+Route::get('/admin/report/orders/data', 'Backend\ReportController@ordersData')->name('backend.report.orders.data');

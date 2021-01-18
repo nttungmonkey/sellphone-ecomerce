@@ -35,8 +35,8 @@
                                             <div class="ht-language-trigger"><span>English</span></div>
                                             <div class="language ht-language">
                                                 <ul class="ht-setting-list">
-                                                    <li class="active"><a href="#"><img src="{{ asset('storage/images/customer/menu/flag-icon/1.jpg') }}" alt="">English</a></li>
-                                                    <li><a href="#"><img src="{{ asset('storage/images/customer/menu/flag-icon/3.png') }}" alt="">Vietnam</a></li>
+                                                    <li class="active"><a href="{{ route('app.setLocale', ['locale' => 'en']) }}"><img src="{{ asset('storage/images/customer/menu/flag-icon/1.jpg') }}" alt="">English</a></li>
+                                                    <li><a href="{{ route('app.setLocale', ['locale' => 'vi']) }}"><img src="{{ asset('storage/images/customer/menu/flag-icon/3.png') }}" alt="">Vietnam</a></li>
                                                 </ul>
                                             </div>
                                         </li>

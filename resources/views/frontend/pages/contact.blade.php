@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-lg-6 col-md-12 order-2 order-lg-1" ng-controller="contactController">
                             <div class="contact-form-content pt-sm-55 pt-xs-55">
-                                <h3 class="contact-page-title">Tell Us Your Message</h3>
+                                <h3 class="contact-page-title">{{ __('phonetn.contact') }}</h3>
                                 <div class="contact-form">
                                     <form name="contactForm" ng-submit="submitContactForm()" novalidate>
                                         <div class="form-group">
