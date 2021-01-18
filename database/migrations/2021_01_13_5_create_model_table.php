@@ -13,7 +13,7 @@ class CreateModelTable extends Migration
      */
     public function up()
     {
-        Schema::create('model', function (Blueprint $table) {
+        Schema::create('models', function (Blueprint $table) {
             $table->Increments('mod_id');
             $table->string('mod_name', 100);
             $table->timestamp('mod_created')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo dòng sản phẩm');
@@ -25,7 +25,7 @@ class CreateModelTable extends Migration
                     ->onDelete('CASCADE')
                     ->onUpdate('CASCADE');
         });
-        DB::statement("ALTER TABLE `model` comment 'Dòng sản phẩm # Dòng sản phẩm: Galaxy Note, Galaxy S, ...'");
+        DB::statement("ALTER TABLE `models` comment 'Dòng sản phẩm # Dòng sản phẩm: Galaxy Note, Galaxy S, ...'");
     }
 
     /**
@@ -35,6 +35,6 @@ class CreateModelTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('model');
+        Schema::dropIfExists('models');
     }
 }
