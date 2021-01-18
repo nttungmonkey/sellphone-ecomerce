@@ -30,15 +30,11 @@ return array(
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
-<<<<<<< HEAD
     'App\\ImportDetail' => $baseDir . '/app/ImportDetail.php',
     'App\\Mail\\ContactMailer' => $baseDir . '/app/Mail/ContactMailer.php',
     'App\\Manufacture' => $baseDir . '/app/Manufacture.php',
     'App\\Models' => $baseDir . '/app/Models.php',
     'App\\Product' => $baseDir . '/app/Product.php',
-=======
-    'App\\Mail\\ContactMailer' => $baseDir . '/app/Mail/ContactMailer.php',
->>>>>>> 6784c5f3e79e8587bb92891d979b3e9c9939cc18
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',

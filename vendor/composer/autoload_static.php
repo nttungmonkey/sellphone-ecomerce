@@ -439,15 +439,11 @@ class ComposerStaticInit8de5a9bc5b421136c035edbfff3a439a
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
-<<<<<<< HEAD
         'App\\ImportDetail' => __DIR__ . '/../..' . '/app/ImportDetail.php',
         'App\\Mail\\ContactMailer' => __DIR__ . '/../..' . '/app/Mail/ContactMailer.php',
         'App\\Manufacture' => __DIR__ . '/../..' . '/app/Manufacture.php',
         'App\\Models' => __DIR__ . '/../..' . '/app/Models.php',
         'App\\Product' => __DIR__ . '/../..' . '/app/Product.php',
-=======
-        'App\\Mail\\ContactMailer' => __DIR__ . '/../..' . '/app/Mail/ContactMailer.php',
->>>>>>> 6784c5f3e79e8587bb92891d979b3e9c9939cc18
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
