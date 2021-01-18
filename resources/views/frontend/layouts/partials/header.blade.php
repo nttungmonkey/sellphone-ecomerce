@@ -23,8 +23,8 @@
                                             <div class="setting ht-setting">
                                                 <ul class="ht-setting-list">
                                                     <li><a href="login-register.html">My Account</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
-                                                    <li><a href="login-register.html">Sign In</a></li>
+                                                    <li><a href="{{ route('pages.checkout') }}">Checkout</a></li>
+                                                    <li><a href="{{ route('pages.login') }}">Sign In</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -35,8 +35,8 @@
                                             <div class="ht-language-trigger"><span>English</span></div>
                                             <div class="language ht-language">
                                                 <ul class="ht-setting-list">
-                                                    <li class="active"><a href="#"><img src="{{ asset('storage/images/customer/menu/flag-icon/1.jpg') }}" alt="">English</a></li>
-                                                    <li><a href="#"><img src="{{ asset('storage/images/customer/menu/flag-icon/3.png') }}" alt="">Vietnam</a></li>
+                                                    <li class="active"><a href="{{ route('app.setLocale', ['locale' => 'en']) }}"><img src="{{ asset('storage/images/customer/menu/flag-icon/1.jpg') }}" alt="">English</a></li>
+                                                    <li><a href="{{ route('app.setLocale', ['locale' => 'vi']) }}"><img src="{{ asset('storage/images/customer/menu/flag-icon/3.png') }}" alt="">Vietnam</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -56,7 +56,7 @@
                             <!-- Begin Header Logo Area -->
                             <div class="col-lg-3">
                                 <div class="logo pb-sm-30 pb-xs-30">
-                                    <a href="index.html">
+                                    <a href="{{ route('pages.home') }}">
                                         <img src="{{ asset('storage/images/customer/menu/logo/logo1.png') }}" alt="">
                                     </a>
                                 </div>
@@ -147,7 +147,7 @@
                                     <ul class="hm-menu">
                                         <!-- Begin Header Middle Wishlist Area -->
                                         <li class="hm-wishlist">
-                                            <a href="{{ route('pages.wish_list') }}">
+                                            <a href="{{ route('pages.wish-list') }}">
                                                 <span class="cart-item-count wishlist-item-count">0</span>
                                                 <i class="fa fa-heart-o"></i>
                                             </a>
@@ -191,10 +191,10 @@
                                                 </ul>
                                                 <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
                                                 <div class="minicart-button">
-                                                    <a href="checkout.html" class="li-button li-button-dark li-button-fullwidth li-button-sm">
+                                                    <a href="{{ route('pages.cart') }}" class="li-button li-button-dark li-button-fullwidth li-button-sm">
                                                         <span>View Full Cart</span>
                                                     </a>
-                                                    <a href="checkout.html" class="li-button li-button-fullwidth li-button-sm">
+                                                    <a href="{{ route('pages.checkout') }}" class="li-button li-button-fullwidth li-button-sm">
                                                         <span>Checkout</span>
                                                     </a>
                                                 </div>
@@ -220,7 +220,7 @@
                                    <nav>
                                        <ul>
                                            <li><a href="{{ route('pages.home') }}">Home</a></li>
-                                           <li><a href="{{ route('pages.home_list') }}">Shop</a>
+                                           <li><a href="{{ route('pages.home-list') }}">Shop</a>
                                                <!-- <ul class="megamenu hb-megamenu">
                                                    <li><a href="shop-left-sidebar.html">Shop Page Layout</a>
                                                        <ul>
@@ -254,39 +254,7 @@
                                                    </li>
                                                </ul> -->
                                            </li>
-                                           <li><a href="blog-left-sidebar.html">Blog</a>
-                                               <!-- <ul class="hb-dropdown">
-                                                   <li class="sub-dropdown-holder"><a href="blog-left-sidebar.html">Blog Grid View</a>
-                                                       <ul class="hb-dropdown hb-sub-dropdown">
-                                                           <li><a href="blog-2-column.html">Blog 2 Column</a></li>
-                                                           <li><a href="blog-3-column.html">Blog 3 Column</a></li>
-                                                           <li><a href="blog-left-sidebar.html">Grid Left Sidebar</a></li>
-                                                           <li><a href="blog-right-sidebar.html">Grid Right Sidebar</a></li>
-                                                       </ul>
-                                                   </li>
-                                                   <li class="sub-dropdown-holder"><a href="blog-list-left-sidebar.html">Blog List View</a>
-                                                       <ul class="hb-dropdown hb-sub-dropdown">
-                                                           <li><a href="blog-list.html">Blog List</a></li>
-                                                           <li><a href="blog-list-left-sidebar.html">List Left Sidebar</a></li>
-                                                           <li><a href="blog-list-right-sidebar.html">List Right Sidebar</a></li>
-                                                       </ul>
-                                                   </li>
-                                                   <li class="sub-dropdown-holder"><a href="blog-details-left-sidebar.html">Blog Details</a>
-                                                       <ul class="hb-dropdown hb-sub-dropdown">
-                                                           <li><a href="blog-details-left-sidebar.html">Left Sidebar</a></li>
-                                                           <li><a href="blog-details-right-sidebar.html">Right Sidebar</a></li>
-                                                       </ul>
-                                                   </li>
-                                                   <li class="sub-dropdown-holder"><a href="blog-gallery-format.html">Blog Format</a>
-                                                       <ul class="hb-dropdown hb-sub-dropdown">
-                                                           <li><a href="blog-audio-format.html">Blog Audio Format</a></li>
-                                                           <li><a href="blog-video-format.html">Blog Video Format</a></li>
-                                                           <li><a href="blog-gallery-format.html">Blog Gallery Format</a></li>
-                                                       </ul>
-                                                   </li>
-                                               </ul> -->
-                                           </li>
-                                           <li class="megamenu-static-holder"><a href="index.html">Pages</a>
+                                           <li class="megamenu-static-holder"><a href="index.html">Models</a>
                                                <!-- <ul class="megamenu hb-megamenu">
                                                    <li><a href="blog-left-sidebar.html">Blog Layouts</a>
                                                        <ul>
@@ -326,7 +294,39 @@
                                                        </ul>
                                                    </li>
                                                </ul> -->
-                                           </li>
+                                           </li>                          
+                                           <li><a href="blog-left-sidebar.html">Blog</a>
+                                               <!-- <ul class="hb-dropdown">
+                                                   <li class="sub-dropdown-holder"><a href="blog-left-sidebar.html">Blog Grid View</a>
+                                                       <ul class="hb-dropdown hb-sub-dropdown">
+                                                           <li><a href="blog-2-column.html">Blog 2 Column</a></li>
+                                                           <li><a href="blog-3-column.html">Blog 3 Column</a></li>
+                                                           <li><a href="blog-left-sidebar.html">Grid Left Sidebar</a></li>
+                                                           <li><a href="blog-right-sidebar.html">Grid Right Sidebar</a></li>
+                                                       </ul>
+                                                   </li>
+                                                   <li class="sub-dropdown-holder"><a href="blog-list-left-sidebar.html">Blog List View</a>
+                                                       <ul class="hb-dropdown hb-sub-dropdown">
+                                                           <li><a href="blog-list.html">Blog List</a></li>
+                                                           <li><a href="blog-list-left-sidebar.html">List Left Sidebar</a></li>
+                                                           <li><a href="blog-list-right-sidebar.html">List Right Sidebar</a></li>
+                                                       </ul>
+                                                   </li>
+                                                   <li class="sub-dropdown-holder"><a href="blog-details-left-sidebar.html">Blog Details</a>
+                                                       <ul class="hb-dropdown hb-sub-dropdown">
+                                                           <li><a href="blog-details-left-sidebar.html">Left Sidebar</a></li>
+                                                           <li><a href="blog-details-right-sidebar.html">Right Sidebar</a></li>
+                                                       </ul>
+                                                   </li>
+                                                   <li class="sub-dropdown-holder"><a href="blog-gallery-format.html">Blog Format</a>
+                                                       <ul class="hb-dropdown hb-sub-dropdown">
+                                                           <li><a href="blog-audio-format.html">Blog Audio Format</a></li>
+                                                           <li><a href="blog-video-format.html">Blog Video Format</a></li>
+                                                           <li><a href="blog-gallery-format.html">Blog Gallery Format</a></li>
+                                                       </ul>
+                                                   </li>
+                                               </ul> -->
+                                           </li>                                          
                                            <li><a href="{{ route('pages.about') }}">About Us</a></li>
                                            <li><a href="{{ route('pages.contact') }}">Contact</a></li>
                                            <li><a href="{{ route('pages.faq') }}">FAQ</a></li>

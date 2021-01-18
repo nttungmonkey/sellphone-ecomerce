@@ -12,9 +12,23 @@
 */
 
 Route::get('/', 'Frontend\PageController@index') -> name('pages.home');
-Route::get('pages/home_list', 'Frontend\PageController@home_list') -> name('pages.home_list');
-Route::get('pages/wish_list', 'Frontend\PageController@wish_list') -> name('pages.wish_list');
+Route::get('/login', 'Frontend\PageController@login') -> name('pages.login');
+Route::get('pages/homelist', 'Frontend\PageController@homelist') -> name('pages.home-list');
+Route::get('pages/wishlist', 'Frontend\PageController@wishlist') -> name('pages.wish-list');
 Route::get('pages/contact', 'Frontend\PageController@contact') -> name('pages.contact');
 Route::get('pages/faq', 'Frontend\PageController@FAQ') -> name('pages.faq');
 Route::get('pages/about', 'Frontend\PageController@about') -> name('pages.about');
-Route::post('pages/email_to_contact', 'Frontend\PageController@email_to_contact') -> name('pages.email_to_contact');
+Route::get('pages/checkout', 'Frontend\PageController@checkout') -> name('pages.checkout');
+Route::get('pages/cart', 'Frontend\PageController@cart') -> name('pages.cart');
+Route::get('pages/single-product', 'Frontend\PageController@singleProduct') -> name('pages.single-product');
+Route::post('pages/email-to-contact', 'Frontend\PageController@emailToContact') -> name('pages.email-to-contact');
+Route::get('setLocale/{locale}', function ($locale) {
+    if (in_array($locale, Config::get('app.locales'))) {
+      Session::put('locale', $locale);
+    } 
+    return redirect()->back();
+})->name('app.setLocale');
+
+
+Route::get('/admin/report/orders', 'Backend\ReportController@orders')->name('backend.report.orders');
+Route::get('/admin/report/orders/data', 'Backend\ReportController@ordersData')->name('backend.report.orders.data');

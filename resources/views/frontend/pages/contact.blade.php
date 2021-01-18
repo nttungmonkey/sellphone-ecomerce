@@ -21,7 +21,7 @@
                 <div class="container">
                     <div class="breadcrumb-content">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{ route('pages.home') }}">Home</a></li>
                             <li class="active">Contact</li>
                         </ul>
                     </div>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-lg-6 col-md-12 order-2 order-lg-1" ng-controller="contactController">
                             <div class="contact-form-content pt-sm-55 pt-xs-55">
-                                <h3 class="contact-page-title">Tell Us Your Message</h3>
+                                <h3 class="contact-page-title">{{ __('phonetn.contact') }}</h3>
                                 <div class="contact-form">
                                     <form name="contactForm" ng-submit="submitContactForm()" novalidate>
                                         <div class="form-group">
@@ -111,7 +111,7 @@
                         "_token": "{{ csrf_token() }}"
                     }
                     $http({
-                        url: "{{ route('pages.email_to_contact') }}",
+                        url: "{{ route('pages.email-to-contact') }}",
                         method: "POST",
                         data: JSON.stringify(dataInputContactForm)
                     }).then(function successCallback(response){
