@@ -8,7 +8,17 @@ Reports
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<!-- Daterangepicker -->
+<link href="{{ asset('vendor/daterangepicker/daterangepicker.css') }}" type="text/css" rel="stylesheet" />
+
+<style>
+    .notice {
+        font-style: italic;
+        font-size: 0.8em;
+    }
+</style>
 @endsection
 
 @section('content-header')
@@ -25,10 +35,15 @@ Orders
         <form method="get" action="#" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group">
+                <label for="timeCreateReport">Thời gian lập báo cáo</label>
+                <input type="text" class="form-control" id="timeCreateReport">
+                <span id="timeCreateReportText" class="notice"></span>
+            </div>
+            <div class="form-group" style="display: none;">
                 <label for="fromDay">Từ ngày</label>
                 <input type="text" class="form-control" id="fromDay" name="fromDay">
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display: none;">
                 <label for="toDay">Đến ngày</label>
                 <input type="text" class="form-control" id="toDay" name="toDay">
             </div>
@@ -48,6 +63,68 @@ Orders
 <script src="{{ asset('vendor/datatables/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <!-- Moments -->
 <script src="{{ asset('vendor/momentjs/moment.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/daterangepicker/daterangepicker.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('#timeCreateReport').daterangepicker({
+            "showWeekNumbers": true,
+            "showISOWeekNumbers": true,
+            "timePicker": true,
+            "timePicker24Hour": true,
+            "locale": {
+                "format": "DD/MM/YYYY HH:mm:ss",
+                "separator": " - ",
+                "applyLabel": "Accept",
+                "cancelLabel": "Cancel",
+                "fromLabel": "From",
+                "toLabel": "To",
+                "customRangeLabel": "Tùy chọn",
+                "weekLabel": "Day",
+                "daysOfWeek": [
+                    "Sun",
+                    "Mon",
+                    "Tue",
+                    "Wed",
+                    "Thu",
+                    "Fri",
+                    "Sat"
+                ],
+                "monthNames": [
+                    "Jan",
+                    "Feb",
+                    "Mar",
+                    "Apr",
+                    "May",
+                    "Jun",
+                    "Jul",
+                    "Aug",
+                    "Sep",
+                    "Oct",
+                    "Nov",
+                    "Dec",
+                ],
+                "firstDay": 1
+            },
+            "startDate": "15/07/2019",
+            "endDate": "21/07/2019",
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 days': [moment().subtract(29, 'days'), moment()],
+                'This month': [moment().startOf('month'), moment().endOf('month')],
+                'Last month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        }, function(start, end, label) {
+            // Hiển thị thời gian đã chọn
+            $('#timeCreateReportText').html('Data will be listed from <span style="font-weight: bold">' + start.format('DD/MM/YYYY, HH:mm') + '</span> to <span style="font-weight: bold">' + end.format('DD/MM/YYYY, HH:mm') + '</span><br />Report preparation time can take several minutes, please press a button <span style="font-weight: bold">"Create"</span> and wait a few minutes!');
+
+            // Gán giá trị cho Ngày để gởi dữ liệu về Backend
+            $('#fromDay').val(start.format('YYYY-MM-DD HH:mm:ss'));
+            $('#toDay').val(end.format('YYYY-MM-DD HH:mm:ss'));
+        });
+    });
+</script>
 <!-- NumeralJS -->
 <script src="{{ asset('vendor/numeraljs/numeral.min.js') }}"></script>
 <script>
@@ -84,7 +161,7 @@ Orders
         $("#btnCreatReport").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: '{{ route('backend.report.orders.data') }}',
+                url: '{{ route('admin.report.orders.data') }}',
                 type: "GET",
                 data: {
                     fromDay: $('#fromDay').val(),

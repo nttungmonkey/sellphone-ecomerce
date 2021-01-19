@@ -37,24 +37,19 @@ Products
                 @endforeach
             </div>
             <div class="card-header">
-                <a href="{{ route('products.create') }}" class="btn btn-primary">Create</a>
-                <a href="{{ route('products.print') }}" class="btn btn-primary">Print</a>
-                <a href="{{ route('products.excel') }}" class="btn btn-primary">Excel</a>
-                <a href="{{ route('products.pdf') }}" class="btn btn-primary">PDF</a>
+ 
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-hover" id="products">
                     <thead>
                         <tr>
+                            <td>Sku</th>
                             <td>Name</th>
-                            <td>Price</th>
                             <td>Image</th>
-                            <td>Infor</th>
-                            <td>Review</th>
                             <td>Status</th>
                             <td>Create At</th>
                             <td>Update At</th>
-                            <td style="width:150px;">Action</th>
+                            <!-- <td style="width:150px;">Action</th> -->
                         </tr>
                     </thead>       
                 </table>
@@ -74,78 +69,44 @@ Products
 <script src="{{ asset('vendor/momentjs/moment.min.js') }}"></script>
 <script type="text/javascript">
     $(function () {
-        $('body').on('click', '#delete-product', function (e) {
-            var sp_ma = $(this).data('id');     
-            e.preventDefault();
-            var token = $("meta[name='csrf-token']").attr("content");
-            if(confirm("Are you sure you want to Delete this data?")){
-                $.ajax({
-                    type: "POST",
-                    url: $(this).attr('name'),
-                    data: {
-                        id : sp_ma,
-                        _token: token,
-                        _method: "DELETE"
-                    },
-                    success: function (data) {
-                        location.href = '{{ route('products.index') }}';
-                        table.ajax.reload();
-                    },
-                    error: function (data) {
-                        console.log('Error:', data);
-                    }   
-                });
-            }
-            else {
-                return false;
-            }   
-        });
         var table = $('#products').DataTable({
             responsive: true,
             autoWidth: false,
             processing: true,
             serverSide: true,
-            ajax: "{{ route('products.index') }}",
+            ajax: "{{ route('admin.products.getData') }}",
             columns: [
-                {data: 'sp_ten', name: 'Name', orderable: true, searchable: true},
-                {data: 'sp_giaBan', name: 'Price'},
+                {data: 'pro_sku', name: 'Sku'},
+                {data: 'pro_name', name: 'Name',  orderable: true, searchable: true},
                 {   
-                    data: 'image', 
+                    data: 'pro_image', 
                     name: 'Image', 
                     orderable: false, 
                     searchable: false
                 },
-                {data: 'sp_thongTin', name: 'Infor'},
-                {data: 'sp_danhGia', name: 'Review'},
                 {   
-                    data: 'sp_trangThai',
+                    data: 'pro_status',
                     render: function (data, type, row, meta){
-                        if (data == 1){
-                            return '<span class="badge badge-danger">Khóa</span>';
+                        if (data == 3){
+                            return '<span class="badge badge-danger">Đã bán</span>';
                         }
-                        else return '<span class="badge badge-success">Khả dụng</span>';
+                        else return '<span class="badge badge-success">Chưa bán</span>';
                     },
                     name: 'Status'},
                     {
-                    data: 'sp_taoMoi', 
+                    data: 'pro_created', 
                     render: function (data, type, row, meta){
                         return moment(data).format('DD/MM/YYYY hh:mm:ss');
                     }, 
                     name: 'Created At'
                 },
                 {
-                    data: 'sp_capNhat',
+                    data: 'pro_update',
                     render: function (data, type, row, meta){
                         return moment(data).format('DD/MM/YYYY hh:mm:ss');
                     }, 
                     name: 'Updated At'
-                },
-                {
-                    data: 'action', 
-                    name: 'action', 
-                    orderable: false, 
-                    searchable: false
-                },
+                }
             ]
         });  
     });

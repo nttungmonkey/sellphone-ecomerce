@@ -11,6 +11,15 @@ class addressTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $list = [];
+        $faker    = Faker\Factory::create();
+        for ($i=1; $i <= 10; $i++) {
+            $today = new DateTime();
+            array_push($list, [
+                'adr_address'             => $faker->streetAddress(),
+                'acc_id'                  => $faker->numberBetween(1, 10),
+            ]);
+        }
+        DB::table('address')->insert($list);
     }
 }
