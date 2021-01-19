@@ -29,7 +29,7 @@ class CreateProductTable extends Migration
             $table->unsignedSmallInteger('sup_id');
 
             $table->foreign('mod_id') 
-                    ->references('mod_id')->on('model') 
+                    ->references('mod_id')->on('models') 
                     ->onDelete('CASCADE')
                     ->onUpdate('CASCADE');
 
