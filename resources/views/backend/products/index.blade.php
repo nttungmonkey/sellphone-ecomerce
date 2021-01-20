@@ -34,7 +34,6 @@ Products
         <div class="card">
             <div class="card-header">
             <a href="javascript:void(0)" id="createProduct" class="btn btn-primary">Create</a>
-            <a href="javascript:void(0)" id="test" class="btn btn-primary">Test</a>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-hover" id="products">
@@ -151,8 +150,7 @@ Products
 <script src="{{ asset('vendor/datatables/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <!-- Moments -->
 <script src="{{ asset('vendor/momentjs/moment.min.js') }}"></script>
-<!-- SweetAlert -->
-<script src="{{ asset('vendor/sweetalert/sweetalert2.all.min.js') }}"></script>
+
 <script type="text/javascript">
     $(function () {
         var pro_id = '';
