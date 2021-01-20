@@ -39,7 +39,7 @@
                             <div class="contact-page-side-content">
                                 <h3 class="contact-page-title">Contact Us</h3>
                                 <p class="contact-page-message mb-25">Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum formas human.</p>
-                                <div class="single-contact-block">
+                                <div class="single-contact-.contactblock">
                                     <h4><i class="fa fa-fax"></i> Address</h4>
                                     <p>01 Ly Tu Trong Street, Ninh Kieu District, Can Tho City</p>
                                 </div>
@@ -61,7 +61,7 @@
                                 <div class="contact-form">
                                     <form name="contactForm" ng-submit="submitContactForm()" novalidate>
                                         <div class="form-group">
-                                            <label>Your Name <span class="required">*</span></label>
+                                            <label> {{ __('phonetn.yourname') }}<span class="required">*</span></label>
                                             <input type="text" name="customerName" id="customerName" ng-model="customerName" ng-minlength="2" ng-maxlength="50" ng-required="true">
                                             <span class="error" ng-show="contactForm.customerName.$error.required">Vui lòng nhập họ tên</span>
                                             <span class="error" ng-show="contactForm.customerName.$error.minlength">Họ tên tối thiểu 2 ký tự</span>
@@ -69,7 +69,7 @@
                                             <span class="valid" ng-show="contactForm.customerName.$valid">Hợp lệ</span>      
                                         </div>
                                         <div class="form-group">
-                                            <label>Your Email <span class="required">*</span></label>
+                                            <label>{{ __('phonetn.youremail') }}<span class="required">*</span></label>
                                             <input type="text" name="customerEmail" id="customerEmail" ng-model="customerEmail" ng-pattern="/^.+@gmail.com$/" ng-required=true>
                                             <span class="error" ng-show="contactForm.customerEmail.$error.required">Vui lòng nhập email</span>
                                             <span class="error" ng-show="!contactForm.customerEmail.$error.required&&contactForm.customerEmail.$error.pattern">Chỉ
@@ -77,15 +77,15 @@
                                             <span class="valid" ng-show="contactForm.customerEmail.$valid">Hợp lệ</span>
                                         </div>
                                         <div class="form-group">
-                                            <label>Subject</label>
+                                            <label>{{ __('phonetn.yoursubject') }}</label>
                                             <input type="text" name="contactSubject" id="contactSubject" ng-model="contactSubject">
                                         </div>
                                         <div class="form-group mb-30">
-                                            <label>Your Message</label>
+                                            <label>{{ __('phonetn.yourmessage') }}</label>
                                             <textarea name="contactMessage" id="contactMessage" ng-model="contactMessage"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="li-btn-3" ng-disabled="contactForm.$invalid">Send</button>
+                                            <button type="submit" class="li-btn-3" ng-disabled="contactForm.$invalid">{{ __('phonetn.sendbutton') }}</button>
                                         </div>
                                     </form>
                                 </div>
