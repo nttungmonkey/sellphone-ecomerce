@@ -78,7 +78,7 @@
 <!-- overlayScrollbars -->
 <script src="{{ asset('vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- SweetAlert -->
-<script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{ asset('vendor/sweetalert/sweetalert2.all.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('js/admin/adminlte.js') }}"></script>
 @yield('custom-scripts')

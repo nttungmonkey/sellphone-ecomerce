@@ -33,6 +33,5 @@ Route::resource('/admin/manufactures', 'Backend\ManufactureController', ['as' =>
 Route::resource('/admin/suppliers', 'Backend\SupplierController', ['as' => 'admin']);
 Route::resource('/admin/models', 'Backend\ModelController', ['as' => 'admin']);
 Route::resource('/admin/products', 'Backend\ProductController', ['as' => 'admin']);
-Route::get('/admin/products/getData', 'Backend\ProductController@getData')->name('admin.products.getData');
 Route::get('/admin/report/orders', 'Backend\ReportController@orders')->name('admin.report.orders');
 Route::get('/admin/report/orders/data', 'Backend\ReportController@ordersData')->name('admin.report.orders.data');

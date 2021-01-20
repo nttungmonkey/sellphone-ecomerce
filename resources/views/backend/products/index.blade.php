@@ -17,6 +17,7 @@ Products
         display: inline;
         width: 1.5rem;
     }
+    th.dt-header-center, td.dt-center { text-align: center; }
 </style>
 @endsection
 
@@ -34,19 +35,18 @@ Products
         <div class="card">
             <div class="card-header">
             <a href="javascript:void(0)" id="createProduct" class="btn btn-primary">Create</a>
-            <a href="javascript:void(0)" id="test" class="btn btn-primary">Test</a>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-hover" id="products">
                     <thead>
                         <tr>
-                            <td>Sku</th>
-                            <td>Name</th>
-                            <td>Image</th>
-                            <td>Status</th>
-                            <td>Model</th>
-                            <td>Supplier</th>
-                            <td style="width:150px;">Action</th>
+                            <th>Sku</th>
+                            <th>Name</th>                         
+                            <th>Model</th>
+                            <th>Supplier</th>
+                            <th>Image</th> 
+                            <th>Status</th>
+                            <th style="width:150px;">Action</th>
                         </tr>
                     </thead>       
                 </table>
@@ -55,8 +55,8 @@ Products
         </div>
     </div>
 </div>
-<div class="modal fade" id="mdlProduct" aria-modal="true">
-    <div class="modal-dialog">
+<div class="modal fade bd-example-modal-lg" id="mdlProduct" aria-modal="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form id="frmProduct" action="" method="POST">
                 <input type="hidden" id="action" >
@@ -151,8 +151,7 @@ Products
 <script src="{{ asset('vendor/datatables/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <!-- Moments -->
 <script src="{{ asset('vendor/momentjs/moment.min.js') }}"></script>
-<!-- SweetAlert -->
-<script src="{{ asset('vendor/sweetalert/sweetalert2.all.min.js') }}"></script>
+
 <script type="text/javascript">
     $(function () {
         var pro_id = '';
@@ -167,6 +166,10 @@ Products
             processing: true,
             serverSide: true,
             ajax: "{{ route('admin.products.index') }}",
+            columnDefs: [
+            { className: "dt-center", targets: [ 4, 5, 6 ] },
+            { className: "dt-header-center", targets: [ 4, 5, 6 ] }
+            ],
             columns: [
                 {   
                     data: 'pro_sku', 
@@ -175,13 +178,22 @@ Products
                     data: 'pro_name', 
                     name: 'pro_name',  
                     orderable: true, 
-                    searchable: true},
+                    searchable: true
+                },            
+                {
+                    data: 'models.mod_name', 
+                    name: 'models.mod_name'
+                },
+                {
+                    data: 'supplier.sup_name',
+                    name: 'supplier.sup_name'
+                },
                 {   
                     data: 'pro_image', 
                     name: 'pro_image', 
                     orderable: false, 
                     searchable: false
-                },
+                },  
                 {   
                     data: 'pro_status',
                     render: function (data, type, row, meta){
@@ -201,14 +213,6 @@ Products
                     orderable: false, 
                     searchable: false,
                     name: 'pro_status'
-                },
-                {
-                    data: 'mod_name', 
-                    name: 'mod_name'
-                },
-                {
-                    data: 'sup_name',
-                    name: 'sup_name'
                 },
                 {
                     data: 'action', 
