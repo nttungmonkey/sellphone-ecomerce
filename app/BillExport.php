@@ -23,4 +23,14 @@ class BillExport extends Model
 
     protected $dates        = ['bie_created', 'bie_updated'];
     protected $dateFormat   = 'Y-m-d H:i:s';
+
+    public function details()
+    {
+        return $this->hasMany('App\ExportDetail', 'bie_id', 'bie_id');
+    }
+
+    public function acc()
+    {
+        return $this->belongsTo('App\Account', 'acc_id', 'acc_id');
+    }
 }

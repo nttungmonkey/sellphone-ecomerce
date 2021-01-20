@@ -31,4 +31,18 @@ class Account extends Model
 
     protected $dates        = ['acc_created', 'acc_updated'];
     protected $dateFormat   = 'Y-m-d H:i:s';
+    public function billExs()
+    {
+        return $this->hasMany('App\BillExport', 'acc_id', 'acc_id');
+    }
+
+    public function billIms()
+    {
+        return $this->hasMany('App\billIm', 'acc_id', 'acc_id');
+    }
+
+    public function address()
+    {
+        return $this->hasMany('App\Address', 'acc_id', 'acc_id');
+    }
 }

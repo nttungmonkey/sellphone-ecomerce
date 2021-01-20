@@ -13,11 +13,20 @@ class ImportDetail extends Model
                 [
                     'imd_price',
                     'imd_amount',
-                    'pro_sku',
+                    'pro_id',
                     'bii_id'
                 ];
     protected $guarded      = ['imd_id'];
 
     protected $primaryKey   = 'imd_id';
 
+    public function product()
+    {
+        return $this->belongsTo('App\Product', 'pro_id', 'pro_id');
+    }
+
+    public function bill()
+    {
+        return $this->belongsTo('App\BillExport', 'bie_id', 'bie_id');
+    }
 }

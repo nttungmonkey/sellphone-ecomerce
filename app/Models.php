@@ -23,4 +23,14 @@ class Models extends Model
 
     protected $dates        = ['mod_created', 'mod_updated'];
     protected $dateFormat   = 'Y-m-d H:i:s';
+
+    public function products()
+    {
+        return $this->hasMany('App\Product', 'mod_id', 'mod_id');
+    }
+
+    public function manufacture()
+    {
+        return $this->belongsTo('App\Manufacture', 'mnf_id', 'mnf_id');
+    }
 }

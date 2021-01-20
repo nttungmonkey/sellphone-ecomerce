@@ -30,4 +30,25 @@ class Product extends Model
 
     protected $dates        = ['pro_created', 'pro_updated'];
     protected $dateFormat   = 'Y-m-d H:i:s';
+    
+    public function models()
+    {
+        return $this->belongsTo('App\Models', 'mod_id', 'mod_id');
+    }
+
+    public function supplier()
+    {
+        return $this->belongsTo('App\Supplier', 'sup_id', 'sup_id');
+    }
+
+    public function importdetail()
+    {
+        return $this->hasMany('App\ImportDetail', 'pro_id', 'pro_id');
+    }
+
+    public function exportdetail()
+    {
+        return $this->hasMany('App\ExportDetail', 'pro_id', 'pro_id');
+    }
+
 }
