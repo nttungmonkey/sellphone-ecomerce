@@ -23,4 +23,16 @@ class BillImport extends Model
 
     protected $dates        = ['bii_created', 'bii_updated'];
     protected $dateFormat   = 'Y-m-d H:i:s';
+
+    public function detail()
+    {
+        return $this->hasMany('App\ImportDetail', 'bii_id', 'bii_id');
+    }
+
+    public function acc()
+    {
+        return $this->belongsTo('App\Account', 'acc_id', 'acc_id');
+    }
+
+
 }

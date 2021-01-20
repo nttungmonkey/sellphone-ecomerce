@@ -24,4 +24,9 @@ class Manufacture extends Model
 
     protected $dates        = ['mnf_created', 'mnf_updated'];
     protected $dateFormat   = 'Y-m-d H:i:s';
+    
+    public function models()
+    {
+        return $this->hasMany('App\Models', 'mnf_id', 'mnf_id');
+    }
 }

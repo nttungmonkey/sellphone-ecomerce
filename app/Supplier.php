@@ -27,4 +27,9 @@ class Supplier extends Model
 
     protected $dates        = ['sup_created', 'sup_updated'];
     protected $dateFormat   = 'Y-m-d H:i:s';
+
+    public function products()
+    {
+        return $this->hasMany('App\Product', 'sup_id', 'sup_id');
+    }
 }

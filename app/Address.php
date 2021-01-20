@@ -17,10 +17,15 @@ class Address extends Model
                 'adr_updated',
                 'acc_id'
             ];
-protected $guarded      = ['adr_id'];
+    protected $guarded      = ['adr_id'];
 
     protected $primaryKey   = 'adr_id';
 
     protected $dates        = ['adr_created', 'adr_updated'];
     protected $dateFormat   = 'Y-m-d H:i:s';
+    
+    public function acc()
+    {
+        return $this->belongsTo('App\Account', 'acc_id', 'acc_id');
+    }
 }

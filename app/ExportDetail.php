@@ -13,11 +13,19 @@ class ExportDetail extends Model
                 [
                     'emd_price',
                     'emd_amount',
-                    'pro_sku',
-                    'bii_id'
+                    'pro_id',
+                    'bie_id'
                 ];
     protected $guarded      = ['emd_id'];
 
     protected $primaryKey   = 'emd_id';
+    public function product()
+    {
+        return $this->belongsTo('App\Product', 'pro_id', 'pro_id');
+    }
 
+    public function bill()
+    {
+        return $this->belongsTo('App\BillExport', 'bie_id', 'bie_id');
+    }
 }
