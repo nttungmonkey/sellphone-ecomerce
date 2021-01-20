@@ -19,11 +19,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = DB::table('product')
-                        ->join('models', 'models.mod_id', '=', 'product.mod_id')
-                        ->join('supplier', 'supplier.sup_id', '=', 'product.sup_id')
-                        ->select('product.pro_id','product.pro_sku', 'product.pro_name', 'product.pro_image','product.pro_detail','product.pro_descriptS','product.pro_descriptF','product.pro_created','product.pro_updated','product.pro_status','models.mod_name', 'supplier.sup_name');
-            
+            $data = Product::with('models','supplier')->select('product.*');
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
