@@ -14,6 +14,7 @@ class CreateBillExportTable extends Migration
     public function up()
     {
         Schema::create('bill_export', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('bie_id');
             
             $table->timestamp('bie_created')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo đơn hàng xuất');

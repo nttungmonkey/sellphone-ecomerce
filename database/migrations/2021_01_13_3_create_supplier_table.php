@@ -14,6 +14,7 @@ class CreateSupplierTable extends Migration
     public function up()
     {
         Schema::create('supplier', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->smallIncrements('sup_id');
             $table->string('sup_name', 100)->comment('Tên nhà cung cấp # Tên nhà cung cấp');
             $table->string('sup_phonenum', 11)->comment('Số điện thoại # Số điện thoại');

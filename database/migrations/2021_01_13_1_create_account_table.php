@@ -14,6 +14,7 @@ class CreateAccountTable extends Migration
     public function up()
     {
         Schema::create('account', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('acc_id');
             $table->string('acc_user', 50)->comment('Tài khoản người dùng # Tài khoản người dùng');
             $table->string('acc_password', 250)->comment('Mật khẩu đăng nhập # Mật khẩu đã mã hóa');

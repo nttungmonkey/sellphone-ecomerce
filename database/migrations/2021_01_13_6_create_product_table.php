@@ -14,7 +14,9 @@ class CreateProductTable extends Migration
     public function up()
     {
         Schema::create('product', function (Blueprint $table) {
-            $table->string('pro_sku', 14)->primary();
+            $table->engine = 'InnoDB';
+            $table->Increments('pro_id');
+            $table->string('pro_sku', 14);
             $table->string('pro_name', 100);
             $table->string('pro_image', 50);
             $table->text('pro_detail')->comment('Thông tin chi tiết # Thông số sản phẩm, mỗi giá trị cách nhau dấu|');
@@ -37,6 +39,8 @@ class CreateProductTable extends Migration
                     ->references('sup_id')->on('supplier') 
                     ->onDelete('CASCADE')
                     ->onUpdate('CASCADE');
+
+            $table->unique(['pro_sku']);
 
         });
         DB::statement("ALTER TABLE `product` comment 'Sản phẩm # Sản phẩm'");

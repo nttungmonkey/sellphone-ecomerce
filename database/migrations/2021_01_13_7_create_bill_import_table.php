@@ -14,6 +14,7 @@ class CreateBillImportTable extends Migration
     public function up()
     {
         Schema::create('bill_import', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('bii_id');
 
             $table->timestamp('bii_created')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo hóa đơn nhập');

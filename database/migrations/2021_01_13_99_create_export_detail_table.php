@@ -14,15 +14,16 @@ class CreateExportDetailTable extends Migration
     public function up()
     {
         Schema::create('export_detail', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('emd_id');
             $table->unsignedInteger('emd_price')->comment('Giá bán # Giá bán mỗi sản phẩm, đơn vị Ngàn VND');
             $table->unsignedTinyInteger('emd_amount')->comment('Số lượng # Số lượng sản phẩm bán trên mỗi đơn hàng');
 
-            $table->string('pro_sku', 14);
+            $table->unsignedInteger('pro_id');
             $table->unsignedBigInteger('bii_id');
 
-            $table->foreign('pro_sku') 
-                    ->references('pro_sku')->on('product') 
+            $table->foreign('pro_id') 
+                    ->references('pro_id')->on('product') 
                     ->onDelete('CASCADE')
                     ->onUpdate('CASCADE');
 

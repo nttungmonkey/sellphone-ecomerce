@@ -14,15 +14,16 @@ class CreateImportDetailTable extends Migration
     public function up()
     {
         Schema::create('import_detail', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('imd_id');
             $table->unsignedInteger('imd_price')->comment('Giá mua # Giá mua mỗi sản phẩm, đơn vị Ngàn VND');
             $table->unsignedsmallInteger('imd_amount')->comment('Số lượng # Số lượng sản phẩm nhập');
 
-            $table->string('pro_sku', 14);
+            $table->unsignedInteger('pro_id');
             $table->unsignedBigInteger('bii_id');
 
-            $table->foreign('pro_sku') 
-                    ->references('pro_sku')->on('product') 
+            $table->foreign('pro_id') 
+                    ->references('pro_id')->on('product') 
                     ->onDelete('CASCADE')
                     ->onUpdate('CASCADE');
 

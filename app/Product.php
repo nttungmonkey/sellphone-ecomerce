@@ -12,6 +12,7 @@ class Product extends Model
     protected $table        = 'product';
     protected $fillable     =
             [
+                'pro_sku',
                 'pro_name',
                 'pro_image',
                 'pro_detail',
@@ -23,9 +24,9 @@ class Product extends Model
                 'mod_id',
                 'sup_id'
             ];
-    protected $guarded      = ['pro_sku'];
+    protected $guarded      = ['pro_id'];
 
-    protected $primaryKey   = 'pro_sku';
+    protected $primaryKey   = 'pro_id';
 
     protected $dates        = ['pro_created', 'pro_updated'];
     protected $dateFormat   = 'Y-m-d H:i:s';

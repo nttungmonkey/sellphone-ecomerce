@@ -14,6 +14,7 @@ class CreateModelTable extends Migration
     public function up()
     {
         Schema::create('models', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->Increments('mod_id');
             $table->string('mod_name', 100);
             $table->timestamp('mod_created')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo dòng sản phẩm');

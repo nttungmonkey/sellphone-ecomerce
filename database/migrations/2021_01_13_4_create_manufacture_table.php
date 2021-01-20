@@ -14,6 +14,7 @@ class CreateManufactureTable extends Migration
     public function up()
     {
         Schema::create('manufacture', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->smallIncrements('mnf_id');
             $table->string('mnf_name', 100);
             $table->string('mnf_logo', 50);
