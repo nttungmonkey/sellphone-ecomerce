@@ -189,8 +189,8 @@ Products
                     name: 'supplier.sup_name'
                 },
                 {   
-                    data: 'pro_image', 
-                    name: 'pro_image', 
+                    data: 'image', 
+                    name: 'image', 
                     orderable: false, 
                     searchable: false
                 },  

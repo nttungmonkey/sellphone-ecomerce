@@ -29,7 +29,13 @@ class ProductController extends Controller
                                     <a href="javascript:void(0)" data-id="'.$row->pro_id.'" class="btn btn-danger btn-sm deleteProduct"><i class="fas fa-trash"></i> Delete</a>';
                     return $actionBtn;
                 })
-                ->rawColumns(['action'])
+                ->addColumn('image', function($row){
+                    $imgs = explode(';',$row->pro_image) ;
+                    $url_image = asset('storage/images/products/Model' .$row->mod_id.'/'.$imgs[0].".png");
+                    $image =    '<img src="'.$url_image.'" class="table-avatar" alt="Avatar"></img>';
+                    return $image;
+                })
+                ->rawColumns(['action','image'])
                 ->make(true);
         }
         return view('backend.products.index');
