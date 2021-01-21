@@ -35,3 +35,6 @@ Route::resource('/admin/models', 'Backend\ModelController', ['as' => 'admin']);
 Route::resource('/admin/products', 'Backend\ProductController', ['as' => 'admin']);
 Route::get('/admin/report/orders', 'Backend\ReportController@orders')->name('admin.report.orders');
 Route::get('/admin/report/orders/data', 'Backend\ReportController@ordersData')->name('admin.report.orders.data');
+
+
+Route::post('admin/products/getModels', 'Frontend\ProductController@getModels') -> name('admin.products.getModels');

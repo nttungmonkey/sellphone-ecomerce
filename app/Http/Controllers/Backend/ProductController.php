@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
+use App\Models;
 use Yajra\Datatables\Datatables;
 use DB;
 use Carbon\Carbon;
@@ -133,5 +134,10 @@ class ProductController extends Controller
     {
         Product::find($id)->delete();
         return response()->json(['success']);
+    }
+
+    public function getModels(Request $request)
+    {
+        
     }
 }

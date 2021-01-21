@@ -78,7 +78,7 @@ Orders
                 "cancelLabel": "Cancel",
                 "fromLabel": "From",
                 "toLabel": "To",
-                "customRangeLabel": "Tùy chọn",
+                "customRangeLabel": "Option",
                 "weekLabel": "Day",
                 "daysOfWeek": [
                     "Sun",

@@ -9,7 +9,7 @@ class ReportController extends Controller
 {
     public function orders()
     {
-        return view('admin.reports.orders');
+        return view('backend.reports.orders');
     }
     public function ordersData(Request $request)
     {

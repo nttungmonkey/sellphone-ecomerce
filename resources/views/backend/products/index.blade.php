@@ -67,18 +67,48 @@ Products
                 <div class="modal-body">               
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                        @include('backend.layouts.partials.error-message')
+                            @include('backend.layouts.partials.error-message')
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <strong>Sku:</strong>                              
                                 <input type="text" name="pro_sku" id="pro_sku" class="form-control" placeholder="Sku">
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <strong>Name:</strong>                              
                                 <input type="text" name="pro_name" id="pro_name" class="form-control" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Detail:</strong>                              
+                                <input type="text" name="pro_detail" id="pro_detail" class="form-control" placeholder="Detail">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <strong>Model:</strong>                              
+                                <input type="number" name="mod_id" id="mod_id" class="form-control" placeholder="Model">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <strong>Supplier:</strong>        
+                                <select name="sup_id" id='sup_id' class="form-control"></select>                      
+                            </div>
+                        </div>                                                       
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Description Sort:</strong>                              
+                                <textarea type="text" name="pro_descriptS" id="pro_descriptS" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Description Full:</strong>                              
+                                <textarea name="pro_descriptF" id="pro_descriptF" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -88,51 +118,12 @@ Products
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Detail:</strong>                              
-                                <input type="text" name="pro_detail" id="pro_detail" class="form-control" placeholder="Detail">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Description Sort:</strong>                              
-                                <input type="text" name="pro_descriptS" id="pro_descriptS" class="form-control" placeholder="Description">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Description Full:</strong>                              
-                                <input type="text" name="pro_descriptF" id="pro_descriptF" class="form-control" placeholder="Description">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Model:</strong>                              
-                                <input type="number" name="mod_id" id="mod_id" class="form-control" placeholder="Model">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Supplier:</strong>                              
-                                <input type="number" name="sup_id" id="sup_id" class="form-control" placeholder="Supplier">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Status:</strong>                              
-                                <input type="text" name="pro_status" id="pro_status" class="form-control" placeholder="Status">
-                            </div>
-                        </div>
-                        <!-- <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Status:</strong>
-                                <select name="l_trangThai" class="form-control">    
-                                    <option value="1">Khóa</option>
-                                    <option value="2">Khả dụng</option>
-                                </select>
-                            </div>
-                        </div>                                           -->
-                    </div>               
+                                <div class="form-group">
+                                    <strong>Status:</strong>                              
+                                    <input type="text" name="pro_status" id="pro_status" class="form-control" placeholder="Status">
+                                </div>
+                            </div>                                           
+                        </div>               
                 </div>
                 <div class="modal-footer">
                     <button type="submit" id="saveProduct" name="saveProduct" class="btn btn-primary">Save</button>
@@ -151,6 +142,7 @@ Products
 <script src="{{ asset('vendor/datatables/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <!-- Moments -->
 <script src="{{ asset('vendor/momentjs/moment.min.js') }}"></script>
+
 
 <script type="text/javascript">
     $(function () {
@@ -227,6 +219,10 @@ Products
             $('#frmProduct').trigger("reset");
             $('#CU_Product').html("Create New Product");
             $('#mdlProduct').modal('show');
+            $( "#sup_id" ).select2({
+                placeholder: '-- Choose model --',
+                
+            });
         });
         $('body').on('click', '.editProduct', function () {
             pro_id = $(this).data('id');
@@ -318,6 +314,7 @@ Products
                 })
         });
     });
+
 </script>
 @endsection
 

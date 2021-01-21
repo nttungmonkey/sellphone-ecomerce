@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="{{ asset('vendor/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- iCheck -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.min.css') }}">
   @yield('custom-css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -79,6 +81,8 @@
 <script src="{{ asset('vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- SweetAlert -->
 <script src="{{ asset('vendor/sweetalert/sweetalert2.all.min.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('vendor/select2/js/select2.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('js/admin/adminlte.js') }}"></script>
 @yield('custom-scripts')
