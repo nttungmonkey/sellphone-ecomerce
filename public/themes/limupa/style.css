@@ -1898,9 +1898,6 @@ textarea:focus {
 	transform: translateY(0)
 }
 /*Header Bottom Megamenu*/
-.hb-menu nav > ul > li:nth-child(4) {
-	margin-right: -20px;
-}
 .megamenu-static-holder {
 	position: static !important;
 }

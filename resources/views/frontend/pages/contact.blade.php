@@ -37,14 +37,14 @@
                     <div class="row">
                         <div class="col-lg-5 offset-lg-1 col-md-12 order-1 order-lg-2">
                             <div class="contact-page-side-content">
-                                <h3 class="contact-page-title">Contact Us</h3>
+                                <h3 class="contact-page-title">{{ __('phonetn.contactus') }}</h3>
                                 <p class="contact-page-message mb-25">Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum formas human.</p>
                                 <div class="single-contact-.contactblock">
-                                    <h4><i class="fa fa-fax"></i> Address</h4>
-                                    <p>01 Ly Tu Trong Street, Ninh Kieu District, Can Tho City</p>
+                                    <h4><i class="fa fa-fax"></i> {{ __('phonetn.address') }}</h4>
+                                    <p>{{ __('phonetn.addressdetail') }}</p>
                                 </div>
                                 <div class="single-contact-block">
-                                    <h4><i class="fa fa-phone"></i> Phone</h4>
+                                    <h4><i class="fa fa-phone"></i> {{ __('phonetn.phone') }}</h4>
                                     <p>Mobile: 0964-318-083</p>
                                     <p>Hotline: 1900 123456</p>
                                 </div>
@@ -62,19 +62,15 @@
                                     <form name="contactForm" ng-submit="submitContactForm()" novalidate>
                                         <div class="form-group">
                                             <label> {{ __('phonetn.yourname') }}<span class="required">*</span></label>
-                                            <input type="text" name="customerName" id="customerName" ng-model="customerName" ng-minlength="2" ng-maxlength="50" ng-required="true">
-                                            <span class="error" ng-show="contactForm.customerName.$error.required">Vui lòng nhập họ tên</span>
-                                            <span class="error" ng-show="contactForm.customerName.$error.minlength">Họ tên tối thiểu 2 ký tự</span>
-                                            <span class="error" ng-show="contactForm.customerName.$error.maxlength">Họ tên tối đa  ký tự</span>   
-                                            <span class="valid" ng-show="contactForm.customerName.$valid">Hợp lệ</span>      
+                                            <input type="text" name="customerName" id="customerName" ng-model="customerName" ng-maxlength="50" ng-required="true">
+                                            <span class="error" ng-show="contactForm.customerName.$error.required">{{ __('phonetn.requiredname') }}</span>
+                                            <span class="error" ng-show="contactForm.customerName.$error.maxlength">{{ __('phonetn.requiredmaxlength') }}50</span>        
                                         </div>
                                         <div class="form-group">
                                             <label>{{ __('phonetn.youremail') }}<span class="required">*</span></label>
                                             <input type="text" name="customerEmail" id="customerEmail" ng-model="customerEmail" ng-pattern="/^.+@gmail.com$/" ng-required=true>
-                                            <span class="error" ng-show="contactForm.customerEmail.$error.required">Vui lòng nhập email</span>
-                                            <span class="error" ng-show="!contactForm.customerEmail.$error.required&&contactForm.customerEmail.$error.pattern">Chỉ
-                                                chấp nhập GMAIL, vui lòng kiểm tra lại</span>
-                                            <span class="valid" ng-show="contactForm.customerEmail.$valid">Hợp lệ</span>
+                                            <span class="error" ng-show="contactForm.customerEmail.$error.required">{{ __('phonetn.requiredemail') }}</span>
+                                            <span class="error" ng-show="!contactForm.customerEmail.$error.required&&contactForm.customerEmail.$error.pattern">{{ __('phonetn.requiredformat') }}</span>
                                         </div>
                                         <div class="form-group">
                                             <label>{{ __('phonetn.yoursubject') }}</label>

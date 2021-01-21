@@ -8,7 +8,7 @@
                             <div class="col-lg-3 col-md-4">
                                 <div class="header-top-left">
                                     <ul class="phone-wrap">
-                                        <li><span>Telephone Enquiry:</span><a href="#">(+123) 123 321 345</a></li>
+                                        <li><span>{{ __('phonetn.telephoneEnquiry') }}:</span><a href="#"> (+123) 123 321 345</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -19,26 +19,34 @@
                                     <ul class="ht-menu">
                                         <!-- Begin Setting Area -->
                                         <li>
-                                            <div class="ht-setting-trigger"><span>Setting</span></div>
+                                            <div class="ht-setting-trigger"><span>{{ __('phonetn.setting') }}</span></div>
                                             <div class="setting ht-setting">
                                                 <ul class="ht-setting-list">
-                                                    <li><a href="login-register.html">My Account</a></li>
-                                                    <li><a href="{{ route('pages.checkout') }}">Checkout</a></li>
-                                                    <li><a href="{{ route('pages.login') }}">Sign In</a></li>
+                                                    <li><a href="login-register.html">{{ __('phonetn.account') }}</a></li>
+                                                    <li><a href="{{ route('pages.checkout') }}">{{ __('phonetn.checkoutheader') }}</a></li>
+                                                    <li><a href="{{ route('pages.login') }}">{{ __('phonetn.signin') }}</a></li>
                                                 </ul>
                                             </div>
                                         </li>
                                         <!-- Setting Area End Here -->
                                         <!-- Begin Language Area -->
                                         <li>
-                                            <span class="language-selector-wrapper">Language :</span>
-                                            <div class="ht-language-trigger"><span>English</span></div>
+                                            <span class="language-selector-wrapper">{{ __('phonetn.language') }} :</span>
+                                            
+                                            <div class="ht-language-trigger"><span>{{ __('phonetn.lang') }}</span></div>
                                             <div class="language ht-language">
                                                 <ul class="ht-setting-list">
+                                                @if(Session::get('locale') == "en")
                                                     <li class="active"><a href="{{ route('app.setLocale', ['locale' => 'en']) }}"><img src="{{ asset('storage/images/customer/menu/flag-icon/1.jpg') }}" alt="">English</a></li>
                                                     <li><a href="{{ route('app.setLocale', ['locale' => 'vi']) }}"><img src="{{ asset('storage/images/customer/menu/flag-icon/3.png') }}" alt="">Vietnam</a></li>
+                                                @else
+                                                    <li><a href="{{ route('app.setLocale', ['locale' => 'en']) }}"><img src="{{ asset('storage/images/customer/menu/flag-icon/1.jpg') }}" alt="">English</a></li>
+                                                    <li class="active"><a href="{{ route('app.setLocale', ['locale' => 'vi']) }}"><img src="{{ asset('storage/images/customer/menu/flag-icon/3.png') }}" alt="">Vietnam</a></li>
+                                                @endif
                                                 </ul>
                                             </div>
+                                            
+                                            
                                         </li>
                                         <!-- Language Area End Here -->
                                     </ul>
@@ -189,13 +197,13 @@
                                                         </button>
                                                     </li>
                                                 </ul>
-                                                <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
+                                                <p class="minicart-total">{{ __('phonetn.subtotal') }}: <span>£80.00</span></p>
                                                 <div class="minicart-button">
                                                     <a href="{{ route('pages.cart') }}" class="li-button li-button-dark li-button-fullwidth li-button-sm">
-                                                        <span>View Full Cart</span>
+                                                        <span>{{ __('phonetn.cart') }}</span>
                                                     </a>
                                                     <a href="{{ route('pages.checkout') }}" class="li-button li-button-fullwidth li-button-sm">
-                                                        <span>Checkout</span>
+                                                        <span>{{ __('phonetn.checkout') }}</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -219,8 +227,8 @@
                                <div class="hb-menu">
                                    <nav>
                                        <ul>
-                                           <li><a href="{{ route('pages.home') }}">Home</a></li>
-                                           <li><a href="{{ route('pages.home-list') }}">Shop</a>
+                                           <li><a href="{{ route('pages.home') }}">{{ __('phonetn.home') }}</a></li>
+                                           <li><a href="{{ route('pages.home-list') }}">{{ __('phonetn.product') }}</a>
                                                <!-- <ul class="megamenu hb-megamenu">
                                                    <li><a href="shop-left-sidebar.html">Shop Page Layout</a>
                                                        <ul>
@@ -254,7 +262,7 @@
                                                    </li>
                                                </ul> -->
                                            </li>
-                                           <li class="megamenu-static-holder"><a href="index.html">Models</a>
+                                           <li class="megamenu-static-holder"><a href="index.html">{{ __('phonetn.model') }}</a>
                                                <!-- <ul class="megamenu hb-megamenu">
                                                    <li><a href="blog-left-sidebar.html">Blog Layouts</a>
                                                        <ul>
@@ -295,7 +303,7 @@
                                                    </li>
                                                </ul> -->
                                            </li>                          
-                                           <li><a href="blog-left-sidebar.html">Blog</a>
+                                           <li><a href="blog-left-sidebar.html">{{ __('phonetn.blog') }}</a>
                                                <!-- <ul class="hb-dropdown">
                                                    <li class="sub-dropdown-holder"><a href="blog-left-sidebar.html">Blog Grid View</a>
                                                        <ul class="hb-dropdown hb-sub-dropdown">
@@ -327,10 +335,10 @@
                                                    </li>
                                                </ul> -->
                                            </li>                                          
-                                           <li><a href="{{ route('pages.about') }}">About Us</a></li>
-                                           <li><a href="{{ route('pages.contact') }}">Contact</a></li>
+                                           <li><a href="{{ route('pages.about') }}">{{ __('phonetn.about') }}</a></li>
+                                           <li><a href="{{ route('pages.contact') }}">{{ __('phonetn.contactus') }}</a></li>
                                            <li><a href="{{ route('pages.faq') }}">FAQ</a></li>
-                                           <li><a href="shop-left-sidebar.html">Accessories</a></li>
+                                           <li><a href="shop-left-sidebar.html">{{ __('phonetn.accessories') }}</a></li>
                                        </ul>
                                    </nav>
                                </div>
