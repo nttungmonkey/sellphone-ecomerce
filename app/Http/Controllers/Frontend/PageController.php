@@ -6,13 +6,32 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Mail;
 use App\Mail\ContactMailer;
+use App\Product;
+use DB;
 
 class PageController extends Controller
 {
+    public function thongke(){
+        return view('frontend.thongke');
+    }
     //Page index
     public function index()
     { 
-        return view('frontend.index');
+        //get data
+        $data = DB::select
+        (<<<EOT
+            select *
+            from product AS p, models AS m
+            WHERE p.mod_id = m.mod_id and p.pro_status <> 4
+            ORDER BY pro_created
+            LIMIT 10
+
+            EOT
+        );
+        
+
+        return view('frontend.index')
+                ->with('product', $data);
     }
     //Page login
     public function login()

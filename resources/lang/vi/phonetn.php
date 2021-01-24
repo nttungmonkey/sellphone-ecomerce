@@ -53,4 +53,8 @@ return [
     'requiredemail' => "Vui lòng nhập email của bạn.",
     'requiredmaxlength' => "Vui lòng nhập số ký tự tối đa là ",
     'requiredformat' => "Chỉ chấp nhận gmail.",
+//404 page
+    'back2home' => 'Trở về trang chủ',
+    'pagenotfound' => 'Opps! Không tìm thấy trang này',
+
 ];

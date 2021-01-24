@@ -54,4 +54,8 @@ return [
     'requiredemail' => "Please enter your email.",
     'requiredmaxlength' => "This field require max length is ",
     'requiredformat' => "Only accept with gmail.",
+
+    //404 page
+    'back2home' => 'Back to home page',
+    'pagenotfound' => 'Opps! PAGE NOT BE FOUND',
 ];

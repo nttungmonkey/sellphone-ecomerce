@@ -1,13 +1,6 @@
 @extends('frontend.layouts.master')
 @section('custom-css')
-    <style>
-        .li-header-4 .header-bottom {
-            background: #293a6c;
-            border-top: 1px solid rgba(255,255,255,.1);
-            color: #ffffff;
-            margin-bottom: 0px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 @endsection
 @section('content')
             <!-- Begin Li's Breadcrumb Area -->

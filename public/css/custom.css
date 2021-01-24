@@ -1,19 +1,12 @@
-.er404
-{
-    background-image: url('../storage/images/errors/pagenotfound.png');
-    background-repeat: no-repeat;
-    background-position: center ;
-    background-size: 400px 350px;
-    padding-top: 30%;
-    
-
-    vertical-align: middle;
+.li-header-4 .header-bottom {
+    background: #293a6c;
+    border-top: 1px solid rgba(255,255,255,.1);
+    color: #ffffff;
+    margin-bottom: 0px;
 }
-.infor
-{
-    font-family: sans-serif;
-    padding-top: 5%;
-    padding-left: 18%;
-    padding-right: 16%;
-    text-align: center;
+.imgproduct{
+
+    background-image: url('/storage/images/products/noimg.png');
+    background-size: cover;
+    
 }
