@@ -124,7 +124,7 @@ Products
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Related Image:</strong>                              
-                                <input type="file" name="pro_reimg" id="pro_reimg" multiple>
+                                <input type="file" name="pro_reimg[]" id="pro_reimg" multiple>
                             </div>
                         </div>                              
                 </div>
@@ -219,6 +219,7 @@ Products
         });  
         $('#createProduct').click(function () {
             $("#pro_image").fileinput('destroy');
+            $("#pro_reimg").fileinput('destroy');
             $('#sup_id').val('').trigger('change');
             $('#mod_id').val('').trigger('change');
             $('#saveProduct').val("create-product");
@@ -297,31 +298,28 @@ Products
                         },
                     ]
                 }); 
-                $("#pro_reimg").fileinput({
-                    theme: 'fas',
-                    showUpload: false,
-                    showCaption: false,
-                    browseClass: "btn btn-primary",
-                    fileType: "any",
-                    append: false,
-                    showRemove: false,
-                    autoReplace: true,
-                    previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-                    overwriteInitial: false,
-                    allowedFileExtensions: ["jpg", "gif", "png"],
-                    initialPreviewShowDelete: false,
-                    initialPreviewAsData: true,
-                    initialPreview: [
-                        
-                    ],
-                    initialPreviewConfig: [
-                        {                           
-                            width: "120px", 
-                            key: 1
-                        },
-                    ]
-                });
-
+            });
+            $("#pro_reimg").fileinput({
+                theme: 'fas',
+                showUpload: false,
+                showCaption: false,
+                browseClass: "btn btn-primary",
+                fileType: "any",
+                append: false,
+                showRemove: false,
+                autoReplace: true,
+                previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+                overwriteInitial: false,
+                allowedFileExtensions: ["jpg", "gif", "png"],
+                initialPreviewShowDelete: false,
+                initialPreviewAsData: true,
+                initialPreview: getReImg(),
+                initialPreviewConfig: [
+                    {                           
+                        width: "120px", 
+                        key: 1
+                    },
+                ]
             });
         });
         $('#saveProduct').click(function (e) {
@@ -449,26 +447,25 @@ Products
                     cache: false
                 }    
         }); 
-        function getReImg(pro_id){
+        function getReImg(){
             var files = [];
+            var url = "{{ route('admin.products.getReImg', ":pro_id") }}";
+            url = url.replace(':pro_id', pro_id);
             $.ajax({
                 type: 'GET',
-                url: '@Url.Action("filesinfolder", "Home")',
+                url: url,
                 dataType: "json",
-                success: function (data) {
-                    $.getJSON(url, function (data) {
+                success: function (data) {                   
                     $.each(data, function (index, item) {
-                    var img = $('<img>').attr('src', item);
-                    files.push(img.get(0));
-                    console.log(files);
-                        })
-                    return files;
-                    })
+                        files.push(item.url);                       
+                    });
+                    console.log(files);                   
                 },
                 error: function (xhr, status, err) {
 
                 }
-            })
+            });
+            return files;
         } 
     });
 </script>

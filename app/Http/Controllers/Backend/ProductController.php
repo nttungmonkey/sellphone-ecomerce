@@ -185,10 +185,18 @@ class ProductController extends Controller
         return response()->json($data);
     }
 
-    public function getReImg(Request $request, $id)
+    public function getReImg($id)
     {
-        $product = RelatedImage::all();
-        dd("$product");
+        $data = [];
+        $product = Product::find($id);
+        $model = $product->models->mod_name;      
+        foreach($product->relatedImage()->get() as $reImg){
+            array_push($data, [
+                'url'   => asset('storage/images/products/' .$model.'/'.$reImg->reimg_name)
+            ]);
+        }
+        return response()->json($data);
+        
     }
     
 }

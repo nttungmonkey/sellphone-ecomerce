@@ -28,7 +28,7 @@ Route::get('setLocale/{locale}', function ($locale) {
     } 
     return redirect()->back();
 })->name('app.setLocale');
-Route::get('admin/products/getReImg/{id}', 'Backend\ProductController@getReImg')->name('admin.products.getReImg');
+Route::get('admin/products/getReImg/{pro_id}', 'Backend\ProductController@getReImg')->name('admin.products.getReImg');
 Route::get('admin/products/getSupplier', 'Backend\ProductController@getSupplier')->name('admin.products.getSupplier');
 Route::get('admin/products/getModels', 'Backend\ProductController@getModels')->name('admin.products.getModels');
 Route::resource('/admin/manufactures', 'Backend\ManufactureController', ['as' => 'admin']);
