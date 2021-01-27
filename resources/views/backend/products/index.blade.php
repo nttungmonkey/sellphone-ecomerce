@@ -8,6 +8,10 @@ Products
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('vendor/datatables/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+<!-- Bootstrap-fileinput -->
+<link href="{{ asset('vendor/bootstrap-fileinput/css/fileinput.css') }}" media="all" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
+<link href="{{ asset('vendor/bootstrap-fileinput/themes/explorer-fas/theme.css') }}" media="all" rel="stylesheet" type="text/css" />
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
     body {
@@ -58,7 +62,7 @@ Products
 <div class="modal fade bd-example-modal-lg" id="mdlProduct" aria-modal="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form id="frmProduct" action="" method="POST">
+            <form id="frmProduct" action="" method="POST" enctype="multipart/form-data">
                 <input type="hidden" id="action" >
                 <div class="modal-header">
                     <h4 class="modal-title" id="CU_Product"></h4>
@@ -90,13 +94,13 @@ Products
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <strong>Model:</strong>                              
-                                <input type="number" name="mod_id" id="mod_id" class="form-control" placeholder="Model">
+                                <select name="mod_id" id="mod_id" class="form-control" ></select>  
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <strong>Supplier:</strong>        
-                                <select name="sup_id" id='sup_id' class="form-control"></select>                      
+                                <select name="sup_id" id="sup_id" class="form-control" ></select>                      
                             </div>
                         </div>                                                       
                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -114,16 +118,9 @@ Products
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Image:</strong>                              
-                                <input type="text" name="pro_image" id="pro_image" class="form-control" placeholder="Image">
+                                <input type="file" name="pro_image" id="pro_image">
                             </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Status:</strong>                              
-                                    <input type="text" name="pro_status" id="pro_status" class="form-control" placeholder="Status">
-                                </div>
-                            </div>                                           
-                        </div>               
+                        </div>                              
                 </div>
                 <div class="modal-footer">
                     <button type="submit" id="saveProduct" name="saveProduct" class="btn btn-primary">Save</button>
@@ -142,6 +139,12 @@ Products
 <script src="{{ asset('vendor/datatables/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
 <!-- Moments -->
 <script src="{{ asset('vendor/momentjs/moment.min.js') }}"></script>
+<!-- Bootstrap-fileinput -->
+<script src="{{ asset('vendor/bootstrap-fileinput/js/plugins/sortable.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendor/bootstrap-fileinput/js/fileinput.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendor/bootstrap-fileinput/js/locales/fr.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendor/bootstrap-fileinput/themes/fas/theme.js') }}" type="text/javascript"></script>
+<script src="{{ asset('vendor/bootstrap-fileinput/themes/explorer-fas/theme.js') }}" type="text/javascript"></script>
 
 
 <script type="text/javascript">
@@ -193,13 +196,7 @@ Products
                             return '<span class="badge badge-success">On Sale</span>';
                         }
                         else if(data == 2) {
-                            return '<span class="badge badge-info">Shipping</span>';
-                            }
-                            else if(data == 3) {
-                            return '<span class="badge badge-secondary">Sold</span>';
-                            }
-                            else{
-                            return '<span class="badge badge-danger">Lock</span>';
+                            return '<span class="badge badge-info">Lock</span>';
                             }
                     }, 
                     orderable: false, 
@@ -215,38 +212,85 @@ Products
             ]
         });  
         $('#createProduct').click(function () {
+            $("#pro_image").fileinput('destroy');
+            $('#sup_id').val('').trigger('change');
+            $('#mod_id').val('').trigger('change');
             $('#saveProduct').val("create-product");
             $('#frmProduct').trigger("reset");
             $('#CU_Product').html("Create New Product");
-            $('#mdlProduct').modal('show');
-            $( "#sup_id" ).select2({
-                placeholder: '-- Choose model --',
-                
-            });
+            $('#mdlProduct').modal('show');   
+            $("#pro_image").fileinput({
+                theme: 'fas',
+                showUpload: false,
+                showCaption: false,
+                browseClass: "btn btn-primary",
+                fileType: "any",
+                previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+                overwriteInitial: false
+                });
         });
         $('body').on('click', '.editProduct', function () {
+            $("#pro_image").fileinput('destroy');
             pro_id = $(this).data('id');
             var url = "{{ route('admin.products.edit', ":pro_id") }}";
             url = url.replace(':pro_id', pro_id);
+            var pro_image;
+            var mod_name;
             $.get(url, function (data) {
                 $('#CU_Product').html("Edit Product");
                 $('#saveProduct').val("edit-product");
                 $('#mdlProduct').modal('show');
-                $('#pro_sku').val(data.pro_sku);
-                $('#pro_name').val(data.pro_name);
-                $('#pro_image').val(data.pro_image);
-                $('#pro_detail').val(data.pro_detail);
-                $('#pro_descriptS').val(data.pro_descriptS);
-                $('#pro_descriptF').val(data.pro_descriptF);
-                $('#mod_id').val(data.mod_id);
-                $('#sup_id').val(data.sup_id);
-                $('#pro_status').val(data.pro_status);
-            })
+                $('#pro_sku').val(data[0].pro_sku);
+                $('#pro_name').val(data[0].pro_name);
+                pro_image = data[0].pro_image;
+                mod_name = data[1];
+                $('#pro_detail').val(data[0].pro_detail);
+                $('#pro_descriptS').val(data[0].pro_descriptS);
+                $('#pro_descriptF').val(data[0].pro_descriptF);
+                $("#mod_id").select2("trigger", "select", {
+                    data: { id: data[0].mod_id,
+                            text: data[1]
+                    }
+                });
+                $("#sup_id").select2("trigger", "select", {
+                    data: { id: data[0].sup_id,
+                            text: data[2]
+                    }
+                });
+                $('#pro_status').val(data[0].pro_status);  
+                $("#pro_image").fileinput({
+                    theme: 'fas',
+                    showUpload: false,
+                    showCaption: false,
+                    browseClass: "btn btn-primary",
+                    fileType: "any",
+                    append: false,
+                    showRemove: false,
+                    autoReplace: true,
+                    previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+                    overwriteInitial: false,
+                    initialPreviewShowDelete: false,
+                    initialPreviewAsData: true,
+                    initialPreview: [
+                        "{{ asset('storage/images/products/') }}" + '/' + mod_name + '/' + pro_image
+                    ],
+                    initialPreviewConfig: [
+                        {
+                            
+                            width: "120px", 
+                            
+                            key: 1
+                        },
+                    ]
+                });          
+            });
         });
         $('#saveProduct').click(function (e) {
             e.preventDefault();
             var url = '';
             var type = '';
+            var formData = new FormData(document.getElementById('frmProduct'));
+            console.log(formData);
             if($('#saveProduct').val() == 'create-product')
             {
                 url = "{{ route('admin.products.store') }}";
@@ -260,12 +304,14 @@ Products
                 type = "PUT";
             }
             $.ajax({
-                data: $('#frmProduct').serialize(),
+                data: formData,
                 url: url,
                 type: type,
-                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
                 success: function (data) {
-                    $('#productForm').trigger("reset");
+                    $('#frmProduct').trigger("reset");
                     $('#mdlProduct').modal('hide');
                     table.draw();
                     Swal.fire({
@@ -313,8 +359,61 @@ Products
                     }
                 })
         });
+        $( "#sup_id" ).select2({
+                placeholder: '-- Choose Supplier --',
+                multiple: false,
+                theme: "bootstrap",    
+                allowClear: true,
+                ajax: {
+                    url: "{{ route('admin.products.getSupplier') }}",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            q: $.trim(params.term) //search
+                        };
+                    },
+                    processResults: function (data) {
+                    return {
+                        results:  $.map(data, function (item) {
+                            return {
+                                text: item.sup_name,
+                                id: item.sup_id,
+                            }
+                        })
+                    };
+                    },
+                    cache: false
+                }
+        });  
+        $( "#mod_id" ).select2({
+                placeholder: '-- Choose Model --',    
+                theme: "bootstrap",  
+                multiple: false,   
+                allowClear: true,
+                ajax: {
+                    url: "{{ route('admin.products.getModels') }}",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            q: $.trim(params.term) //search
+                        };
+                    },
+                    processResults: function (data) {
+                    return {
+                        results:  $.map(data, function (item) {
+                            return {
+                                text: item.mod_name,
+                                id: item.mod_id,
+                            }
+                        })
+                    };
+                    },
+                    cache: false
+                }    
+        });  
     });
-
 </script>
 @endsection
 

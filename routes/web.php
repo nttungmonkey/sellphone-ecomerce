@@ -29,6 +29,8 @@ Route::get('setLocale/{locale}', function ($locale) {
     return redirect()->back();
 })->name('app.setLocale');
 
+Route::get('admin/products/getSupplier', 'Backend\ProductController@getSupplier')->name('admin.products.getSupplier');
+Route::get('admin/products/getModels', 'Backend\ProductController@getModels')->name('admin.products.getModels');
 Route::resource('/admin/manufactures', 'Backend\ManufactureController', ['as' => 'admin']);
 Route::resource('/admin/suppliers', 'Backend\SupplierController', ['as' => 'admin']);
 Route::resource('/admin/models', 'Backend\ModelController', ['as' => 'admin']);
@@ -37,4 +39,4 @@ Route::get('/admin/report/orders', 'Backend\ReportController@orders')->name('adm
 Route::get('/admin/report/orders/data', 'Backend\ReportController@ordersData')->name('admin.report.orders.data');
 
 
-Route::post('admin/products/getModels', 'Frontend\ProductController@getModels') -> name('admin.products.getModels');
+

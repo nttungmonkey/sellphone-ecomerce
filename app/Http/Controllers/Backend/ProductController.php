@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Models;
+use App\Supplier;
 use Yajra\Datatables\Datatables;
 use DB;
 use Carbon\Carbon;
@@ -32,7 +33,7 @@ class ProductController extends Controller
                 })
                 ->addColumn('image', function($row){
                     $imgs = explode(';',$row->pro_image) ;
-                    $url_image = asset('storage/images/products/Model' .$row->mod_id.'/'.$imgs[0].".png");
+                    $url_image = asset('storage/images/products/Model' .$row->mod_id.'/'.$imgs[0]);
                     $image =    '<img src="'.$url_image.'" class="table-avatar" alt="Avatar"></img>';
                     return $image;
                 })
@@ -63,15 +64,17 @@ class ProductController extends Controller
         $product = new Product();
         $product->pro_sku = $request->pro_sku;
         $product->pro_name = $request->pro_name;
-        $product->pro_image = $request->pro_image;
         $product->pro_detail = $request->pro_detail;
-        $product->pro_status = $request->pro_status;
         $product->pro_descriptS = $request->pro_descriptS;
         $product->pro_descriptF = $request->pro_descriptF;
         $product->pro_created = Carbon::now();
         $product->pro_updated = Carbon::now();
         $product->mod_id = $request->mod_id;
         $product->sup_id = $request->sup_id;
+        if ($files = $request->pro_image) {
+            $product->pro_image = $files->getClientOriginalName();
+            $fileSaved = $files->storeAs('public/images/products/'.$product->models->mod_name, $product->pro_image);
+        }
         $product->save();
         return response()->json(['success']);
 
@@ -97,7 +100,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        return response()->json($product);
+        $model = $product->models->mod_name; 
+        $supplier = $product->supplier->sup_name;
+        return response()->json([$product,$model, $supplier]);
     }
 
     /**
@@ -114,7 +119,6 @@ class ProductController extends Controller
         $product->pro_name = $request->pro_name;
         $product->pro_image = $request->pro_image;
         $product->pro_detail = $request->pro_detail;
-        $product->pro_status = $request->pro_status;
         $product->pro_descriptS = $request->pro_descriptS;
         $product->pro_descriptF = $request->pro_descriptF;
         $product->pro_updated = Carbon::now();
@@ -136,8 +140,29 @@ class ProductController extends Controller
         return response()->json(['success']);
     }
 
+    public function getSupplier(Request $request)
+    {
+        $data = [];
+        if($request->has('q'))
+        {
+            $search = $request->q;
+            $data = Supplier::select("sup_id","sup_name")
+            		->where('sup_name','LIKE',"%$search%")
+            		->get();
+        }
+        return response()->json($data);
+    }
+
     public function getModels(Request $request)
     {
-        
+        $data = [];
+        if($request->has('q'))
+        {
+            $search = $request->q;
+            $data = Models::select("mod_id","mod_name")
+            		->where('mod_name','LIKE',"%$search%")
+            		->get();
+        }
+        return response()->json($data);
     }
 }
