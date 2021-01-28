@@ -117,8 +117,14 @@ Products
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Image:</strong>                              
+                                <strong>Avatar:</strong>                              
                                 <input type="file" name="pro_image" id="pro_image">
+                            </div>
+                        </div> 
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Related Image:</strong>                              
+                                <input type="file" name="pro_reimg" id="pro_reimg" multiple>
                             </div>
                         </div>                              
                 </div>
@@ -228,6 +234,16 @@ Products
                 previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
                 overwriteInitial: false
                 });
+            $("#pro_reimg").fileinput({
+                theme: 'fas',
+                showUpload: false,
+                showCaption: false,
+                browseClass: "btn btn-primary",
+                fileType: "any",
+                previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+                overwriteInitial: false,
+                allowedFileExtensions: ["jpg", "gif", "png"]
+            });
         });
         $('body').on('click', '.editProduct', function () {
             $("#pro_image").fileinput('destroy');
@@ -275,38 +291,58 @@ Products
                         "{{ asset('storage/images/products/') }}" + '/' + mod_name + '/' + pro_image
                     ],
                     initialPreviewConfig: [
-                        {
-                            
+                        {                           
                             width: "120px", 
-                            
                             key: 1
                         },
                     ]
-                });          
+                }); 
+                $("#pro_reimg").fileinput({
+                    theme: 'fas',
+                    showUpload: false,
+                    showCaption: false,
+                    browseClass: "btn btn-primary",
+                    fileType: "any",
+                    append: false,
+                    showRemove: false,
+                    autoReplace: true,
+                    previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+                    overwriteInitial: false,
+                    allowedFileExtensions: ["jpg", "gif", "png"],
+                    initialPreviewShowDelete: false,
+                    initialPreviewAsData: true,
+                    initialPreview: [
+                        
+                    ],
+                    initialPreviewConfig: [
+                        {                           
+                            width: "120px", 
+                            key: 1
+                        },
+                    ]
+                });
+
             });
         });
         $('#saveProduct').click(function (e) {
             e.preventDefault();
             var url = '';
-            var type = '';
             var formData = new FormData(document.getElementById('frmProduct'));
-            console.log(formData);
             if($('#saveProduct').val() == 'create-product')
             {
                 url = "{{ route('admin.products.store') }}";
-                type = "POST";
             }
 
             if($('#saveProduct').val() == 'edit-product')
             {
                 var url = "{{ route('admin.products.update', ":pro_id") }}";
                 url = url.replace(':pro_id', pro_id);
-                type = "PUT";
+                formData.append('_method', 'PUT');
             }
             $.ajax({
                 data: formData,
                 url: url,
-                type: type,
+                type: "POST",
                 cache: false,
                 contentType: false,
                 processData: false,
@@ -412,7 +448,28 @@ Products
                     },
                     cache: false
                 }    
-        });  
+        }); 
+        function getReImg(pro_id){
+            var files = [];
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("filesinfolder", "Home")',
+                dataType: "json",
+                success: function (data) {
+                    $.getJSON(url, function (data) {
+                    $.each(data, function (index, item) {
+                    var img = $('<img>').attr('src', item);
+                    files.push(img.get(0));
+                    console.log(files);
+                        })
+                    return files;
+                    })
+                },
+                error: function (xhr, status, err) {
+
+                }
+            })
+        } 
     });
 </script>
 @endsection

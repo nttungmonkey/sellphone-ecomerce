@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Models;
+use App\RelatedImage;
 use App\Supplier;
 use Yajra\Datatables\Datatables;
 use DB;
 use Carbon\Carbon;
+use Storage;
 
 class ProductController extends Controller
 {
@@ -32,8 +34,7 @@ class ProductController extends Controller
                     return $actionBtn;
                 })
                 ->addColumn('image', function($row){
-                    $imgs = explode(';',$row->pro_image) ;
-                    $url_image = asset('storage/images/products/Model' .$row->mod_id.'/'.$imgs[0]);
+                    $url_image = asset('storage/images/products/' .$row->models->mod_name.'/'.$row->pro_image);
                     $image =    '<img src="'.$url_image.'" class="table-avatar" alt="Avatar"></img>';
                     return $image;
                 })
@@ -75,6 +76,18 @@ class ProductController extends Controller
             $product->pro_image = $files->getClientOriginalName();
             $fileSaved = $files->storeAs('public/images/products/'.$product->models->mod_name, $product->pro_image);
         }
+        if ($files = $request->pro_reimg) {
+
+            foreach ($files as $index => $file) { 
+                $file->storeAs('public/images/products/'.$product->models->mod_name, $file->getClientOriginalName());
+                $image = new RelatedImage();
+                $image->pro_id = $product->pro_id;
+                $image->reimg_stt = ($index + 1);
+                $image->reimg_name = $file->getClientOriginalName();
+                $image->save();
+            }
+
+        }
         $product->save();
         return response()->json(['success']);
 
@@ -102,7 +115,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         $model = $product->models->mod_name; 
         $supplier = $product->supplier->sup_name;
-        return response()->json([$product,$model, $supplier]);
+        return response()->json([$product, $model, $supplier]);
     }
 
     /**
@@ -117,13 +130,17 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->pro_sku = $request->pro_sku;
         $product->pro_name = $request->pro_name;
-        $product->pro_image = $request->pro_image;
         $product->pro_detail = $request->pro_detail;
         $product->pro_descriptS = $request->pro_descriptS;
         $product->pro_descriptF = $request->pro_descriptF;
         $product->pro_updated = Carbon::now();
         $product->mod_id = $request->mod_id;
         $product->sup_id = $request->sup_id;
+        if ($files = $request->pro_image) {
+            Storage::delete('public/images/products/'.$product->models->mod_name.'/'.$product->pro_image);
+            $product->pro_image = $files->getClientOriginalName();
+            $fileSaved = $files->storeAs('public/images/products/'.$product->models->mod_name, $product->pro_image);
+        }
         $product->save();
         return response()->json(['success']);
     }
@@ -135,8 +152,10 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        Product::find($id)->delete();
+    {   
+        $product = Product::find($id);
+        Storage::delete('public/images/products/'.$product->models->mod_name.'/'.$product->pro_image);
+        $product->delete();
         return response()->json(['success']);
     }
 
@@ -165,4 +184,11 @@ class ProductController extends Controller
         }
         return response()->json($data);
     }
+
+    public function getReImg(Request $request, $id)
+    {
+        $product = RelatedImage::all();
+        dd("$product");
+    }
+    
 }

@@ -20,7 +20,7 @@ class accountTableSeeder extends Seeder
                 'acc_password'            => "password$i",
                 'acc_fullname'            => "fullname$i",
                 'acc_sex'                 => $faker->numberBetween(1, 2),
-                'acc_picture'              => "hinh$i",
+                'acc_picture'              => "hinh$i.png",
             ]);
         }
         DB::table('account')->insert($list);

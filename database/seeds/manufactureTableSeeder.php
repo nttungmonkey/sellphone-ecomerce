@@ -17,7 +17,7 @@ class manufactureTableSeeder extends Seeder
             $today = new DateTime();
             array_push($list, [
                 'mnf_name'                => "Manufacture$i",
-                'mnf_logo'                => "logo$i",
+                'mnf_logo'                => "logo$i.png",
             ]);
         }
         DB::table('manufacture')->insert($list);

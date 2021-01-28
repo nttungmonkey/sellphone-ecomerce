@@ -41,6 +41,11 @@ class Product extends Model
         return $this->belongsTo('App\Supplier', 'sup_id', 'sup_id');
     }
 
+    public function relatedImage()
+    {
+        return $this->hasMany('App\RelatedImage', 'pro_id', 'pro_id');
+    }
+
     public function importdetail()
     {
         return $this->hasMany('App\ImportDetail', 'pro_id', 'pro_id');
