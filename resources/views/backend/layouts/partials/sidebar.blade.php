@@ -262,15 +262,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Categorys
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ route('admin.products.index') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Products
@@ -281,15 +273,23 @@
             <a href="" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
-                Transports
+                Suppliers
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ route('admin.manufactures.index') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
-                Payments
+                Manufactures
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.models.index') }}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Models
               </p>
             </a>
           </li>
