@@ -19,6 +19,7 @@ class CreateModelTable extends Migration
             $table->string('mod_name', 100);
             $table->timestamp('mod_created')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo dòng sản phẩm');
             $table->timestamp('mod_updated')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật thông tin dòng sản phẩm gần nhất');
+            $table->unsignedTinyInteger('mod_status')->default('1')->comment('Trạng thái # Trạng thái model: 1-Khả dụng, 2-Đang khóa');
             $table->unsignedSmallInteger('mnf_id');
             
             $table->foreign('mnf_id') 

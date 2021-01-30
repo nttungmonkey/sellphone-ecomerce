@@ -15,6 +15,7 @@ class Models extends Model
                 'mod_name',
                 'mod_created',
                 'mod_updated',
+                'mod_status',
                 'mnf_id'
             ];
     protected $guarded      = ['mod_id'];
