@@ -4,6 +4,12 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models;
+use App\Manufacture;
+use Yajra\Datatables\Datatables;
+use DB;
+use Carbon\Carbon;
+use Storage;
 
 class ModelController extends Controller
 {
@@ -12,9 +18,21 @@ class ModelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $data = Models::with('manufacture')->select('models.*');
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn =    '<a href="javascript:void(0)" data-id="'.$row->mod_id.'" class="btn btn-info btn-sm editModel"><i class="fas fa-pencil-alt"></i> Edit</a>                                    
+                                    <a href="javascript:void(0)" data-id="'.$row->mod_id.'" class="btn btn-danger btn-sm deleteModel"><i class="fas fa-trash"></i> Delete</a>';
+                    return $actionBtn;
+                })              
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        return view('backend.models.index');
     }
 
     /**
