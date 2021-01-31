@@ -254,7 +254,7 @@
           {{-- 
           <li class="nav-header">EXAMPLES</li> --}}
           <li class="nav-item">
-            <a href="" class="nav-link active">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ (request()->is('admin/dashboard')) ? 'active' : '' }}">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Dashboard               
@@ -262,7 +262,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.products.index') }}" class="nav-link">
+            <a href="{{ route('admin.products.index') }}" class="nav-link {{ (request()->is('admin/products')) ? 'active' : '' }}">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Products
@@ -270,7 +270,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.suppliers.index') }}" class="nav-link">
+            <a href="{{ route('admin.suppliers.index') }}" class="nav-link {{ (request()->is('admin/suppliers')) ? 'active' : '' }}">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Suppliers
@@ -278,7 +278,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.manufactures.index') }}" class="nav-link">
+            <a href="{{ route('admin.manufactures.index') }}" class="nav-link {{ (request()->is('admin/manufactures')) ? 'active' : '' }}">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Manufactures
@@ -286,7 +286,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.models.index') }}" class="nav-link">
+            <a href="{{ route('admin.models.index') }}" class="nav-link {{ (request()->is('admin/models')) ? 'active' : '' }}">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Models
