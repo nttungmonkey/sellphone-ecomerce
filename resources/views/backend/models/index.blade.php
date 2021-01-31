@@ -45,7 +45,8 @@ Models
                     <thead>
                         <tr>
                             <th>Name</th> 
-                            <th>Manufacture</th>                                                
+                            <th>Manufacture</th>
+                            <th>Note</th>                                                
                             <th>Created At</th>
                             <th>Update At</th>                          
                             <th>Status</th>
@@ -58,13 +59,13 @@ Models
         </div>
     </div>
 </div>
-<div class="modal fade" id="mdlManufacture" aria-modal="true">
+<div class="modal fade" id="mdlModel" aria-modal="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form id="frmManufacture" action="" method="POST" enctype="multipart/form-data">
+            <form id="frmModel" action="" method="POST" enctype="multipart/form-data">
                 <input type="hidden" id="action" >
                 <div class="modal-header">
-                    <h4 class="modal-title" id="CU_Manufacturer"></h4>
+                    <h4 class="modal-title" id="CU_Model"></h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>                
                 </div>
                 <div class="modal-body">               
@@ -72,31 +73,37 @@ Models
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             @include('backend.layouts.partials.error-message')
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Name:</strong>                              
-                                <input type="text" name="mnf_name" id="mnf_name" class="form-control" placeholder="Name">
+                                <input type="text" name="mod_name" id="mod_name" class="form-control" placeholder="Name">
                             </div>
                         </div>   
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <strong>Status:</strong>                              
-                                <select name="mnf_status" id="mnf_status" class="form-control" >
+                                <select name="mod_status" id="mod_status" class="form-control" >
                                     <option></option>
                                     <option value="1">Available</option>
                                     <option value="2">Lock</option>
                                 </select>   
                             </div>
+                        </div> 
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <strong>Manufacture:</strong>        
+                                <select name="mnf_id" id="mnf_id" class="form-control" ></select>                      
+                            </div>
                         </div>                                                                         
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Logo:</strong>                              
-                                <input type="file" name="mnf_logo" id="mnf_logo">
+                                <strong>Note:</strong>                              
+                                <textarea type="text" name="mod_note" id="mod_note" class="form-control"></textarea>
                             </div>
-                        </div>                                                              
+                        </div>                                                            
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="saveManufacture" name="saveManufacture" class="btn btn-primary">Save</button>
+                    <button type="submit" id="saveModel" name="saveModel" class="btn btn-primary">Save</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>   
             </form> 
@@ -122,7 +129,7 @@ Models
 
 <script type="text/javascript">
     $(function () {
-        var mnf_id = '';
+        var mod_id = '';
         $.ajaxSetup({
           headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -135,8 +142,8 @@ Models
             serverSide: true,
             ajax: "{{ route('admin.models.index') }}",
             columnDefs: [
-            { className: "dt-center", targets: [ 4, 5 ] },
-            { className: "dt-header-center", targets: [ 4, 5 ] }
+            { className: "dt-center", targets: [ 5, 6 ] },
+            { className: "dt-header-center", targets: [ 5, 6 ] }
             ],
             columns: [           
                 {
@@ -148,6 +155,12 @@ Models
                 {
                     data: 'manufacture.mnf_name',
                     name: 'manufacture.mnf_name'
+                },
+                {
+                    data: 'mod_note', 
+                    name: 'mod_note',  
+                    orderable: false, 
+                    searchable: false
                 },
                 {
                     data: 'mod_created', 
@@ -185,74 +198,46 @@ Models
                 },
             ]
         });  
-        $('#createManufacture').click(function () {
-            $("#mnf_logo").fileinput('destroy');
-            $('#mnf_status').val('').trigger('change');
-            $('#saveManufacture').val("create-manufacture");
-            $('#frmManufacture').trigger("reset");
-            $('#CU_Manufacturer').html("Create Manufacture");
-            $('#mdlManufacture').modal('show');   
-            $("#mnf_logo").fileinput({
-                theme: 'fas',
-                showUpload: false,
-                showCaption: false,
-                browseClass: "btn btn-primary",
-                fileType: "any",
-                previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-                overwriteInitial: false
-                });
+        $('#createModel').click(function () {
+            $('#mod_status').val('').trigger('change');
+            $('#mnf_id').val('').trigger('change');
+            $('#saveModel').val("create-model");
+            $('#frmModel').trigger("reset");
+            $('#CU_Model').html("Create Model");
+            $('#mdlModel').modal('show');
         });
-        $('body').on('click', '.editManufacture', function () {
-            $("#mnf_logo").fileinput('destroy');
-            mnf_id = $(this).data('id');
-            var url = "{{ route('admin.manufactures.edit', ":mnf_id") }}";
-            url = url.replace(':mnf_id', mnf_id);
-            var mnf_logo;
+        $('body').on('click', '.editModel', function () {
+            mod_id = $(this).data('id');
+            var url = "{{ route('admin.models.edit', ":mod_id") }}";
+            url = url.replace(':mod_id', mod_id);
             $.get(url, function (data) {
-                $('#CU_Manufacturer').html("Edit Manufacture");
-                $('#saveManufacture').val("edit-manufacture");
-                $('#mdlManufacture').modal('show');
-                $('#mnf_name').val(data.mnf_name);
-                $("#mnf_status").val(data.mnf_status).trigger('change');
-                mnf_logo = data.mnf_logo;
-                $("#mnf_logo").fileinput({
-                    theme: 'fas',
-                    showUpload: false,
-                    showCaption: false,
-                    browseClass: "btn btn-primary",
-                    fileType: "any",
-                    append: false,
-                    showRemove: false,
-                    autoReplace: true,
-                    previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-                    overwriteInitial: false,
-                    initialPreviewShowDelete: false,
-                    initialPreviewAsData: true,
-                    initialPreview: [
-                        "{{ asset('storage/images/manufactures/') }}" + '/' + mnf_logo
-                    ],
-                    initialPreviewConfig: [
-                        {                           
-                            width: "120px", 
-                            key: 1
-                        },
-                    ]
-                }); 
+                $('#CU_Model').html("Edit Model");
+                $('#saveModel').val("edit-model");
+                $('#mdlModel').modal('show');
+                $('#mod_name').val(data[0].mod_name);
+                $("#mod_status").val(data[0].mod_status).trigger('change');
+                $('#mod_note').val(data[0].mod_note);
+                $("#mnf_id").select2("trigger", "select", {
+                    data: { id: data[0].mnf_id,
+                            text: data[1]
+                    },
+                    closeOnSelect: true
+                });                 
             });
         });
-        $('#saveManufacture').click(function (e) {
+        $('#saveModel').click(function (e) {
             e.preventDefault();
             var url = '';
-            var formData = new FormData(document.getElementById('frmManufacture'));
-            if($('#saveManufacture').val() == 'create-manufacture')
+            var formData = new FormData(document.getElementById('frmModel'));
+            if($('#saveModel').val() == 'create-model')
             {
-                url = "{{ route('admin.manufactures.store') }}";
+                url = "{{ route('admin.models.store') }}";
             }
 
-            if($('#saveManufacture').val() == 'edit-manufacture')
+            if($('#saveModel').val() == 'edit-model')
             {
-                var url = "{{ route('admin.manufactures.update', ":mnf_id") }}";
-                url = url.replace(':mnf_id', mnf_id);
+                var url = "{{ route('admin.models.update', ":mod_id") }}";
+                url = url.replace(':mod_id', mod_id);
                 formData.append('_method', 'PUT');
             }
             $.ajax({
@@ -263,12 +248,12 @@ Models
                 contentType: false,
                 processData: false,
                 success: function (data) {
-                    $('#frmManufacture').trigger("reset");
-                    $('#mdlManufacture').modal('hide');
+                    $('#frmModel').trigger("reset");
+                    $('#mdlModel').modal('hide');
                     table.draw();
                     Swal.fire({
                         icon: 'success',
-                        title: 'Manufacture saved successfully.',
+                        title: 'Model saved successfully.',
                         showConfirmButton: false,
                         timer: 2000
                     });
@@ -279,10 +264,10 @@ Models
                 }
             });
         });
-        $('body').on('click', '.deleteManufacture', function () {
-            var mnf_id = $(this).data("id");
-            var url = "{{ route('admin.manufactures.destroy', ":mnf_id") }}";
-            url = url.replace(':mnf_id', mnf_id);
+        $('body').on('click', '.deleteModel', function () {
+            var mod_id = $(this).data("id");
+            var url = "{{ route('admin.models.destroy', ":mod_id") }}";
+            url = url.replace(':mod_id', mod_id);
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -300,7 +285,7 @@ Models
                                 table.draw();
                                 Swal.fire(
                                 'Deleted!',
-                                'Manufacture has been deleted.',
+                                'Model has been deleted.',
                                 'success'
                                 )
                             },
@@ -311,13 +296,42 @@ Models
                     }
                 })
         });
-        $( "#mnf_status" ).select2({
+        $( "#mod_status" ).select2({
                 placeholder: '-- Choose Status --',    
                 theme: "bootstrap",  
                 multiple: false,   
                 allowClear: true,
-                minimumResultsForSearch: Infinity               
-        });   
+                minimumResultsForSearch: Infinity,
+                closeOnSelect: true         
+        });
+        $( "#mnf_id" ).select2({
+                placeholder: '-- Choose Manufacture --',    
+                theme: "bootstrap",  
+                multiple: false,   
+                allowClear: true,
+                closeOnSelect: true,
+                ajax: {
+                    url: "{{ route('admin.getManufacture') }}",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            q: $.trim(params.term) //search
+                        };
+                    },
+                    processResults: function (data) {
+                    return {
+                        results:  $.map(data, function (item) {
+                            return {
+                                text: item.mnf_name,
+                                id: item.mnf_id,
+                            }
+                        })
+                    };
+                    },
+                    cache: false
+                }    
+        });    
     });
 </script>
 @endsection

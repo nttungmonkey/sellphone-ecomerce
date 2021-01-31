@@ -399,7 +399,7 @@ Products
                 theme: "bootstrap",    
                 allowClear: true,
                 ajax: {
-                    url: "{{ route('admin.products.getSupplier') }}",
+                    url: "{{ route('admin.getSupplier') }}",
                     dataType: 'json',
                     delay: 250,
                     data: function(params) {
@@ -426,7 +426,7 @@ Products
                 multiple: false,   
                 allowClear: true,
                 ajax: {
-                    url: "{{ route('admin.products.getModels') }}",
+                    url: "{{ route('admin.getModels') }}",
                     dataType: 'json',
                     delay: 250,
                     data: function(params) {

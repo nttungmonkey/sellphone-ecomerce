@@ -8,6 +8,8 @@ use App\Product;
 use App\Models;
 use App\RelatedImage;
 use App\Supplier;
+use App\Manufacture;
+use App\Address;
 use Yajra\Datatables\Datatables;
 use DB;
 use Carbon\Carbon;
@@ -155,46 +157,6 @@ class ProductController extends Controller
         Storage::delete('public/images/products/'.$product->models->mod_name.'/'.$product->pro_image);
         $product->delete();
         return response()->json(['success']);
-    }
-
-    public function getSupplier(Request $request)
-    {
-        $data = [];
-        if($request->has('q'))
-        {
-            $search = $request->q;
-            $data = Supplier::select("sup_id","sup_name")
-            		->where('sup_name','LIKE',"%$search%")
-            		->get();
-        }
-        return response()->json($data);
-    }
-
-    public function getModels(Request $request)
-    {
-        $data = [];
-        if($request->has('q'))
-        {
-            $search = $request->q;
-            $data = Models::select("mod_id","mod_name")
-            		->where('mod_name','LIKE',"%$search%")
-            		->get();
-        }
-        return response()->json($data);
-    }
-
-    public function getReImg($id)
-    {
-        $data = [];
-        $product = Product::find($id);
-        $model = $product->models->mod_name;      
-        foreach($product->relatedImage()->get() as $reImg){
-            array_push($data, [
-                'url'   => asset('storage/images/products/' .$model.'/'.$reImg->reimg_name)
-            ]);
-        }
-        return response()->json($data);
-        
     }
     
 }
