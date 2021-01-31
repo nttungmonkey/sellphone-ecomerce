@@ -26,13 +26,26 @@
             <div class="white-panel">
                 <div class="login-show">
                     <h2>LOGIN</h2>
-                    <input type="text" placeholder="Email">
-                    <input type="password" placeholder="Password">
-                    <input type="button" value="Login">
-                    <label>
+                    <form id="form" class="form-horizontal" method="POST" action="{{ route('login') }}">
+                        {{ csrf_field() }}
+                        <input id="acc_user" name="acc_user" value="{{ old('acc_user') }}" required autofocus type="text" placeholder="Username">
+                        @if ($errors->has('acc_user'))
+                            <span class="help-block {{ $errors->has('acc_user') ? ' has-error' : '' }}">
+                                <strong>{{ $errors->first('acc_user') }}</strong>
+                            </span>
+                        @endif
+                        <input id="acc_password" name="acc_password" required type="password" placeholder="Password">
+                        @if ($errors->has('acc_user'))
+                            <span class="help-block {{ $errors->has('acc_password') ? ' has-error' : '' }}">
+                                <strong>{{ $errors->first('acc_password') }}</strong>
+                            </span>
+                        @endif
+                        <input type="submit" value="Login"> 
+                        <label>
                             <input type="checkbox" name="acc_remember" {{ old('acc_remember') ? 'checked' : '' }}> Remember me!
-                        </label> 
-                    <a href="">Forgot password?</a>
+                        </label>              
+                        <a href="{{ route('password.request') }}">Forgot password?</a>
+                    </form>
                 </div>
                 <div class="register-show">
                     <h2>REGISTER</h2>
@@ -53,6 +66,9 @@
         $(document).ready(function(){
             $('.login-info-box').fadeOut();
             $('.login-show').addClass('show-log-panel');
+
+            
+
         });
 
 
@@ -78,3 +94,4 @@
         });
     </script>
 </html>
+

@@ -24,7 +24,7 @@
                                                 <ul class="ht-setting-list">
                                                     <li><a href="login-register.html">{{ __('phonetn.account') }}</a></li>
                                                     <li><a href="{{ route('pages.checkout') }}">{{ __('phonetn.checkoutheader') }}</a></li>
-                                                    <li><a href="{{ route('pages.login') }}">{{ __('phonetn.signin') }}</a></li>
+                                                    <li><a href="{{ route('login') }}">{{ __('phonetn.signin') }}</a></li>
                                                 </ul>
                                             </div>
                                         </li>

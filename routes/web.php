@@ -12,7 +12,6 @@
 */
 
 Route::get('/', 'Frontend\PageController@index') -> name('pages.home');
-Route::get('/login', 'Frontend\PageController@login') -> name('pages.login');
 Route::get('pages/homelist', 'Frontend\PageController@homelist') -> name('pages.home-list');
 Route::get('pages/wishlist', 'Frontend\PageController@wishlist') -> name('pages.wish-list');
 Route::get('pages/contact', 'Frontend\PageController@contact') -> name('pages.contact');
@@ -28,9 +27,8 @@ Route::get('setLocale/{locale}', function ($locale) {
     } 
     return redirect()->back();
 })->name('app.setLocale');
-Route::get('admin/products/getReImg/{pro_id}', 'Backend\ProductController@getReImg')->name('admin.products.getReImg');
-Route::get('admin/products/getSupplier', 'Backend\ProductController@getSupplier')->name('admin.products.getSupplier');
-Route::get('admin/products/getModels', 'Backend\ProductController@getModels')->name('admin.products.getModels');
+
+Route::get('/admin', 'Backend\DashboardController@index')->name('admin.dashboard');
 Route::resource('/admin/manufactures', 'Backend\ManufactureController', ['as' => 'admin']);
 Route::resource('/admin/suppliers', 'Backend\SupplierController', ['as' => 'admin']);
 Route::resource('/admin/models', 'Backend\ModelController', ['as' => 'admin']);
@@ -40,3 +38,7 @@ Route::get('/admin/report/orders/data', 'Backend\ReportController@ordersData')->
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

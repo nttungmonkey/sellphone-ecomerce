@@ -28,6 +28,7 @@ class CreateAccountTable extends Migration
             $table->timestamp('acc_updated')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật thông tin tài khoản gần nhất');
             $table->unsignedTinyInteger('acc_status')->default('3')->comment('Trạng thái # Trạng thái tài khoản: 1-khóa, 2-khả dụng, 3-chưa kích hoạt, 4-Đã xóa');
             $table->unsignedTinyInteger('acc_permission')->default('1')->comment('Quyền # Quyền của tài khoản: 1-khách hàng, 2-Nhân viên');
+            $table->string('acc_remember')->nullable()->comment('Ghi nhớ đăng nhập');
         });
         DB::statement("ALTER TABLE `account` comment 'Tài khoản người dùng # Tài khoản người dùng, bao gồm khách hàng và nhân viên'");
     }
