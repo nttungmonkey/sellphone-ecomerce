@@ -28,7 +28,7 @@ Route::get('setLocale/{locale}', function ($locale) {
     return redirect()->back();
 })->name('app.setLocale');
 
-Route::get('/admin', 'Backend\DashboardController@index')->name('admin.dashboard');
+Route::get('/admin/dashboard', 'Backend\DashboardController@index')->name('admin.dashboard');
 Route::resource('/admin/manufactures', 'Backend\ManufactureController', ['as' => 'admin']);
 Route::resource('/admin/suppliers', 'Backend\SupplierController', ['as' => 'admin']);
 Route::resource('/admin/models', 'Backend\ModelController', ['as' => 'admin']);

@@ -21,7 +21,7 @@ class ModelController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Models::with('manufacture')->select('models.*');
+            $data = Models::with('manufacture')->where('mod_status', '<>', 0);
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -116,7 +116,8 @@ class ModelController extends Controller
     public function destroy($id)
     {
         $model = Models::find($id);
-        $model->delete();
+        $model->mod_status = 0;
+        $model->save();
         return response()->json(['success']);
     }
 }

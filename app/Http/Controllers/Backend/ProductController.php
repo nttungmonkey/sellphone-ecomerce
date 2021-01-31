@@ -25,7 +25,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Product::with('models','supplier')->select('product.*');
+            $data = Product::with('models','supplier')->where('pro_status', '<>', 0);
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -154,8 +154,8 @@ class ProductController extends Controller
     public function destroy($id)
     {   
         $product = Product::find($id);
-        Storage::delete('public/images/products/'.$product->models->mod_name.'/'.$product->pro_image);
-        $product->delete();
+        $product->pro_status = 0;
+        $product->save();
         return response()->json(['success']);
     }
     

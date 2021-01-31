@@ -23,7 +23,7 @@ class CreateSupplierTable extends Migration
 
             $table->timestamp('sup_created')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo nhà cung cấp');
             $table->timestamp('sup_updated')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật thông tin nhà cung cấp gần nhất');
-            $table->unsignedTinyInteger('sup_status')->default('1')->comment('Trạng thái # Trạng thái sản phẩm: 1-Khả dụng, 2-Đang khóa');
+            $table->unsignedTinyInteger('sup_status')->default('1')->comment('Trạng thái # Trạng thái sản phẩm: 0-Đã xóa, 1-Khả dụng, 2-Đang khóa');
             $table->unsignedBigInteger('adr_id');
 
             $table->foreign('adr_id') 

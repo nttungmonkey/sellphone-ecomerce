@@ -24,7 +24,7 @@ class SupplierController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Supplier::with('address')->select('supplier.*');
+            $data = Supplier::with('address')->where('sup_status', '<>', 0);
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -123,7 +123,8 @@ class SupplierController extends Controller
     public function destroy($id)
     {
         $supplier = Supplier::find($id);
-        $supplier->delete();
+        $supplier->sup_status = 0;
+        $supplier->save();
         return response()->json(['success']);
     }
 }

@@ -24,7 +24,7 @@ class ManufactureController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Manufacture::latest()->get();
+            $data = Manufacture::latest()->where('mnf_status', '<>', 0);
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -128,8 +128,8 @@ class ManufactureController extends Controller
     public function destroy($id)
     {
         $manu = Manufacture::find($id);
-        Storage::delete('public/images/manufactures/'.$manu->mnf_logo);
-        $manu->delete();
+        $manu->mnf_status = 0;
+        $manu->save();
         return response()->json(['success']);
     }
 }
