@@ -32,4 +32,9 @@ class Supplier extends Model
     {
         return $this->hasMany('App\Product', 'sup_id', 'sup_id');
     }
+
+    public function address()
+    {
+        return $this->belongsTo('App\Address', 'adr_id', 'adr_id');
+    }
 }

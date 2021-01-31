@@ -9,7 +9,7 @@ class Address extends Model
     const     CREATED_AT    = 'adr_created';
     const     UPDATED_AT    = 'adr_updated';
 
-    protected $table        = 'adddress';
+    protected $table        = 'address';
     protected $fillable     = 
             [
                 'adr_address',
@@ -27,5 +27,10 @@ class Address extends Model
     public function acc()
     {
         return $this->belongsTo('App\Account', 'acc_id', 'acc_id');
+    }
+    
+    public function supplier()
+    {
+        return $this->hasMany('App\Supplier', 'adr_id', 'adr_id');
     }
 }
