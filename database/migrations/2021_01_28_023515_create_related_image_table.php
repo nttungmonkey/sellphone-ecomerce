@@ -15,7 +15,6 @@ class CreateRelatedImageTable extends Migration
     {
         Schema::create('related_image', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->engine = 'InnoDB';
             $table->unsignedInteger('pro_id')->comment('Sản phẩm # pro_id # pro_name # Mã sản phẩm');
             $table->unsignedTinyInteger('reimg_stt')->default('1')->comment('Số thứ tự # Số thứ tự hình ảnh của mỗi sản phẩm');
             $table->string('reimg_name', 150)->comment('Tên hình ảnh # Tên hình ảnh (không bao gồm đường dẫn)');

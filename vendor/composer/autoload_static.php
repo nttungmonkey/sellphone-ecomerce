@@ -438,6 +438,7 @@ class ComposerStaticInit8de5a9bc5b421136c035edbfff3a439a
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
+        'App\\Http\\Controllers\\Backend\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/DashboardController.php',
         'App\\Http\\Controllers\\Backend\\ManufactureController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/ManufactureController.php',
         'App\\Http\\Controllers\\Backend\\ModelController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/ModelController.php',
         'App\\Http\\Controllers\\Backend\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/ProductController.php',
@@ -466,6 +467,7 @@ class ComposerStaticInit8de5a9bc5b421136c035edbfff3a439a
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\RelatedImage' => __DIR__ . '/../..' . '/app/RelatedImage.php',
+        'App\\Role' => __DIR__ . '/../..' . '/app/Role.php',
         'App\\Supplier' => __DIR__ . '/../..' . '/app/Supplier.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
@@ -4315,6 +4317,8 @@ class ComposerStaticInit8de5a9bc5b421136c035edbfff3a439a
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
         'phpDocumentor\\Reflection\\Utils' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/Utils.php',
         'productTableSeeder' => __DIR__ . '/../..' . '/database/seeds/productTableSeeder.php',
+        'roleAccountTableSeeder' => __DIR__ . '/../..' . '/database/seeds/roleAccountTableSeeder.php',
+        'roleTableSeeder' => __DIR__ . '/../..' . '/database/seeds/roleTableSeeder.php',
         'supplierTableSeeder' => __DIR__ . '/../..' . '/database/seeds/supplierTableSeeder.php',
     );
 

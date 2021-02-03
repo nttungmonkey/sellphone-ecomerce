@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use App\Role;
 
 class Account extends Model implements AuthenticatableContract
 {
@@ -33,6 +34,32 @@ class Account extends Model implements AuthenticatableContract
     protected $dates        = ['acc_created', 'acc_updated'];
     protected $dateFormat   = 'Y-m-d H:i:s';
     protected $rememberTokenName = 'acc_remember';
+
+    public function authorizeRoles($roles)
+    {
+        if (is_array($roles)) {
+            return $this->hasAnyRole($roles) || 
+                abort(401, 'This action is unauthorized.');
+        }
+        return $this->hasRole($roles) || 
+                abort(401, 'This action is unauthorized.');
+    }
+    /**
+    * Check multiple roles
+    * @param array $roles
+    */
+    public function hasAnyRole($roles)
+    {
+        return null !== $this->roles()->whereIn('rol_name', $roles)->first();
+    }
+    /**
+    * Check one role
+    * @param string $role
+    */
+    public function hasRole($role)
+    {
+        return null !== $this->roles()->where('rol_name', $role)->first();
+    }
 
     public function getAuthIdentifierName()
     {
@@ -86,5 +113,10 @@ class Account extends Model implements AuthenticatableContract
     public function address()
     {
         return $this->hasMany('App\Address', 'acc_id', 'acc_id');
+    }
+
+    public function roles()
+    {
+    return $this->belongsToMany(Role::class, 'account_role','acc_id','rol_id');
     }
 }

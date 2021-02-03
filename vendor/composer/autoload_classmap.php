@@ -20,6 +20,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
+    'App\\Http\\Controllers\\Backend\\DashboardController' => $baseDir . '/app/Http/Controllers/Backend/DashboardController.php',
     'App\\Http\\Controllers\\Backend\\ManufactureController' => $baseDir . '/app/Http/Controllers/Backend/ManufactureController.php',
     'App\\Http\\Controllers\\Backend\\ModelController' => $baseDir . '/app/Http/Controllers/Backend/ModelController.php',
     'App\\Http\\Controllers\\Backend\\ProductController' => $baseDir . '/app/Http/Controllers/Backend/ProductController.php',
@@ -48,6 +49,7 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\RelatedImage' => $baseDir . '/app/RelatedImage.php',
+    'App\\Role' => $baseDir . '/app/Role.php',
     'App\\Supplier' => $baseDir . '/app/Supplier.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'BeyondCode\\DumpServer\\DumpServerCommand' => $vendorDir . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
@@ -3897,5 +3899,7 @@ return array(
     'phpDocumentor\\Reflection\\Types\\Void_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/Void_.php',
     'phpDocumentor\\Reflection\\Utils' => $vendorDir . '/phpdocumentor/reflection-docblock/src/Utils.php',
     'productTableSeeder' => $baseDir . '/database/seeds/productTableSeeder.php',
+    'roleAccountTableSeeder' => $baseDir . '/database/seeds/roleAccountTableSeeder.php',
+    'roleTableSeeder' => $baseDir . '/database/seeds/roleTableSeeder.php',
     'supplierTableSeeder' => $baseDir . '/database/seeds/supplierTableSeeder.php',
 );

@@ -28,7 +28,7 @@
                         <div class="col-lg-12">
                             <div class="error-wrapper text-center ptb-50 pt-xs-20">
                                 <div class="error-text">
-                                    <h1>404</h1>
+                                    <h1>401</h1>
                                     <h2>Opps! UNAUTHORIZED</h2>
                                     <p>You are not authotized for selected action</p>
                                 </div>

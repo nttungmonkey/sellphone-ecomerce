@@ -21,6 +21,7 @@ class accountTableSeeder extends Seeder
                 'acc_fullname'            => "fullname$i",
                 'acc_sex'                 => $faker->numberBetween(1, 2),
                 'acc_picture'              => "hinh$i.png",
+                'rol_id'                 => $faker->numberBetween(1, 2)
             ]);
         }
         DB::table('account')->insert($list);

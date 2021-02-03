@@ -7,8 +7,15 @@ use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        return view('backend.dashboard.index');
+        $this->middleware('auth');
     }
+
+    public function index(Request $request)
+    {     
+        $request->user()->authorizeRoles(['admin']);
+        return view('backend.dashboard.index');  
+    }
+    
 }
