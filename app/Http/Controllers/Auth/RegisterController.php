@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Account;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +30,11 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {
+
+        return '/'; // return dynamicaly generated URL.
+    }
 
     /**
      * Create a new controller instance.
@@ -48,11 +54,19 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        $validator =  Validator::make($data, [
+            'acc_user_register' => ['required', 'string', 'max:255', 'min:6'],
+            'acc_password_register' => ['required', 'string', 'min:6', 'required_with:acc_password_register_confirmation', 'same:acc_password_register_confirmation'],
+            'acc_password_register_confirmation' => ['required', 'min:6'],
         ]);
+
+        $validator->setAttributeNames([
+            'acc_user_register' => 'acc_user',
+            'acc_password_register' => 'acc_password',
+        ]);
+
+        return $validator;
+
     }
 
     /**
@@ -63,10 +77,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $account =  Account::create([
+            'acc_user' => $data['acc_user_register'],
+            'acc_password' => bcrypt($data['acc_password_register']),          
         ]);
+
+        return $account;
     }
 }

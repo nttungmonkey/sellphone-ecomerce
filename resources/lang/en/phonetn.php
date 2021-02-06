@@ -8,6 +8,7 @@ return [
     'account'       => "My account",
     'checkoutheader'       => "Checkout",
     'signin'       => "Sign in",
+    'signout'       => "Sign out",
     'language'       => "Language",
     'home'       => "Home",
     'product'       => "Product",

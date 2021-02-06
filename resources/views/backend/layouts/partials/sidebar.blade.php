@@ -5,7 +5,7 @@
           <img src="{{ asset('storage/images/admin/users/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">User</a>
+          <a href="#" class="d-block">{{ Auth::user()->acc_user }}</a>
         </div>
       </div>
 
@@ -254,8 +254,8 @@
           {{-- 
           <li class="nav-header">EXAMPLES</li> --}}
           <li class="nav-item">
-            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ (request()->is('admin/dashboard')) ? 'active' : '' }}">
-              <i class="nav-icon far fa-calendar-alt"></i>
+            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ (request()->is('admin')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard               
               </p>
@@ -263,7 +263,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('admin.products.index') }}" class="nav-link {{ (request()->is('admin/products')) ? 'active' : '' }}">
-              <i class="nav-icon far fa-image"></i>
+              <i class="nav-icon fab fa-product-hunt"></i>
               <p>
                 Products
               </p>
@@ -271,7 +271,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('admin.suppliers.index') }}" class="nav-link {{ (request()->is('admin/suppliers')) ? 'active' : '' }}">
-              <i class="nav-icon far fa-image"></i>
+              <i class="nav-icon fas fa-dolly-flatbed"></i>
               <p>
                 Suppliers
               </p>
@@ -279,7 +279,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('admin.manufactures.index') }}" class="nav-link {{ (request()->is('admin/manufactures')) ? 'active' : '' }}">
-              <i class="nav-icon far fa-image"></i>
+              <i class="nav-icon fas fa-tools"></i>
               <p>
                 Manufactures
               </p>
@@ -287,7 +287,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('admin.models.index') }}" class="nav-link {{ (request()->is('admin/models')) ? 'active' : '' }}">
-              <i class="nav-icon far fa-image"></i>
+              <i class="nav-icon fas fa-layer-group"></i>
               <p>
                 Models
               </p>
@@ -295,44 +295,21 @@
           </li>
           <li class="nav-item">
             <a href="" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
-                Colors
+                Account
               </p>
             </a>
           </li>
           <li class="nav-item">
             <a href="" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
+              <i class="nav-icon far fa-calendar-alt"></i>
               <p>
-                Themes
+                Calendar
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Origins
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Permissions
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Customers
-              </p>
-            </a>
-          </li>
+          
           {{--
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">

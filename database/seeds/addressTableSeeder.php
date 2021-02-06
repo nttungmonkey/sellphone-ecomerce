@@ -17,7 +17,7 @@ class addressTableSeeder extends Seeder
             $today = new DateTime();
             array_push($list, [
                 'adr_address'             => $faker->streetAddress(),
-                'acc_id'                  => $faker->numberBetween(1, 10),
+                'acc_id'                  => $faker->numberBetween(1, 2),
             ]);
         }
         DB::table('address')->insert($list);

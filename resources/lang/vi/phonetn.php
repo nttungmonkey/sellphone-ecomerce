@@ -7,6 +7,7 @@ return [
     'setting'       => "Thông tin",
     'account'       => "Tài khoản",
     'signin'       => "Đăng nhập",
+    'signout'       => "Đăng xuất",
     'checkoutheader'       => "Thanh toán",
     'language'       => "Ngôn ngữ",
     'home'       => "Trang chủ",

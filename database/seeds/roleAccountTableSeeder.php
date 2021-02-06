@@ -16,7 +16,7 @@ class roleAccountTableSeeder extends Seeder
         for ($i=1; $i <= 10; $i++) {
             array_push($list, [
                 'rol_id'                 => $faker->numberBetween(1, 2),
-                'acc_id'                 => $faker->numberBetween(1, 10)
+                'acc_id'                 => $faker->numberBetween(1, 2)
             ]);
         }
         DB::table('account_role')->insert($list);

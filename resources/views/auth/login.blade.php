@@ -26,7 +26,7 @@
             <div class="white-panel">
                 <div class="login-show">
                     <h2>LOGIN</h2>
-                    <form id="form" class="form-horizontal" method="POST" action="{{ route('login') }}">
+                    <form id="frmLogin" class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
                         <input id="acc_user" name="acc_user" value="{{ old('acc_user') }}" required autofocus type="text" placeholder="Username">
                         @if ($errors->has('acc_user'))
@@ -49,10 +49,23 @@
                 </div>
                 <div class="register-show">
                     <h2>REGISTER</h2>
-                    <input type="text" placeholder="Email">
-                    <input type="password" placeholder="Password">
-                    <input type="password" placeholder="Confirm Password">
-                    <input type="button" value="Register">
+                    <form id="frmRegister" class="form-horizontal" method="POST" action="{{ route('register') }}">
+                        {{ csrf_field() }}
+                        <input id="acc_user_register" type="text" class="form-control @error('acc_user_register') is-invalid @enderror" name="acc_user_register" value="{{ old('acc_user_register') }}" required autocomplete="acc_user_register" autofocus placeholder="Username">
+                        @error('acc_user_register')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror                  
+                        <input id="acc_password_register" type="password" class="form-control @error('acc_password_register') is-invalid @enderror" name="acc_password_register" required autocomplete="new-password" placeholder="Password">
+                        @error('acc_password_register')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        <input id="acc_password_register-confirm" type="password" class="form-control" name="acc_password_register_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                        <input type="submit" value="Register"> 
+                    </form>
                 </div>
             </div>
         </div>
@@ -66,9 +79,6 @@
         $(document).ready(function(){
             $('.login-info-box').fadeOut();
             $('.login-show').addClass('show-log-panel');
-
-            
-
         });
 
 
