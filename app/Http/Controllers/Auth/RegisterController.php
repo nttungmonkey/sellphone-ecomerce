@@ -54,11 +54,22 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $message = array(
+            'acc_user_register.required' => 'Please enter a username',
+            'acc_user_register.unique' => 'Username has already been taken',
+            'acc_user_register.min' => 'Username has at least 6 characters',
+            'acc_user_register.max' => 'Username has up to 255 character',
+            'acc_password_register.min' => 'Password has at least 6 characters',
+            'acc_user_register.max' => 'Password has up to 255 characters',
+            'same' => 'The password and confirm password must match.',
+
+        );
+
         $validator =  Validator::make($data, [
-            'acc_user_register' => ['required', 'string', 'max:255', 'min:6'],
+            'acc_user_register' => ['required', 'string', 'max:255', 'min:6', 'unique:account,acc_user'],
             'acc_password_register' => ['required', 'string', 'min:6', 'required_with:acc_password_register_confirmation', 'same:acc_password_register_confirmation'],
             'acc_password_register_confirmation' => ['required', 'min:6'],
-        ]);
+        ], $message);
 
         $validator->setAttributeNames([
             'acc_user_register' => 'acc_user',

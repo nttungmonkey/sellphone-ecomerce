@@ -11,14 +11,12 @@
         <div class="login-reg-panel">
             <div class="login-info-box">
                 <h2>Have an account?</h2>
-                <p>Lorem ipsum dolor sit amet</p>
                 <label id="label-register" for="log-reg-show">Login</label>
                 <input type="radio" name="active-log-panel" id="log-reg-show"  checked="checked">
             </div>
                                 
             <div class="register-info-box">
-                <h2>Don't have an account?</h2>
-                <p>Lorem ipsum dolor sit amet</p>
+                <h2>Don't have an account?</h2>                
                 <label id="label-login" for="log-login-show">Register</label>
                 <input type="radio" name="active-log-panel" id="log-login-show">
             </div>
@@ -41,10 +39,13 @@
                             </span>
                         @endif
                         <input type="submit" value="Login"> 
-                        <label>
-                            <input type="checkbox" name="acc_remember" {{ old('acc_remember') ? 'checked' : '' }}> Remember me!
-                        </label>              
-                        <a href="{{ route('password.request') }}">Forgot password?</a>
+                        <div style="float: left; display: grid;">
+                            <label>
+                                <input type="checkbox" name="acc_remember" {{ old('acc_remember') ? 'checked' : '' }}> Remember me!
+                            </label>              
+                            <a href="{{ route('password.request') }}">Forgot password?</a>
+                        </div>
+                        
                     </form>
                 </div>
                 <div class="register-show">
@@ -79,6 +80,15 @@
         $(document).ready(function(){
             $('.login-info-box').fadeOut();
             $('.login-show').addClass('show-log-panel');
+            @if ($errors->has('acc_user_register') || $errors->has('acc_password_register') )
+                $('.register-info-box').fadeOut(); 
+                $('.login-info-box').fadeIn();
+                
+                $('.white-panel').addClass('right-log');
+                $('.register-show').addClass('show-log-panel');
+                $('.login-show').removeClass('show-log-panel');          
+            @endif
+            
         });
 
 
