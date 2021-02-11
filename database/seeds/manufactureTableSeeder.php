@@ -12,14 +12,20 @@ class manufactureTableSeeder extends Seeder
     public function run()
     {
         $list = [];
-        $faker    = Faker\Factory::create();
-        for ($i=1; $i <= 10; $i++) {
-            $today = new DateTime();
+        $manufacture = ['iphone', 'samsung', 'oppo', 'vivo', 'xiaomi'];
+        $faker = Faker\Factory::create('vi_VN');
+
+        for ($i=0; $i < count($manufacture) ; $i++) {
+            $create= $faker->dateTimeBetween('-2 years','now', null);
+            $update = $faker->dateTimeBetween($create,'+2 months', null);
             array_push($list, [
-                'mnf_name'                => "Manufacture$i",
-                'mnf_logo'                => "logo$i.png",
+                'mnf_name'                => $manufacture[$i],
+                'mnf_logo'                => "$manufacture[$i].png",
+                'mnf_created'             => $create,
+                'mnf_updated'             => $update
             ]);
         }
+        DB::table('manufacture')->delete();
         DB::table('manufacture')->insert($list);
     }
 }

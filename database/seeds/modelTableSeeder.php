@@ -12,14 +12,54 @@ class modelTableSeeder extends Seeder
     public function run()
     {
         $list = [];
-        $faker    = Faker\Factory::create();
-        for ($i=1; $i <= 10; $i++) {
-            $today = new DateTime();
-            array_push($list, [
-                'mod_name'                => "Model$i",
-                'mnf_id'                  => $faker->numberBetween(1, 10),
-            ]);
+       
+        //danh sach san pham
+        $iphone = ['iphone 11', 'iphone Xr', 'iphone Se'];
+        $samsung = ['Galaxy Note', 'Galaxy S', 'Galaxy A', 'Galaxy Z', 'Galaxy M'];
+        $oppo = ['Oppo A', 'Oppo Reno', 'Oppo Find X'];
+        $vivo = ['Vivo X', 'Vivo V', 'Vivo Y', 'Vivo U', 'Vivo S'];
+        $Xiaomi = ['Xiaomi Readmi', 'Xiaomi Mi', 'Xiaomi poco'];
+        $faker = Faker\Factory::create('vi_VN');
+        $manufacture =  DB::table('manufacture')->get();
+
+        for($i = 0; $i < count($manufacture); $i++)
+        {
+            $item = $manufacture[$i];
+            $model = [];
+            switch($item->mnf_name)
+            {
+                case 'iphone' :
+                    $model = $iphone;
+                    break;
+                case 'samsung' :
+                    $model = $samsung;
+                    break;
+                case 'oppo' :
+                    $model = $oppo;
+                    break;
+                case 'vivo' :
+                    $model = $vivo;
+                    break;
+                case 'xiaomi' :
+                    $model = $Xiaomi;
+                    break;
+            }
+
+            for($j = 0; $j < count($model); $j++ )
+            {
+                $create= $faker->dateTimeBetween($item->mnf_created, '+10 days',null);
+                $update = $faker->dateTimeBetween($create,'+5 days', null);
+
+                array_push($list, [
+                    'mod_name'                => $model[$j],
+                    'mod_created'             => $create,
+                    'mod_updated'             => $update,
+                    'mnf_id'                  => $item->mnf_id,
+                ]);
+            }
         }
+
+        DB::table('models')->delete();
         DB::table('models')->insert($list);
     }
 }
