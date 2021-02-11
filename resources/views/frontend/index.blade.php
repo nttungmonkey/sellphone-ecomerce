@@ -34,7 +34,7 @@
                                             <div class="single-product-wrap">
                                                 <div class="product-image">
                                                     <a href="{{ route('pages.single-product') }}">
-                                                       <img src="{{ asset('storage/images/products/Model' .$sp->mod_id.'/'.explode(';' , $sp->pro_image)[0].".png") }}" 
+                                                       <img src="{{ asset('storage/images/products/' .str_replace(' ', '', $sp->mod_name).'/'.$sp->pro_image) }}" 
                                                        alt="" class="imgproduct" width="210px" height="275px"/>                                                       
                                                     </a>
                                                     <span class="sticker">New</span>

@@ -22,7 +22,7 @@ class productTableSeeder extends Seeder
                 'pro_detail'                 => "detail$i",
                 'pro_descriptS'              => "description sort $i",
                 'pro_descriptF'             => "description full $i",
-                'mod_id'                    => $faker->numberBetween(1, 10),
+                'mod_id'                    => $faker->numberBetween(1, 19),
                 'sup_id'                    => $faker->numberBetween(1, 10)
             ]);
         }
