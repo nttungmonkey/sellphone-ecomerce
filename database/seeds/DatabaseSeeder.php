@@ -23,5 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(billExportTableSeeder::class);
         $this->call(importDetailTableSeeder::class);
         $this->call(exportDetailTableSeeder::class);
+        $this->call(relatedImageTableSeeder::class);
+        
     }
 }
