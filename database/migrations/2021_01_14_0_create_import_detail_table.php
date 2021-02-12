@@ -17,6 +17,7 @@ class CreateImportDetailTable extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('imd_id');
             $table->unsignedInteger('imd_price')->comment('Giá mua # Giá mua mỗi sản phẩm, đơn vị Ngàn VND');
+            $table->unsignedInteger('imd_priceExp')->comment('Giá bán dự kiến # Giá bán dự kiến mỗi sản phẩm, đơn vị Ngàn VND');
             $table->unsignedsmallInteger('imd_amount')->comment('Số lượng # Số lượng sản phẩm nhập');
 
             $table->unsignedInteger('pro_id');
