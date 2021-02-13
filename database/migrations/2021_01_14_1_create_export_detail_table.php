@@ -20,15 +20,15 @@ class CreateExportDetailTable extends Migration
             $table->unsignedTinyInteger('emd_amount')->comment('Số lượng # Số lượng sản phẩm bán trên mỗi đơn hàng');
 
             $table->unsignedInteger('pro_id');
-            $table->unsignedBigInteger('bii_id');
+            $table->unsignedBigInteger('bie_id');
 
             $table->foreign('pro_id') 
                     ->references('pro_id')->on('product') 
                     ->onDelete('CASCADE')
                     ->onUpdate('CASCADE');
 
-            $table->foreign('bii_id') 
-                    ->references('bii_id')->on('bill_import') 
+            $table->foreign('bie_id') 
+                    ->references('bie_id')->on('bill_export') 
                     ->onDelete('CASCADE')
                     ->onUpdate('CASCADE');
 
