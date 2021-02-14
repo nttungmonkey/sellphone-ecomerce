@@ -16,8 +16,8 @@ class manufactureTableSeeder extends Seeder
         $faker = Faker\Factory::create('vi_VN');
 
         for ($i=0; $i < count($manufacture) ; $i++) {
-            $create= $faker->dateTimeBetween('-2 years','now', null);
-            $update = $faker->dateTimeBetween($create,'+2 months', null);
+            $create = $faker->dateTimeBetween('-2 years','now', null)->format('Y-m-d');
+            $update = $faker->dateTimeBetween($create, $create.'+2 months', null);
             array_push($list, [
                 'mnf_name'                => $manufacture[$i],
                 'mnf_logo'                => "$manufacture[$i].png",

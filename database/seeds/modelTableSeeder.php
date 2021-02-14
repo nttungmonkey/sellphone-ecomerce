@@ -47,8 +47,8 @@ class modelTableSeeder extends Seeder
 
             for($j = 0; $j < count($model); $j++ )
             {
-                $create= $faker->dateTimeBetween($item->mnf_created, '+10 days',null);
-                $update = $faker->dateTimeBetween($create,'+5 days', null);
+                $create = $faker->dateTimeBetween($item->mnf_created.'-20 days', $item->mnf_created)->format('Y-m-d');
+                $update = $faker->dateTimeBetween($create, $create.'+10 days');
 
                 array_push($list, [
                     'mod_name'                => $model[$j],
