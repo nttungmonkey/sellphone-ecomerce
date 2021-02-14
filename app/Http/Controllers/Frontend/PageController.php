@@ -20,10 +20,11 @@ class PageController extends Controller
         //get data
         $data = DB::select
         (<<<EOT
-            select *
-            from product AS p, models AS m
-            WHERE p.mod_id = m.mod_id and p.pro_status <> 4
-            ORDER BY pro_created
+            SELECT p.*, m.*, id.*, (SUM(id.imd_amount) - SUM(ed.emd_amount)) as sl
+            FROM product as p, models as m, import_detail as id, export_detail as ed, bill_import as bi
+            WHERE p.mod_id = m.mod_id AND p.pro_id = id.pro_id AND p.pro_id = ed.pro_id AND id.bii_id = bi.bii_id
+            GROUP BY p.pro_id
+            ORDER BY bi.bii_created DESC
             LIMIT 10
 
             EOT

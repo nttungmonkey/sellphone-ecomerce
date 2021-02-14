@@ -21,7 +21,7 @@ class importDetailTableSeeder extends Seeder
         for ($i=0; $i < 80 ; $i++) {
             $idPro  =   $faker->numberBetween(0,count($pro) - 1);
             $idBill =   $faker->numberBetween(0, count($bill) - 1);
-            $price  =   $faker->numberBetween(2000,50000);
+            $price  =   $faker->numberBetween(2000,10000);
             array_push($list, [
                 'imd_price'     => $price,
                 'imd_priceExp'  => $price * $faker->randomFloat(NULL,1.1,2),
