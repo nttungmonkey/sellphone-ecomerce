@@ -18,8 +18,8 @@ class billImportTableSeeder extends Seeder
         $acc = DB::table('account')->whereIn('acc_user',['admin','thanh292','kien564'])->get();
 
         for ($i=0; $i < 40 ; $i++) {
-            $create= $faker->dateTimeBetween('-2 years','now', null);
-            $update = $faker->dateTimeBetween($create,'+2 months', null);
+            $create= $faker->unique()->dateTimeBetween('-2 years','now', null)->format('Y-m-d');
+            $update = $faker->unique()->dateTimeBetween($create, $create.'+2 months', null);
             $idAcc = $faker->numberBetween(0,2);
             array_push($list, [
                 'bii_created'   => $create,

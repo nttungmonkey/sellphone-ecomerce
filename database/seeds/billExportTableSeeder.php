@@ -18,9 +18,9 @@ class billExportTableSeeder extends Seeder
         $acc = DB::table('account')->where('rol_id','2')->get();
 
         for ($i=0; $i < 10 ; $i++) {
-            $today= $faker->dateTimeBetween('-2 years','now', null);
+            $today= $faker->unique()->dateTimeBetween('-2 years','now', null);
             
-            $idAcc = $faker->numberBetween(0,count($acc) - 1);
+            $idAcc = $faker->unique()->numberBetween(0,count($acc) - 1);
             array_push($list, [
                 'bie_created'   => $today,
                 'bie_updated'   => $today,

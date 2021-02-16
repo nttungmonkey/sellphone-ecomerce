@@ -20,12 +20,19 @@ class PageController extends Controller
         //get data
         $spMoi = DB::select
         (<<<EOT
-            SELECT p.*, m.*, id.*, (SUM(id.imd_amount) - SUM(ed.emd_amount)) as sl
-            FROM product as p, models as m, import_detail as id, export_detail as ed, bill_import as bi
-            WHERE p.mod_id = m.mod_id AND p.pro_id = id.pro_id AND p.pro_id = ed.pro_id AND id.bii_id = bi.bii_id
-            GROUP BY p.pro_id
-            ORDER BY bi.bii_created DESC
-            LIMIT 10
+            SELECT  *
+            FROM (
+                SELECT p.*, MAX(bi.bii_updated) AS da 
+                FROM product as p, import_detail as id,  bill_import as bi
+                WHERE p.pro_id = id.pro_id AND id.bii_id = bi.bii_id
+                GROUP BY p.pro_id) AS p, import_detail AS id, bill_import AS bi, models AS m
+            WHERE p.da = bi.bii_updated AND
+                    bi.bii_id = id.bii_id AND
+                    p.pro_id = id.pro_id AND 
+                    m.mod_id = p.mod_id AND 
+                    id.pro_id = p.pro_id
+            ORDER BY da desc
+            limit 10
 
             EOT
         );
@@ -44,21 +51,21 @@ class PageController extends Controller
 
         $spre = DB::select
         (<<<EOT
-            SELECT p.*, m.*, id.*, (SUM(id.imd_amount) - SUM(ed.emd_amount)) as sl
+            SELECT p.*, m.*, id.*
             FROM product as p, models as m, import_detail as id, export_detail as ed, bill_import as bi
             WHERE p.mod_id = m.mod_id AND p.pro_id = id.pro_id AND p.pro_id = ed.pro_id AND id.bii_id = bi.bii_id
             GROUP BY p.pro_id
-            ORDER BY bi.bii_created DESC, id.imd_priceExp
+            ORDER BY id.imd_priceExp
             LIMIT 10
 
             EOT
         );
 
-        $spApple = DB::select
+        $spViVo = DB::select
         (<<<EOT
             SELECT p.*, m.*, id.*, (SUM(id.imd_amount) - SUM(ed.emd_amount)) as sl
             FROM product as p, models as m, import_detail as id, export_detail as ed, bill_import as bi, manufacture as ma
-            WHERE p.mod_id = m.mod_id AND p.pro_id = id.pro_id AND p.pro_id = ed.pro_id AND id.bii_id = bi.bii_id AND ma.mnf_id = m.mnf_id AND ma.mnf_name = 'iphone'
+            WHERE p.mod_id = m.mod_id AND p.pro_id = id.pro_id AND p.pro_id = ed.pro_id AND id.bii_id = bi.bii_id AND ma.mnf_id = m.mnf_id AND ma.mnf_name = 'vivo'
             GROUP BY p.pro_id
             ORDER BY bi.bii_created DESC
             LIMIT 3
@@ -92,7 +99,7 @@ class PageController extends Controller
                 ->with('product', $spMoi)
                 ->with('bestsell', $spMoi)
                 ->with('bestcheap', $spre)
-                ->with('spapple', $spApple)
+                ->with('spVivo', $spViVo)
                 ->with('spSamsung', $spSamSung)
                 ->with('spOppo', $spOppo);
     }

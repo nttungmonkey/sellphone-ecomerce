@@ -18,7 +18,7 @@ class importDetailTableSeeder extends Seeder
         $bill = DB::table('bill_import')->get();
 
 
-        for ($i=0; $i < 80 ; $i++) {
+        for ($i=0; $i < 200 ; $i++) {
             $idPro  =   $faker->numberBetween(0,count($pro) - 1);
             $idBill =   $faker->numberBetween(0, count($bill) - 1);
             $price  =   $faker->numberBetween(2000,10000);
