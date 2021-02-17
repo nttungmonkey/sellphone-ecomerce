@@ -14,6 +14,8 @@ use Yajra\Datatables\Datatables;
 use DB;
 use Carbon\Carbon;
 use Storage;
+use App\Exports\ProductExport;
+use Maatwebsite\Excel\Facades\Excel as Excel;
 
 class ProductController extends Controller
 {
@@ -162,6 +164,32 @@ class ProductController extends Controller
         $product->pro_status = 0;
         $product->save();
         return response()->json(['success']);
+    }
+
+    public function print()
+    {
+        $products = Product::all();
+        $models    = Models::all();
+        $supliers = Supplier::all();
+ 
+        return view('backend.products.print')
+            ->with('products', $products)
+            ->with('models', $models)
+            ->with('suppliers', $supliers);
+    }
+
+    public function excel() 
+    {
+        /* Code dành cho việc debug
+        - Khi debug cần hiển thị view để xem trước khi Export Excel
+        */
+        // $ds_sanpham = Sanpham::all();
+        // $ds_loai    = Loai::all();
+        // return view('backend.sanpham.excel')
+        //     ->with('danhsachsanpham', $ds_sanpham)
+        //     ->with('danhsachloai', $ds_loai);
+
+        return Excel::download(new ProductExport, 'product.xlsx');
     }
     
 }

@@ -49,8 +49,6 @@ Suppliers
                             <th>Email</th>
                             <th>Address</th>
                             <th>Note</th>
-                            <th>Created At</th>
-                            <th>Updated At</th> 
                             <th>Status</th>
                             <th style="width:150px;">Action</th>
                         </tr>
@@ -156,8 +154,8 @@ Suppliers
             serverSide: true,
             ajax: "{{ route('admin.suppliers.index') }}",
             columnDefs: [
-            { className: "dt-center", targets: [ 7, 8 ] },
-            { className: "dt-header-center", targets: [ 7, 8 ] }
+            { className: "dt-center", targets: [ 5, 6 ] },
+            { className: "dt-header-center", targets: [ 5, 6 ] }
             ],
             columns: [
                 {   
@@ -191,20 +189,6 @@ Suppliers
                     orderable: false, 
                     searchable: false
                 },  
-                {
-                    data: 'sup_created', 
-                    render: function (data, type, row, meta){
-                        return moment(data).format('DD/MM/YYYY hh:mm:ss');
-                    }, 
-                    name: 'Created At'
-                },  
-                {
-                    data: 'sup_updated',
-                    render: function (data, type, row, meta){
-                        return moment(data).format('DD/MM/YYYY hh:mm:ss');
-                    }, 
-                    name: 'Updated At'
-                },      
                 {   
                     data: 'sup_status',
                     render: function (data, type, row, meta){

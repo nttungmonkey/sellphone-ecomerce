@@ -30,10 +30,13 @@ Route::get('setLocale/{locale}', function ($locale) {
 
 Route::get('/admin', 'Backend\DashboardController@index')->name('admin.dashboard');
 Route::get('/admin/calendars', 'Backend\CalendarController@index')->name('admin.calendar.index');
+Route::get('/admin/products/print', 'Backend\ProductController@print')->name('admin.products.print');
+Route::get('/admin/products/excel', 'Backend\ProductController@excel')->name('admin.products.excel');
 Route::resource('/admin/manufactures', 'Backend\ManufactureController', ['as' => 'admin']);
 Route::resource('/admin/suppliers', 'Backend\SupplierController', ['as' => 'admin']);
 Route::resource('/admin/models', 'Backend\ModelController', ['as' => 'admin']);
 Route::resource('/admin/products', 'Backend\ProductController', ['as' => 'admin']);
+Route::resource('/admin/accounts', 'Backend\AccountController', ['as' => 'admin']);
 Route::get('/admin/report/orders', 'Backend\ReportController@orders')->name('admin.report.orders');
 Route::get('/admin/report/orders/data', 'Backend\ReportController@ordersData')->name('admin.report.orders.data');
 

@@ -39,6 +39,8 @@ Products
         <div class="card">
             <div class="card-header">
             <a href="javascript:void(0)" id="createProduct" class="btn btn-primary">Create</a>
+            <a href="{{ route('admin.products.print') }}" class="btn btn-primary">Word</a>
+            <a href="{{ route('admin.products.excel') }}" class="btn btn-primary">Excel</a>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-hover" id="products">
