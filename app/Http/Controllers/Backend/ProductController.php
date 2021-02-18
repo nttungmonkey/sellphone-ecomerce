@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Storage;
 use App\Exports\ProductExport;
 use Maatwebsite\Excel\Facades\Excel as Excel;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class ProductController extends Controller
 {
@@ -190,6 +191,29 @@ class ProductController extends Controller
         //     ->with('danhsachloai', $ds_loai);
 
         return Excel::download(new ProductExport, 'product.xlsx');
+    }
+
+    public function pdf() 
+    {
+        $products = Product::all();
+        $models    = Models::all();
+        $supliers = Supplier::all();
+        $data = [
+            'products' => $products,
+            'models'    => $models,
+            'suppliers' => $supliers
+        ];
+
+        /* Code dành cho việc debug
+        - Khi debug cần hiển thị view để xem trước khi Export PDF
+        */
+        // return view('backend.products.pdf')
+        // ->with('products', $products)
+        // ->with('suppliers', $supliers)
+        // ->with('models', $models);
+
+        $pdf = PDF::loadView('backend.products.pdf', $data);
+        return $pdf->download('products.pdf');
     }
     
 }

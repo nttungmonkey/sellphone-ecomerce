@@ -39,6 +39,9 @@ Suppliers
         <div class="card">
             <div class="card-header">
             <a href="javascript:void(0)" id="createSupplier" class="btn btn-primary">Create</a>
+            <a href="{{ route('admin.suppliers.print') }}" class="btn btn-info">Print</a>
+            <a href="{{ route('admin.suppliers.excel') }}" class="btn btn-info">Excel</a>
+            <a href="{{ route('admin.suppliers.pdf') }}" class="btn btn-info">PDF</a>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-hover" id="supplier">

@@ -10,6 +10,9 @@ use Yajra\Datatables\Datatables;
 use DB;
 use Carbon\Carbon;
 use Storage;
+use App\Exports\ModelExport;
+use Maatwebsite\Excel\Facades\Excel as Excel;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class ModelController extends Controller
 {
@@ -119,5 +122,50 @@ class ModelController extends Controller
         $model->mod_status = 0;
         $model->save();
         return response()->json(['success']);
+    }
+
+    public function print()
+    {
+        $models = Models::all();
+        $manufactures = Manufacture::all();
+ 
+        return view('backend.models.print')
+            ->with('models', $models)
+            ->with('manufactures', $manufactures);
+    }
+
+    public function excel() 
+    {
+        /* Code dành cho việc debug
+        - Khi debug cần hiển thị view để xem trước khi Export Excel
+        */
+        // $ds_sanpham = Sanpham::all();
+        // $ds_loai    = Loai::all();
+        // return view('backend.sanpham.excel')
+        //     ->with('danhsachsanpham', $ds_sanpham)
+        //     ->with('danhsachloai', $ds_loai);
+
+        return Excel::download(new ModelExport, 'models.xlsx');
+    }
+
+    public function pdf() 
+    {
+        $models = Models::all();
+        $manufactures = Manufacture::all();
+        $data = [
+            'models' => $models,
+            'manufactures'    => $manufactures
+        ];
+
+        /* Code dành cho việc debug
+        - Khi debug cần hiển thị view để xem trước khi Export PDF
+        */
+        // return view('backend.products.pdf')
+        // ->with('products', $products)
+        // ->with('suppliers', $supliers)
+        // ->with('models', $models);
+
+        $pdf = PDF::loadView('backend.models.pdf', $data);
+        return $pdf->download('models.pdf');
     }
 }

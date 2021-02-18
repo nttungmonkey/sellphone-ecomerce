@@ -39,8 +39,8 @@
         }
 
         .companyImg {
-            width: 200px;
-            height: 200px;
+            width: 100px;
+            height: 100px;
         }
 
         .page-break {
@@ -54,10 +54,10 @@
         <table border="0" align="center">
             <tr>
                 <td class="companyInfo">
-                    Công ty Nền tảng<br />
-                    http://sunshine.com/<br />
-                    (0292)3.888.999 # 01.222.888.999<br />
-                    <img src="{{ asset('img/logo-nentang.jpg') }}" class="companyImg" />
+                    PHONETN<br />
+                    http://phonetn.com/<br />
+                    (+123) 123 321 345 # 01.222.888.999<br />
+                    <img src="{{ public_path('storage\images\admin\logos\logo1.png') }}" class="companyImg" />
                 </td>
             </tr>
         </table>
@@ -69,45 +69,49 @@
         <table border="1" align="center" cellpadding="5">
             <caption>Products</caption>
             <tr>
-                <th colspan="6" align="center">Trang 1 / {{ $tongSoTrang }}</th>
+                <th colspan="6" align="center">Pgae 1 / {{ $tongSoTrang }}</th>
             </tr>
             <tr>
-                <th>STT</th>
-                <th>Hình sản phẩm</th>
-                <th>Tên sản phẩm</th>
-                <th>Giá gốc</th>
-                <th>Giá bán</th>
-                <th>Loại sản phẩm</th>
+                <th>No</th>
+                <th>Sku</th>
+                <th>Name</th>
+                <th>Models</th>
+                <th>Supplier</th>
+                <th>Image</th>
             </tr>
             @foreach ($products as $product)
             <tr>
                 <td align="center">{{ $loop->index + 1 }}</td>
-                <td align="center">
-                    <img class="hinhSanPham" src="{{ asset('storage/photos/' . $product->sp_hinh) }}" />
-                </td>
-                <td align="left">{{ $product->sp_ten }}</td>
-                <td align="right">{{ $product->sp_giaGoc }}</td>
-                <td align="right">{{ $product->sp_giaBan }}</td>
-                @foreach ($categorys as $category)
-                @if ($product->l_ma == $category->l_ma)
-                <td align="left">{{ $category->l_ten }}</td>
+                <td align="left">{{ $product->pro_sku }}</td>
+                <td align="right">{{ $product->pro_name }}</td>
+                @foreach ($models as $model)
+                @if ($product->mod_id == $model->mod_id)
+                <td align="left">{{ $model->mod_name }}</td>
                 @endif
                 @endforeach
+                @foreach ($suppliers as $supplier)
+                @if ($product->sup_id == $supplier->sup_id)
+                <td align="left">{{ $supplier->sup_name }}</td>
+                @endif
+                @endforeach
+                <td align="center">
+                    <img class="hinhSanPham" src="{{ public_path('storage/images/products/' .$product->models->mod_name.'/'.$product->pro_image) }}" />
+                </td>
             </tr>
             @if (($loop->index + 1) % 5 == 0)
         </table>
         <div class="page-break"></div>
         <table border="1" align="center" cellpadding="5">
             <tr>
-                <th colspan="6" align="center">Trang {{ 1 + floor(($loop->index + 1) / 5) }} / {{ $tongSoTrang }}</th>
+                <th colspan="6" align="center">Page {{ 1 + floor(($loop->index + 1) / 5) }} / {{ $tongSoTrang }}</th>
             </tr>
             <tr>
-                <th>STT</th>
-                <th>Hình sản phẩm</th>
-                <th>Tên sản phẩm</th>
-                <th>Giá gốc</th>
-                <th>Giá bán</th>
-                <th>Loại sản phẩm</th>
+                <th>No</th>
+                <th>Sku</th>
+                <th>Name</th>
+                <th>Models</th>
+                <th>Supplier</th>
+                <th>Image</th>
             </tr>
             @endif
             @endforeach

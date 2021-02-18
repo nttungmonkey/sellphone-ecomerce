@@ -56,7 +56,7 @@ class ProductExport implements FromView, WithDrawings, WithEvents, ShouldAutoSiz
         {
             $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
             $drawing->setName($sp->pro_name);
-            $drawing->setDescription($sp->pro_descriptS);
+            $drawing->setDescription('Image');
             $drawing->setPath(public_path('storage\images\admin\logos\logo1.png'));
             $drawing->setHeight(40);
             $drawing->setWidth(40);

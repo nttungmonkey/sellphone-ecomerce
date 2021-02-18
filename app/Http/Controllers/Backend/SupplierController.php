@@ -8,11 +8,15 @@ use App\Product;
 use App\Models;
 use App\RelatedImage;
 use App\Supplier;
+use App\Address;
 use App\Manufacture;
 use Yajra\Datatables\Datatables;
 use DB;
 use Carbon\Carbon;
 use Storage;
+use App\Exports\SupplierExport;
+use Maatwebsite\Excel\Facades\Excel as Excel;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class SupplierController extends Controller
 {
@@ -126,5 +130,50 @@ class SupplierController extends Controller
         $supplier->sup_status = 0;
         $supplier->save();
         return response()->json(['success']);
+    }
+
+    public function print()
+    {
+        $supliers = Supplier::all();
+        $addresses = Address::all();
+ 
+        return view('backend.suppliers.print')
+            ->with('suppliers', $supliers)
+            ->with('addresses', $addresses);
+    }
+
+    public function excel() 
+    {
+        /* Code dành cho việc debug
+        - Khi debug cần hiển thị view để xem trước khi Export Excel
+        */
+        // $ds_sanpham = Sanpham::all();
+        // $ds_loai    = Loai::all();
+        // return view('backend.sanpham.excel')
+        //     ->with('danhsachsanpham', $ds_sanpham)
+        //     ->with('danhsachloai', $ds_loai);
+
+        return Excel::download(new SupplierExport, 'supplier.xlsx');
+    }
+
+    public function pdf() 
+    {
+        $supliers = Supplier::all();
+        $addresses = Address::all();
+        $data = [
+            'suppliers' => $supliers,
+            'addresses'    => $addresses
+        ];
+
+        /* Code dành cho việc debug
+        - Khi debug cần hiển thị view để xem trước khi Export PDF
+        */
+        // return view('backend.products.pdf')
+        // ->with('products', $products)
+        // ->with('suppliers', $supliers)
+        // ->with('models', $models);
+
+        $pdf = PDF::loadView('backend.suppliers.pdf', $data);
+        return $pdf->download('suppliers.pdf');
     }
 }
