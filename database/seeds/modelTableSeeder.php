@@ -18,7 +18,7 @@ class modelTableSeeder extends Seeder
         $samsung = ['Galaxy Note', 'Galaxy S', 'Galaxy A', 'Galaxy Z', 'Galaxy M'];
         $oppo = ['Oppo A', 'Oppo Reno', 'Oppo Find X'];
         $vivo = ['Vivo X', 'Vivo V', 'Vivo Y', 'Vivo U', 'Vivo S'];
-        $Xiaomi = ['Xiaomi Readmi', 'Xiaomi Mi', 'Xiaomi poco'];
+        $Xiaomi = ['Xiaomi Redmi', 'Xiaomi Mi', 'Xiaomi poco'];
         $faker = Faker\Factory::create('vi_VN');
         $manufacture =  DB::table('manufacture')->get();
 

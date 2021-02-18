@@ -294,22 +294,29 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.accounts.index') }}" class="nav-link">
+            <a href="{{ route('admin.accounts.index') }}" class="nav-link {{ (request()->is('admin/accounts')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Account
+                Accounts
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.calendar.index') }}" class="nav-link">
+            <a href="{{ route('admin.report.orders') }}" class="nav-link {{ (request()->is('admin/report/orders')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-layer-group"></i>
+              <p>
+                Reports
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.calendar.index') }}" class="nav-link {{ (request()->is('admin/calendars')) ? 'active' : '' }}">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Calendar
               </p>
             </a>
           </li>
-          
           {{--
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">

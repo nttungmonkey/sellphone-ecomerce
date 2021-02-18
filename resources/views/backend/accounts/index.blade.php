@@ -39,6 +39,9 @@ Accounts
         <div class="card">
             <div class="card-header">
             <a href="javascript:void(0)" id="createManufacture" class="btn btn-primary">Create</a>
+            <a href="{{ route('admin.accounts.print') }}" class="btn btn-info">Print</a>
+            <a href="{{ route('admin.accounts.excel') }}" class="btn btn-info">Excel</a>
+            <a href="{{ route('admin.accounts.pdf') }}" class="btn btn-info">PDF</a>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-hover" id="accounts">
