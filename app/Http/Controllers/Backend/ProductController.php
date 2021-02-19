@@ -42,7 +42,7 @@ class ProductController extends Controller
                     return $actionBtn;
                 })
                 ->addColumn('image', function($row){
-                    $url_image = asset('storage/images/products/' .$row->models->mod_name.'/'.$row->pro_image);
+                    $url_image = asset('storage/images/products/imgs/' .$row->pro_image);
                     $image =    '<img src="'.$url_image.'" class="table-avatar" alt="Avatar"></img>';
                     return $image;
                 })
@@ -82,12 +82,12 @@ class ProductController extends Controller
         $product->sup_id = $request->sup_id;
         if ($files = $request->pro_image) {
             $product->pro_image = $files->getClientOriginalName();
-            $fileSaved = $files->storeAs('public/images/products/'.$product->models->mod_name, $product->pro_image);
+            $fileSaved = $files->storeAs('public/images/products/imgs/', $product->pro_image);
         }
         if ($files = $request->pro_reimg) {
 
             foreach ($files as $index => $file) { 
-                $file->storeAs('public/images/products/'.$product->models->mod_name, $file->getClientOriginalName());
+                $file->storeAs('public/images/products/imgs/', $file->getClientOriginalName());
                 $image = new RelatedImage();
                 $image->pro_id = $product->pro_id;
                 $image->reimg_stt = ($index + 1);
@@ -145,9 +145,9 @@ class ProductController extends Controller
         $product->mod_id = $request->mod_id;
         $product->sup_id = $request->sup_id;
         if ($files = $request->pro_image) {
-            Storage::delete('public/images/products/'.$product->models->mod_name.'/'.$product->pro_image);
+            Storage::delete('public/images/products/imgs/'.$product->pro_image);
             $product->pro_image = $files->getClientOriginalName();
-            $fileSaved = $files->storeAs('public/images/products/'.$product->models->mod_name, $product->pro_image);
+            $fileSaved = $files->storeAs('public/images/products/imgs/', $product->pro_image);
         }
         $product->save();
         return response()->json(['success']);

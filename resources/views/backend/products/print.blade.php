@@ -67,7 +67,7 @@ Form Product List
                 @endforeach
 
                 <td align="center">
-                    <img class="table-avatar" src="{{ asset('storage/images/products/' .$sp->models->mod_name.'/'.$sp->pro_image) }}" />
+                    <img class="table-avatar" src="{{ asset('storage/images/products/imgs/' .$sp->pro_image) }}" />
                 </td>
             </tr>
             @if (($loop->index + 1) % 5 == 0)

@@ -95,7 +95,7 @@
                 @endif
                 @endforeach
                 <td align="center">
-                    <img class="hinhSanPham" src="{{ public_path('storage/images/products/' .$product->models->mod_name.'/'.$product->pro_image) }}" />
+                    <img class="hinhSanPham" src="{{ public_path('storage/images/products/imgs/' .$product->pro_image) }}" />
                 </td>
             </tr>
             @if (($loop->index + 1) % 5 == 0)
