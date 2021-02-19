@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="phonetnAdminApp">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -86,6 +86,15 @@
 <script src="{{ asset('vendor/select2/js/select2.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('js/admin/adminlte.js') }}"></script>
+<!-- AngularJS -->
+<script src="{{ asset('vendor/angularjs/angular.min.js') }}"></script>
+<script>
+    var app = angular.module('phonetnAdminApp', [],
+        function($interpolateProvider) {
+            $interpolateProvider.startSymbol('<%');
+            $interpolateProvider.endSymbol('%>');
+        });
+</script>
 @yield('custom-scripts')
 </body>
 </html>

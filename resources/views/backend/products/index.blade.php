@@ -155,7 +155,6 @@ Products
 <script src="{{ asset('vendor/bootstrap-fileinput/themes/fas/theme.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/bootstrap-fileinput/themes/explorer-fas/theme.js') }}" type="text/javascript"></script>
 
-
 <script type="text/javascript">
     $(function () {
         var pro_id = '';

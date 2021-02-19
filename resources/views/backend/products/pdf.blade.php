@@ -83,7 +83,7 @@
             <tr>
                 <td align="center">{{ $loop->index + 1 }}</td>
                 <td align="left">{{ $product->pro_sku }}</td>
-                <td align="right">{{ $product->pro_name }}</td>
+                <td align="left">{{ $product->pro_name }}</td>
                 @foreach ($models as $model)
                 @if ($product->mod_id == $model->mod_id)
                 <td align="left">{{ $model->mod_name }}</td>
