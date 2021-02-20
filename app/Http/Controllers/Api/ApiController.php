@@ -68,11 +68,10 @@ class ApiController extends Controller
     public function getReImg($id)
     {
         $data = [];
-        $product = Product::find($id);
-        $model = $product->models->mod_name;      
+        $product = Product::find($id);      
         foreach($product->relatedImage()->get() as $reImg){
             array_push($data, [
-                'url'   => asset('storage/images/products/' .$model.'/'.$reImg->reimg_name)
+                'url'   => asset('storage/images/products/'.$reImg->reimg_name)
             ]);
         }
         return response()->json($data);

@@ -1,7 +1,7 @@
 @extends('prints.layouts.paper')
 
 @section('title')
-Biểu mẫu Phiếu in danh sách sản phẩm
+Form Product List
 @endsection
 
 @section('paper-size') A4 @endsection
@@ -22,10 +22,10 @@ Biểu mẫu Phiếu in danh sách sản phẩm
         <table border="0" align="center">
             <tr>
                 <td class="companyInfo" align="center">
-                    Công ty TNHH Sunshine<br />
-                    http://sunshine.com/<br />
-                    (0292)3.888.999 # 01.222.888.999<br />
-                    <img src="{{ asset('/storage/sunshine_wm64.png') }}" />
+                    PHONETN.COM<br />
+                    http://phonetn.com/<br />
+                    (+123) 123 321 345 # 01.222.888.999<br />
+                    <img style="width: 80px;" src="{{ asset('/storage/images/admin/logos/logo1.png') }}" />
                 </td>
             </tr>
         </table>
@@ -35,47 +35,55 @@ Biểu mẫu Phiếu in danh sách sản phẩm
         $tongSoTrang = ceil(count($products)/5);
         ?>
         <table border="1" align="center" cellpadding="5">
-            <caption>Danh sách sản phẩm</caption>
+            <caption>Product List</caption>
             <tr>
-                <th colspan="6" align="center">Trang 1 / {{ $tongSoTrang }}</th>
+                <th colspan="6" align="center">Page 1 / {{ $tongSoTrang }}</th>
             </tr>
             <tr>
-                <th>STT</th>
-                <th>Hình sản phẩm</th>
-                <th>Tên sản phẩm</th>
-                <th>Giá gốc</th>
-                <th>Giá bán</th>
-                <th>Loại sản phẩm</th>
+                <th>No</th>
+                <th>Sku</th>
+                <th>Name</th>
+                <th>Models</th>
+                <th>Supplier</th>
+                <th>Image</th>
             </tr>
             @foreach ($products as $sp)
             <tr>
                 <td align="center">{{ $loop->index + 1 }}</td>
-                <td align="center">
-                    <img class="table-avatar" src="{{ asset('storage/photos/' . $sp->sp_hinh) }}" />
-                </td>
-                <td align="left">{{ $sp->sp_ten }}</td>
-                <td align="right">{{ $sp->sp_giaGoc }}</td>
-                <td align="right">{{ $sp->sp_giaBan }}</td>
-                @foreach ($categorys as $l)
-                @if ($sp->l_ma == $l->l_ma)
-                <td align="left">{{ $l->l_ten }}</td>
+                <td align="left">{{ $sp->pro_sku }}</td>
+                <td align="left">{{ $sp->pro_name }}</td>
+
+                
+                @foreach ($models as $model)
+                @if ($sp->mod_id == $model->mod_id)
+                <td align="left">{{ $model->mod_name }}</td>
                 @endif
                 @endforeach
+
+                @foreach ($suppliers as $supplier)
+                @if ($sp->sup_id == $supplier->sup_id)
+                <td align="left">{{ $supplier->sup_name }}</td>
+                @endif
+                @endforeach
+
+                <td align="center">
+                    <img class="table-avatar" src="{{ asset('storage/images/products/imgs/' .$sp->pro_image) }}" />
+                </td>
             </tr>
             @if (($loop->index + 1) % 5 == 0)
         </table>
         <div class="page-break"></div>
         <table border="1" align="center" cellpadding="5">
             <tr>
-                <th colspan="6" align="center">Trang {{ 1 + floor(($loop->index + 1) / 5) }} / {{ $tongSoTrang }}</th>
+                <th colspan="6" align="center">Page {{ 1 + floor(($loop->index + 1) / 5) }} / {{ $tongSoTrang }}</th>
             </tr>
             <tr>
-                <th>STT</th>
-                <th>Hình sản phẩm</th>
-                <th>Tên sản phẩm</th>
-                <th>Giá gốc</th>
-                <th>Giá bán</th>
-                <th>Loại sản phẩm</th>
+                <th>No</th>
+                <th>Sku</th>
+                <th>Name</th>
+                <th>Models</th>
+                <th>Supplier</th>
+                <th>Image</th>
             </tr>
             @endif
             @endforeach

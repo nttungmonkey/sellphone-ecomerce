@@ -14,6 +14,9 @@ use Yajra\Datatables\Datatables;
 use DB;
 use Carbon\Carbon;
 use Storage;
+use App\Exports\ProductExport;
+use Maatwebsite\Excel\Facades\Excel as Excel;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class ProductController extends Controller
 {
@@ -39,7 +42,7 @@ class ProductController extends Controller
                     return $actionBtn;
                 })
                 ->addColumn('image', function($row){
-                    $url_image = asset('storage/images/products/' .$row->models->mod_name.'/'.$row->pro_image);
+                    $url_image = asset('storage/images/products/imgs/' .$row->pro_image);
                     $image =    '<img src="'.$url_image.'" class="table-avatar" alt="Avatar"></img>';
                     return $image;
                 })
@@ -79,12 +82,12 @@ class ProductController extends Controller
         $product->sup_id = $request->sup_id;
         if ($files = $request->pro_image) {
             $product->pro_image = $files->getClientOriginalName();
-            $fileSaved = $files->storeAs('public/images/products/'.$product->models->mod_name, $product->pro_image);
+            $fileSaved = $files->storeAs('public/images/products/imgs/', $product->pro_image);
         }
         if ($files = $request->pro_reimg) {
 
             foreach ($files as $index => $file) { 
-                $file->storeAs('public/images/products/'.$product->models->mod_name, $file->getClientOriginalName());
+                $file->storeAs('public/images/products/imgs/', $file->getClientOriginalName());
                 $image = new RelatedImage();
                 $image->pro_id = $product->pro_id;
                 $image->reimg_stt = ($index + 1);
@@ -142,9 +145,9 @@ class ProductController extends Controller
         $product->mod_id = $request->mod_id;
         $product->sup_id = $request->sup_id;
         if ($files = $request->pro_image) {
-            Storage::delete('public/images/products/'.$product->models->mod_name.'/'.$product->pro_image);
+            Storage::delete('public/images/products/imgs/'.$product->pro_image);
             $product->pro_image = $files->getClientOriginalName();
-            $fileSaved = $files->storeAs('public/images/products/'.$product->models->mod_name, $product->pro_image);
+            $fileSaved = $files->storeAs('public/images/products/imgs/', $product->pro_image);
         }
         $product->save();
         return response()->json(['success']);
@@ -162,6 +165,55 @@ class ProductController extends Controller
         $product->pro_status = 0;
         $product->save();
         return response()->json(['success']);
+    }
+
+    public function print()
+    {
+        $products = Product::all();
+        $models    = Models::all();
+        $supliers = Supplier::all();
+ 
+        return view('backend.products.print')
+            ->with('products', $products)
+            ->with('models', $models)
+            ->with('suppliers', $supliers);
+    }
+
+    public function excel() 
+    {
+        /* Code dành cho việc debug
+        - Khi debug cần hiển thị view để xem trước khi Export Excel
+        */
+        // $ds_sanpham = Sanpham::all();
+        // $ds_loai    = Loai::all();
+        // return view('backend.sanpham.excel')
+        //     ->with('danhsachsanpham', $ds_sanpham)
+        //     ->with('danhsachloai', $ds_loai);
+
+        return Excel::download(new ProductExport, 'product.xlsx');
+    }
+
+    public function pdf() 
+    {
+        $products = Product::all();
+        $models    = Models::all();
+        $supliers = Supplier::all();
+        $data = [
+            'products' => $products,
+            'models'    => $models,
+            'suppliers' => $supliers
+        ];
+
+        /* Code dành cho việc debug
+        - Khi debug cần hiển thị view để xem trước khi Export PDF
+        */
+        // return view('backend.products.pdf')
+        // ->with('products', $products)
+        // ->with('suppliers', $supliers)
+        // ->with('models', $models);
+
+        $pdf = PDF::loadView('backend.products.pdf', $data);
+        return $pdf->download('products.pdf');
     }
     
 }

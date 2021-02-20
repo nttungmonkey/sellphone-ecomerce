@@ -39,6 +39,9 @@ Products
         <div class="card">
             <div class="card-header">
             <a href="javascript:void(0)" id="createProduct" class="btn btn-primary">Create</a>
+            <a href="{{ route('admin.products.print') }}" class="btn btn-info">Print</a>
+            <a href="{{ route('admin.products.excel') }}" class="btn btn-info">Excel</a>
+            <a href="{{ route('admin.products.pdf') }}" class="btn btn-info">PDF</a>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-hover" id="products">
@@ -152,7 +155,6 @@ Products
 <script src="{{ asset('vendor/bootstrap-fileinput/themes/fas/theme.js') }}" type="text/javascript"></script>
 <script src="{{ asset('vendor/bootstrap-fileinput/themes/explorer-fas/theme.js') }}" type="text/javascript"></script>
 
-
 <script type="text/javascript">
     $(function () {
         var pro_id = '';
@@ -252,7 +254,6 @@ Products
             var url = "{{ route('admin.products.edit', ":pro_id") }}";
             url = url.replace(':pro_id', pro_id);
             var pro_image;
-            var mod_name;
             $.get(url, function (data) {
                 $('#CU_Product').html("Edit Product");
                 $('#saveProduct').val("edit-product");
@@ -260,7 +261,6 @@ Products
                 $('#pro_sku').val(data[0].pro_sku);
                 $('#pro_name').val(data[0].pro_name);
                 pro_image = data[0].pro_image;
-                mod_name = data[1];
                 $('#pro_detail').val(data[0].pro_detail);
                 $('#pro_descriptS').val(data[0].pro_descriptS);
                 $('#pro_descriptF').val(data[0].pro_descriptF);
@@ -289,7 +289,7 @@ Products
                     initialPreviewShowDelete: false,
                     initialPreviewAsData: true,
                     initialPreview: [
-                        "{{ asset('storage/images/products/') }}" + '/' + mod_name + '/' + pro_image
+                        "{{ asset('storage/images/products/imgs') }}" + '/' + pro_image
                     ],
                     initialPreviewConfig: [
                         {                           

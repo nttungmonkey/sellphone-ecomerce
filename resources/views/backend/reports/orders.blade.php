@@ -31,28 +31,31 @@ Orders
 
 @section('content')
 <div class="row">
-    <div class="col-md-12">
-        <form method="get" action="#" enctype="multipart/form-data">
-            {{ csrf_field() }}
-            <div class="form-group">
-                <label for="timeCreateReport">Thời gian lập báo cáo</label>
-                <input type="text" class="form-control" id="timeCreateReport">
-                <span id="timeCreateReportText" class="notice"></span>
+    <div class="col-12">
+        <div class="card">
+            <form method="get" action="#" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <label style="margin-left:10px; margin-top: 10px;" for="timeCreateReport">Thời gian lập báo cáo</label>
+                    <input type="text" class="form-control" id="timeCreateReport">
+                    <span id="timeCreateReportText" class="notice"></span>
+                </div>
+                <div class="form-group" style="display: none;">
+                    <label for="fromDay">Từ ngày</label>
+                    <input type="text" class="form-control" id="fromDay" name="fromDay">
+                </div>
+                <div class="form-group" style="display: none;">
+                    <label for="toDay">Đến ngày</label>
+                    <input type="text" class="form-control" id="toDay" name="toDay">
+                </div>
+                <button style="margin-left: 10px;" type="submit" class="btn btn-primary" id="btnCreatReport">Create</button>
+            </form>
+            <div class="col-md-12">
+                <canvas id="chartOfobjChart" style="width: 100%;height: 400px;"></canvas>
             </div>
-            <div class="form-group" style="display: none;">
-                <label for="fromDay">Từ ngày</label>
-                <input type="text" class="form-control" id="fromDay" name="fromDay">
-            </div>
-            <div class="form-group" style="display: none;">
-                <label for="toDay">Đến ngày</label>
-                <input type="text" class="form-control" id="toDay" name="toDay">
-            </div>
-            <button type="submit" class="btn btn-primary" id="btnCreatReport">Create</button>
-        </form>
+        </div>
     </div>
-    <div class="col-md-12">
-        <canvas id="chartOfobjChart" style="width: 100%;height: 400px;"></canvas>
-    </div>
+    
 </div>
 @endsection
 @section('custom-scripts')
