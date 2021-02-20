@@ -28,6 +28,7 @@ Route::get('setLocale/{locale}', function ($locale) {
     return redirect()->back();
 })->name('app.setLocale');
 
+Route::get('pages/productdetails/{id}', 'Frontend\PageController@singleProduct') -> name('pages.productdetail');
 
 Route::get('/admin', 'Backend\DashboardController@index')->name('admin.dashboard');
 Route::get('/admin/calendars', 'Backend\CalendarController@index')->name('admin.calendar.index');

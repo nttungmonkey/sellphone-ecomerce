@@ -154,7 +154,47 @@ class PageController extends Controller
         return view('frontend.pages.shopping-cart');
     }
     //Page single-product
-    public function singleProduct(){
-        return view('frontend.pages.single-product');
+    public function singleProduct($id){
+        $Product = DB::select
+        (<<<EOT
+            SELECT *
+            FROM product AS pr, models AS mo, manufacture ma, import_detail AS im, bill_import AS bi
+            WHERE pr.mod_id = mo.mod_id AND	mo.mnf_id = ma.mnf_id AND pr.pro_id = im.pro_id AND im.bii_id = bi.bii_id
+            AND pr.pro_sku = '$id'
+            ORDER BY bi.bii_updated DESC
+            LIMIT 1
+
+            EOT
+        );
+
+        $images = DB::select
+        (<<<EOT
+            SELECT *
+            FROM related_image AS re, product AS pr
+            WHERE re.pro_id = pr.pro_id AND pr.pro_sku = '$id'
+
+            EOT
+        );
+        $modeID =  $Product[0]->mod_id;
+        $proSame = DB::select
+        (<<<EOT
+            SELECT *
+            FROM product AS pr, models AS mo, manufacture ma, import_detail AS im, bill_import AS bi, 
+                (SELECT pr.pro_id AS Muc, MAX(bi.bii_updated) AS CaKeo
+                FROM product AS pr, models AS mo, manufacture ma, import_detail AS im, bill_import AS bi
+                WHERE pr.mod_id = mo.mod_id AND	mo.mnf_id = ma.mnf_id AND pr.pro_id = im.pro_id AND im.bii_id = bi.bii_id
+                GROUP BY pr.pro_id) AS Lau
+            WHERE pr.mod_id = mo.mod_id AND	mo.mnf_id = ma.mnf_id AND pr.pro_id = im.pro_id AND im.bii_id = bi.bii_id
+            AND bi.bii_updated = Lau.CaKeo AND pr.pro_id = Lau.Muc AND mo.mod_id = $modeID
+            LIMIT 10
+            EOT
+        );
+
+        return view('frontend.pages.single-product')
+                    ->with('product', $Product)
+                    ->with('img', $images)
+                    ->with('proSame', $proSame);
     }
+
+    
 }

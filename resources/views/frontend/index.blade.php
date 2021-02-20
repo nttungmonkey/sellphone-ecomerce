@@ -451,7 +451,7 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <h4><a class="product_name" href="single-product.html">{{$sp->pro_name}}</a></h4>
+                                                    <h4><a class="product_name" href="{{ route('pages.productdetail', ['id' => $sp->pro_sku]) }}">{{$sp->pro_name}}</a></h4>
                                                     <div class="price-box">
                                                         <span class="new-price">{{ number_format($sp->imd_priceExp * 1000, 0, ' ', ',') . ' VNĐ'}}</span>
                                                     </div>
@@ -459,9 +459,9 @@
                                                 <div class="add-actions">
                                                     <ul class="add-actions-link">
                                                         <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                                        <li><a class="links-details" href="single-product.html"><i class="fa fa-heart-o"></i></a></li>
+                                                        <li><a class="links-details" href="#" ><i class="fa fa-heart-o"></i></a></li>
                                                         <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i></a></li>
-                                                    </ul>
+                                                    </ul>                                                    
                                                 </div>
                                             </div>
                                         </div>
