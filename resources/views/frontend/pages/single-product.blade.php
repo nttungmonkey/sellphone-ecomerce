@@ -181,7 +181,7 @@
                                         <!-- single-product-wrap start -->
                                         <div class="single-product-wrap">
                                             <div class="product-image">
-                                                <a href="single-product.html">
+                                                <a href="{{ route('pages.productdetail', ['id' => $pro->pro_sku]) }}">
                                                     <img src="{{ asset('storage/images/products/imgs/'.$pro->pro_image)  }}" alt="Li's Product Image">
                                                 </a>
                                                 <span class="sticker">New</span>
@@ -202,7 +202,7 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <h4><a class="product_name" href="single-product.html">{{$pro->pro_name}}</a></h4>
+                                                    <h4><a class="product_name" href="{{ route('pages.productdetail', ['id' => $pro->pro_sku]) }}">{{$pro->pro_name}}</a></h4>
                                                     <div class="price-box">
                                                         <span class="new-price">{{ number_format($pro->imd_priceExp * 1000, 0, ' ', ',') . ' VNĐ'}}</span>
                                                     </div>

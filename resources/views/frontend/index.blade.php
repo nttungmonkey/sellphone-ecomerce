@@ -33,7 +33,7 @@
 
                                             <div class="single-product-wrap">
                                                 <div class="product-image">
-                                                    <a href="{{ route('pages.single-product') }}">
+                                                    <a href="{{ route('pages.productdetail', ['id' => $sp->pro_sku]) }}">
                                                        <img src="{{ asset('storage/images/products/imgs/'.$sp->pro_image) }}" 
                                                        alt="" class="imgproduct" width="210px" height="275px"/>                                                       
                                                     </a>
@@ -83,7 +83,7 @@
                                         <!-- single-product-wrap start -->
                                         <div class="single-product-wrap">
                                             <div class="product-image">
-                                                <a href="single-product.html">
+                                                <a href="{{ route('pages.productdetail', ['id' => $sp->pro_sku]) }}">
                                                     <img src="{{ asset('storage/images/products/imgs/'.$sp->pro_image) }}" alt="Li's Product Image">
                                                 </a>
                                                 <span class="sticker">New</span>
@@ -131,7 +131,7 @@
                                         <!-- single-product-wrap start -->
                                         <div class="single-product-wrap">
                                             <div class="product-image">
-                                                <a href="single-product.html">
+                                                <a href="{{ route('pages.productdetail', ['id' => $sp->pro_sku]) }}">
                                                     <img src="{{ asset('storage/images/customer/product/large-size/3.jpg') }}" alt="Li's Product Image">
                                                 </a>
                                                 <span class="sticker">New</span>
@@ -430,7 +430,7 @@
                                         <!-- single-product-wrap start -->
                                         <div class="single-product-wrap">
                                             <div class="product-image">
-                                                <a href="single-product.html">
+                                                <a href="{{ route('pages.productdetail', ['id' => $sp->pro_sku]) }}">
                                                     <img src="{{ asset('storage/images/products/imgs/'.$sp->pro_image)  }}" alt="Li's Product Image">
                                                 </a>
                                                 <span class="sticker">Cheap</span>
@@ -523,7 +523,7 @@
                                         <div class="row">
                                             <div class="group-featured-pro-wrapper">
                                                 <div class="product-img">
-                                                    <a href="product-details.html">
+                                                    <a href="{{ route('pages.productdetail', ['id' => $sp->pro_sku]) }}">
                                                         <img alt="" src="{{ asset('storage/images/products/imgs/'.$sp->pro_image) }}">
                                                     </a>
                                                 </div>
@@ -570,7 +570,7 @@
                                         <div class="row">
                                             <div class="group-featured-pro-wrapper">
                                                 <div class="product-img">
-                                                    <a href="product-details.html">
+                                                    <a href="{{ route('pages.productdetail', ['id' => $sp->pro_sku]) }}">
                                                         <img alt="" src="{{ asset('storage/images/products/imgs/'.$sp->pro_image)  }}">
                                                     </a>
                                                 </div>
@@ -617,7 +617,7 @@
                                         <div class="row">
                                             <div class="group-featured-pro-wrapper">
                                                 <div class="product-img">
-                                                    <a href="product-details.html">
+                                                    <a href="{{ route('pages.productdetail', ['id' => $sp->pro_sku]) }}">
                                                         <img alt="" src="{{ asset('storage/images/products/imgs/'.$sp->pro_image) }}">
                                                     </a>
                                                 </div>
