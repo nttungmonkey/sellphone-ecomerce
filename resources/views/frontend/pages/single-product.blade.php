@@ -24,7 +24,9 @@
                             <div class="product-details-left pt-60">
                                 <div class="product-details-thumbs slider-thumbs-1">
                                 @foreach($img as $i)
-                                    <div class="sm-image"><img src="{{ asset('storage/images/products/imgs/'.$i->reimg_name)  }}" alt="product image thumb"></div>
+                                    <div class="sm-image">
+                                        <img class="Image-small" src="{{ asset('storage/images/products/imgs/'.$i->reimg_name)  }}" alt="product image thumb">
+                                    </div>
                                 @endforeach
                                 </div>
                                 <div class="product-details-images slider-navigation-1">

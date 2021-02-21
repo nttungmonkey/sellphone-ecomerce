@@ -55,7 +55,7 @@
                                                                 </ul>
                                                             </div>
                                                         </div>
-                                                        <h4><a class="product_name" href="single-product.html"> {{$sp->pro_name}} </a></h4>
+                                                        <h4><a class="product_name" href="{{ route('pages.productdetail', ['id' => $sp->pro_sku]) }}"> {{$sp->pro_name}} </a></h4>
                                                         <div class="price-box">
                                                             <span class="new-price">{{ number_format($sp->imd_priceExp * 1000, 0, ' ', ',') . ' VNĐ'}} </span>
                                                         </div>
@@ -104,7 +104,7 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <h4><a class="product_name" href="single-product.html">{{$sp->pro_name}}</a></h4>
+                                                    <h4><a class="product_name" href="{{ route('pages.productdetail', ['id' => $sp->pro_sku]) }}">{{$sp->pro_name}}</a></h4>
                                                     <div class="price-box">
                                                         <span class="new-price">{{ number_format($sp->imd_priceExp * 1000, 0, ' ', ',') . ' VNĐ'}} </span>
                                                     </div>
@@ -542,7 +542,7 @@
                                                             <li class="no-star"><i class="fa fa-star-o"></i></li>
                                                         </ul>
                                                     </div>
-                                                    <h4><a class="featured-product-name" href="single-product.html"> {{$sp->pro_name}} </a></h4>
+                                                    <h4><a class="featured-product-name" href="{{ route('pages.productdetail', ['id' => $sp->pro_sku]) }}"> {{$sp->pro_name}} </a></h4>
                                                     <div class="featured-price-box">
                                                         <span class="new-price">{{ number_format($sp->imd_priceExp * 1000, 0, ' ', ',') . ' VNĐ'}}</span>
                                                     </div>
@@ -589,7 +589,7 @@
                                                             <li class="no-star"><i class="fa fa-star-o"></i></li>
                                                         </ul>
                                                     </div>
-                                                    <h4><a class="featured-product-name" href="single-product.html"> {{$sp->pro_name}}</a></h4>
+                                                    <h4><a class="featured-product-name" href="{{ route('pages.productdetail', ['id' => $sp->pro_sku]) }}"> {{$sp->pro_name}}</a></h4>
                                                     <div class="featured-price-box">
                                                         <span class="new-price">{{ number_format($sp->imd_priceExp * 1000, 0, ' ', ',') . ' VNĐ'}}</span>
                                                     </div>
@@ -636,7 +636,7 @@
                                                             <li class="no-star"><i class="fa fa-star-o"></i></li>
                                                         </ul>
                                                     </div>
-                                                    <h4><a class="featured-product-name" href="single-product.html">{{$sp->pro_name}} </a></h4>
+                                                    <h4><a class="featured-product-name" href="{{ route('pages.productdetail', ['id' => $sp->pro_sku]) }}">{{$sp->pro_name}} </a></h4>
                                                     <div class="featured-price-box">
                                                         <span class="new-price">{{ number_format($sp->imd_priceExp * 1000, 0, ' ', ',') . ' VNĐ'}}</span>
                                                     </div>

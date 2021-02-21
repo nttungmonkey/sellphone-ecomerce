@@ -196,5 +196,161 @@ class PageController extends Controller
                     ->with('proSame', $proSame);
     }
 
+    public static function showDetail($detail)
+    {
+        $data = explode ( ';', $detail);
+
+        $tinhNang = explode ( ',', $data[5]);
+        $tn1 = "";
+        foreach($tinhNang as $str){
+            $tn1 = $tn1. "<li>". $str ."</li>";
+        }
+
+        $tinhNang = explode ( ',', $data[7]);
+        $tn2 = "";
+        foreach($tinhNang as $str ){
+            $tn2 = $tn2. "<li>". $str ."</li>";
+        }
+
+
+        return    " <table class='table table-hover'>
+        <thead>
+            <td colspan='2' > <b>Màn hình</b> </td>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope='row'>Công nghệ màn hình </th>
+            <td> $data[0] </td>
+        </tr>
+
+        <tr>
+            <th scope='row'>Độ phân giải</th>
+            <td> $data[1]</td>
+        </tr>
+
+        <tr>
+            <th scope='row'>Màn hình rộng</th>
+            <td> $data[2] </td>
+        </tr>
+
+        <tr>
+            <th scope='row'>Mặt kính cảm ứng</th>
+            <td> $data[3]</td>
+        </tr>
+        </tbody>
+        <thead>
+            <td colspan='2' > <b>Camera sau</b> </td>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope='row'>Độ phân giải: </th>
+                <td> $data[4]</td>
+            </tr>
+            <tr>
+                <th scope='row'>Tính năng</th>
+                <td> 
+                    $tn1
+                </td>
+            </tr>
+        </tbody>
+        <thead>
+            <td colspan='2' > <b>Camera trước</b> </td>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope='row'>Độ phân giải </th>
+                <td>$data[6]</td>
+            </tr>
+            <tr>
+                <th scope='row'>Tính năng</th>
+                <td>                      
+                   $tn2
+                </td>
+            </tr>
+        </tbody>
+        <thead>
+            <td colspan='2' > <b>Hệ điều hành & CPU</b> </td>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope='row'>Hệ điều hành </th>
+                <td> $data[8] </td>
+            </tr>
+            <tr>
+                <th scope='row'>Chip xử lý (CPU)</th>
+                <td>  $data[9]  </td>
+            </tr>
+            <tr>
+                <th scope='row'>Tốc độ CPU </th>
+                <td>$data[10]</td>
+            </tr>
+            <tr>
+                <th scope='row'>Chip đồ họa (GPU)</th>
+                <td>  $data[11]  </td>
+            </tr>
+            
+        </tbody>
+        <thead>
+            <td colspan='2' > <b>Bộ nhớ & Lưu trữ</b> </td>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope='row'>RAM: </th>
+                <td> $data[12] </td>
+            </tr>
+            <tr>
+                <th scope='row'>Bộ nhớ trong</th>
+                <td>  $data[13] </td>
+            </tr>
+            <tr>
+                <th scope='row'>Bộ nhớ còn lại (khả dụng) </th>
+                <td>$data[14]</td>
+            </tr>
+            <tr>
+                <th scope='row'>Thẻ nhớ ngoài</th>
+                <td>   $data[15]  </td>
+            </tr>
+        </tbody>
+        <thead>
+            <td colspan='2' > <b>Thiết kế & Trọng lượng </b> </td>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope='row'>Thiết kế </th>
+                <td> $data[16]</td>
+            </tr>
+            <tr>
+                <th scope='row'>Chất liệu</th>
+                <td> $data[17]</td>
+            </tr>
+            <tr>
+                <th scope='row'>Kích thước </th>
+                <td>$data[18]</td>
+            </tr>
+            <tr>
+                <th scope='row'>Trọng lượng</th>
+                <td>  $data[19] </td>
+            </tr>
+        </tbody>
+        <thead>
+            <td colspan='2' > <b>Pin & Sạc </b> </td>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope='row'>Dung lượng pin </th>
+                <td>$data[20] </td>
+            </tr>
+            <tr>
+                <th scope='row'>Loại pin</th>
+                <td>   $data[21]  </td>
+            </tr>
+            <tr>
+                <th scope='row'>Công nghệ pin</th>
+                <td> $data[22]</td>
+            </tr>
+        </tbody>
+    </table>";
+    }
+
     
 }
