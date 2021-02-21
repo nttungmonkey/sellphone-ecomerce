@@ -120,7 +120,7 @@ Products
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Avatar:</strong>                              
+                                <strong>Image:</strong>                              
                                 <input type="file" name="pro_image" id="pro_image">
                             </div>
                         </div> 
@@ -232,6 +232,7 @@ Products
                 theme: 'fas',
                 showUpload: false,
                 showCaption: false,
+                multiple: true,
                 browseClass: "btn btn-primary",
                 fileType: "any",
                 previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",

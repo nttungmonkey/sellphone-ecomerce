@@ -81,7 +81,13 @@ Models
                                 <strong>Name:</strong>                              
                                 <input type="text" name="mod_name" id="mod_name" class="form-control" placeholder="Name">
                             </div>
-                        </div>   
+                        </div>  
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <strong>Manufacture:</strong>        
+                                <select name="mnf_id" id="mnf_id" class="form-control" ></select>                      
+                            </div>
+                        </div>    
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <strong>Status:</strong>                              
@@ -91,13 +97,7 @@ Models
                                     <option value="2">Lock</option>
                                 </select>   
                             </div>
-                        </div> 
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <strong>Manufacture:</strong>        
-                                <select name="mnf_id" id="mnf_id" class="form-control" ></select>                      
-                            </div>
-                        </div>                                                                         
+                        </div>                                                                   
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Note:</strong>                              
