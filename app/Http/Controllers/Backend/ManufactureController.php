@@ -16,6 +16,7 @@ use Storage;
 use App\Exports\ManufactureExport;
 use Maatwebsite\Excel\Facades\Excel as Excel;
 use Barryvdh\DomPDF\Facade as PDF;
+use Validator;
 
 class ManufactureController extends Controller
 {
@@ -64,6 +65,22 @@ class ManufactureController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = array(
+            'mnf_name' => 'required|min:3|max:100',
+            'mnf_logo' => 'required',
+        );  
+        $messages = array(
+            'mnf_name.required' => 'Enter the manufacture name.',
+            'mnf_name.min' => 'Model name must have at least 3 characters.',
+            'mnf_name.max' => 'Model name up to 100 characters.',
+            'mnf_logo.required' => 'Choose the picture.'
+        );
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()->all()]);
+        }
+
         $manu = new Manufacture();
         $manu->mnf_name = $request->mnf_name;
         $manu->mnf_created = Carbon::now();
@@ -109,6 +126,20 @@ class ManufactureController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules = array(
+            'mnf_name' => 'required|min:3|max:100',
+        );  
+        $messages = array(
+            'mnf_name.required' => 'Enter the manufacture name.',
+            'mnf_name.min' => 'Model name must have at least 3 characters.',
+            'mnf_name.max' => 'Model name up to 100 characters.',
+        );
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()->all()]);
+        }
+
         $manu = Manufacture::find($id);;
         $manu->mnf_name = $request->mnf_name;
         $manu->mnf_updated = Carbon::now();

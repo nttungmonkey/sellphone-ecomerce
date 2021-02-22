@@ -13,6 +13,7 @@ use Storage;
 use App\Exports\ModelExport;
 use Maatwebsite\Excel\Facades\Excel as Excel;
 use Barryvdh\DomPDF\Facade as PDF;
+use Validator;
 
 class ModelController extends Controller
 {
@@ -56,6 +57,22 @@ class ModelController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = array(
+            'mod_name' => 'required|min:3|max:100',
+            'mnf_id' => 'required',
+        );  
+        $messages = array(
+            'mod_name.required' => 'Enter the model name.',
+            'mod_name.min' => 'Model name must have at least 3 characters.',
+            'mod_name.max' => 'Model name up to 100 characters.',
+            'mnf_id.required' => 'Choose the manufacture.'
+        );
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()->all()]);
+        }
+
         $model = new Models();
         $model->mod_name = $request->mod_name;
         $model->mod_status = $request->mod_status;
@@ -100,6 +117,22 @@ class ModelController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules = array(
+            'mod_name' => 'required|min:3|max:100',
+            'mnf_id' => 'required',
+        );  
+        $messages = array(
+            'mod_name.required' => 'Enter the model name.',
+            'mod_name.min' => 'Model name must have at least 3 characters.',
+            'mod_name.max' => 'Model name up to 100 characters.',
+            'mnf_id.required' => 'Choose the manufacture.'
+        );
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()->all()]);
+        }
+        
         $model = Models::find($id);
         $model->mod_name = $request->mod_name;
         $model->mod_status = $request->mod_status;

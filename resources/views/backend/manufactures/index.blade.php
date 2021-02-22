@@ -73,7 +73,9 @@ Manufactures
                 <div class="modal-body">               
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            @include('backend.layouts.partials.error-message')
+                            <div class="alert alert-danger print-error-msg" style="display: none;" role="alert">
+                                <ul></ul>
+                           </div> 
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
@@ -197,6 +199,7 @@ Manufactures
             $('#frmManufacture').trigger("reset");
             $('#CU_Manufacturer').html("Create Manufacture");
             $('#mdlManufacture').modal('show');   
+            deleteErrorMsg();
             $("#mnf_logo").fileinput({
                 theme: 'fas',
                 showUpload: false,
@@ -217,6 +220,7 @@ Manufactures
                 $('#CU_Manufacturer').html("Edit Manufacture");
                 $('#saveManufacture').val("edit-manufacture");
                 $('#mdlManufacture').modal('show');
+                deleteErrorMsg();
                 $('#mnf_name').val(data.mnf_name);
                 $("#mnf_status").val(data.mnf_status).trigger('change');
                 mnf_logo = data.mnf_logo;
@@ -238,7 +242,8 @@ Manufactures
                     ],
                     initialPreviewConfig: [
                         {                           
-                            width: "120px", 
+                            width: "50px", 
+                            height: "50px",
                             key: 1
                         },
                     ]
@@ -268,16 +273,19 @@ Manufactures
                 contentType: false,
                 processData: false,
                 success: function (data) {
-                    $('#frmManufacture').trigger("reset");
-                    $('#mdlManufacture').modal('hide');
-                    table.draw();
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Manufacture saved successfully.',
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                
+                    if($.isEmptyObject(data.error)){
+                        $('#frmManufacture').trigger("reset");
+                        $('#mdlManufacture').modal('hide');
+                        table.draw();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Manufacture saved successfully.',
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    }else{
+                        printErrorMsg(data.error);
+                    }
                 },
                 error: function (data) {
                     console.log('Error:', data);
@@ -323,6 +331,18 @@ Manufactures
                 allowClear: true,
                 minimumResultsForSearch: Infinity               
         });   
+        function printErrorMsg(msg){
+            $(".print-error-msg").find("ul").html('');
+            $(".print-error-msg").css('display','block');
+            $.each( msg, function( key, value ) {
+                $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+            });
+        }
+
+        function deleteErrorMsg(){
+            $(".print-error-msg").find("ul").html('');
+            $(".print-error-msg").css('display','none');
+        }        
     });
 </script>
 @endsection
