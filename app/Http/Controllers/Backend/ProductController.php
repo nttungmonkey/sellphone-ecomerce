@@ -17,6 +17,7 @@ use Storage;
 use App\Exports\ProductExport;
 use Maatwebsite\Excel\Facades\Excel as Excel;
 use Barryvdh\DomPDF\Facade as PDF;
+use Validator;
 
 class ProductController extends Controller
 {
@@ -70,6 +71,37 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = array(
+            'pro_sku' => 'required|min:14|max:14|unique:product',
+            'pro_name' => 'required|min:3|max:50',
+            'pro_image' => 'required',
+            'pro_detail' => 'required',
+            'pro_descriptS' => 'required',
+            'pro_descriptF' => 'required',
+            'mod_id' => 'required',
+            'sup_id' => 'required'
+        );  
+        $messages = array(
+            'pro_sku.required' => 'Enter the SKU.',
+            'pro_sku.min' => 'SKU must have at least 14 characters.',
+            'pro_sku.max' => 'SKU contains up to 14 characters.',
+            'pro_sku.unique' => 'SKU already exists.',
+            'pro_name.unique' => 'Enter the product name.',
+            'pro_name.min' => 'SKU must have at least 3 characters.',
+            'pro_name.max' => 'SKU contains up to 50 characters.',
+            'pro_image.required' => 'Enter the image.',
+            'pro_detail.required' => 'Enter the detail.',
+            'pro_descriptS.required' => 'Enter the description sort.',
+            'pro_descriptF.required' => 'Enter the description full.',
+            'mod_id.required' => 'Choose the model.',
+            'sup_id.required' => 'Choose the supplier.'
+        );
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()->all()]);
+        }
+
         $product = new Product();
         $product->pro_sku = $request->pro_sku;
         $product->pro_name = $request->pro_name;
@@ -97,7 +129,7 @@ class ProductController extends Controller
 
         }
         $product->save();
-        return response()->json(['success']);
+        return response()->json(['success'=>'Added new records.']);
 
     }
 
@@ -135,6 +167,35 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules = array(
+            'pro_sku' => 'required|min:14|max:14|unique:product,pro_sku,'.$id.',pro_id',
+            'pro_name' => 'required|min:3|max:50',
+            'pro_detail' => 'required',
+            'pro_descriptS' => 'required',
+            'pro_descriptF' => 'required',
+            'mod_id' => 'required',
+            'sup_id' => 'required'
+        );  
+        $messages = array(   
+            'pro_sku.required' => 'Enter the SKU.',
+            'pro_sku.min' => 'SKU must have at least 14 characters.',
+            'pro_sku.max' => 'SKU contains up to 14 characters.',
+            'pro_sku.unique' => 'SKU already exists.',
+            'pro_name.unique' => 'Enter the product name.',
+            'pro_name.min' => 'SKU must have at least 3 characters.',
+            'pro_name.max' => 'SKU contains up to 50 characters.',
+            'pro_detail.required' => 'Enter the detail.',
+            'pro_descriptS.required' => 'Enter the description sort.',
+            'pro_descriptF.required' => 'Enter the description full.',
+            'mod_id.required' => 'Enter the model.',
+            'sup_id.required' => 'Enter the supplier.'
+        );
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()->all()]);
+        }
+
         $product = Product::find($id);
         $product->pro_sku = $request->pro_sku;
         $product->pro_name = $request->pro_name;
