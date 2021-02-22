@@ -19,7 +19,7 @@ class CreateSupplierTable extends Migration
             $table->string('sup_name', 100)->comment('Tên nhà cung cấp # Tên nhà cung cấp');
             $table->string('sup_phonenum', 11)->comment('Số điện thoại # Số điện thoại');
             $table->string('sup_email', 100)->comment('Địa chỉ Email # Địa chỉ Email');
-            $table->text('sup_note')->comment('Ghi chú # Ghi chú thêm về nhà cung cấp');
+            $table->text('sup_note')->nullable()->comment('Ghi chú # Ghi chú thêm về nhà cung cấp');
 
             $table->timestamp('sup_created')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo nhà cung cấp');
             $table->timestamp('sup_updated')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật thông tin nhà cung cấp gần nhất');

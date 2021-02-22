@@ -17,6 +17,7 @@ use Storage;
 use App\Exports\SupplierExport;
 use Maatwebsite\Excel\Facades\Excel as Excel;
 use Barryvdh\DomPDF\Facade as PDF;
+use Validator;
 
 class SupplierController extends Controller
 {
@@ -60,6 +61,27 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = array(
+            'sup_name' => 'required|min:3|max:100',
+            'sup_phonenum' => 'required|max:11',
+            'sup_email' => 'required|email',
+            'adr_id' => 'required',
+        );  
+        $messages = array(
+            'sup_name.required' => 'Enter the supplier name.',
+            'sup_name.min' => 'Supplier name must have at least 3 characters.',
+            'sup_name.max' => 'Supplier name up to 100 characters.',
+            'sup_phonenum.max' => 'Phone contains up to 50 characters.',
+            'sup_phonenum.required' => 'Enter the phone.',
+            'sup_email.required' => 'Enter the email.',
+            'adr_id.required' => 'Choose the address.'
+        );
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()->all()]);
+        }
+
         $supplier = new Supplier();
         $supplier->sup_name = $request->sup_name;
         $supplier->sup_phonenum = $request->sup_phonenum;
@@ -106,6 +128,27 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules = array(
+            'sup_name' => 'required|min:3|max:100',
+            'sup_phonenum' => 'required|max:11',
+            'sup_email' => 'required|email',
+            'adr_id' => 'required',
+        );  
+        $messages = array(
+            'sup_name.required' => 'Enter the supplier name.',
+            'sup_name.min' => 'Supplier name must have at least 3 characters.',
+            'sup_name.max' => 'Supplier name up to 100 characters.',
+            'sup_phonenum.max' => 'Phone contains up to 50 characters.',
+            'sup_phonenum.required' => 'Enter the phone.',
+            'sup_email.required' => 'Enter the email.',
+            'adr_id.required' => 'Choose the address.'
+        );
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()->all()]);
+        }
+        
         $supplier = Supplier::find($id);
         $supplier->sup_name = $request->sup_name;
         $supplier->sup_phonenum = $request->sup_phonenum;

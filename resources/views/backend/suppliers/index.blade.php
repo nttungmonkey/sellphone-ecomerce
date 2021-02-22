@@ -74,7 +74,9 @@ Suppliers
                 <div class="modal-body">               
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                            @include('backend.layouts.partials.error-message')
+                            <div class="alert alert-danger print-error-msg" style="display: none;" role="alert">
+                                <ul></ul>
+                           </div> 
                         </div>                      
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
@@ -221,6 +223,7 @@ Suppliers
             $('#frmSupplier').trigger("reset");
             $('#CU_Supplier').html("Create New Supplier");
             $('#mdlSupplier').modal('show');   
+            deleteErrorMsg();
         });
         $('body').on('click', '.editSupplier', function () {
             sup_id = $(this).data('id');
@@ -230,6 +233,7 @@ Suppliers
                 $('#CU_Supplier').html("Edit Supplier");
                 $('#saveSupplier').val("edit-supplier");
                 $('#mdlSupplier').modal('show');
+                deleteErrorMsg();
                 $('#sup_name').val(data[0].sup_name);
                 $('#sup_phonenum').val(data[0].sup_phonenum);
                 $('#sup_email').val(data[0].sup_email);
@@ -266,16 +270,19 @@ Suppliers
                 contentType: false,
                 processData: false,
                 success: function (data) {
-                    $('#frmSupplier').trigger("reset");
-                    $('#mdlSupplier').modal('hide');
-                    table.draw();
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Supplier saved successfully.',
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                
+                    if($.isEmptyObject(data.error)){
+                        $('#frmSupplier').trigger("reset");
+                        $('#mdlSupplier').modal('hide');
+                        table.draw();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Supplier saved successfully.',
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    }else{
+                        printErrorMsg(data.error);
+                    }
                 },
                 error: function (data) {
                     console.log('Error:', data);
@@ -347,7 +354,19 @@ Suppliers
                 multiple: false,   
                 allowClear: true,
                 minimumResultsForSearch: Infinity               
-        });     
+        }); 
+        function printErrorMsg(msg){
+            $(".print-error-msg").find("ul").html('');
+            $(".print-error-msg").css('display','block');
+            $.each( msg, function( key, value ) {
+                $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+            });
+        }
+
+        function deleteErrorMsg(){
+            $(".print-error-msg").find("ul").html('');
+            $(".print-error-msg").css('display','none');
+        }    
     });
 </script>
 @endsection
