@@ -37,7 +37,7 @@
                                                        <img src="{{ asset('storage/images/products/imgs/'.$sp->pro_image) }}" 
                                                        alt="" class="imgproduct" width="210px" height="275px"/>                                                       
                                                     </a>
-                                                    <span class="sticker">New</span>
+                                                    <span class="sticker">Mới</span>
                                                 </div>
                                                 <div class="product_desc">
                                                     <div class="product_desc_info">
@@ -488,15 +488,15 @@
                             <!-- Li's Static Home Image Area End Here -->
                             <!-- Begin Li's Static Home Content Area -->
                             <div class="li-static-home-content">
-                                <p>Sale Offer<span>-20% Off</span>This Week</p>
+                                <p>Giá cực rẻ, giảm cực sâu</p>
                                 <h2>Featured Product</h2>
                                 <h2>Sanai Accessories 2018</h2>
                                 <p class="schedule">
-                                    Starting at
+                                    Giá chỉ từ
                                     <span> $1209.00</span>
                                 </p>
                                 <div class="default-btn">
-                                    <a href="shop-left-sidebar.html" class="links">Shopping Now</a>
+                                    <a href="#" class="links">Mua ngay</a>
                                 </div>
                             </div>
                             <!-- Li's Static Home Content Area End Here -->

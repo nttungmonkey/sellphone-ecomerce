@@ -97,7 +97,7 @@ class PageController extends Controller
 
         return view('frontend.index')
                 ->with('product', $spMoi)
-                ->with('bestsell', $spMoi)
+                ->with('bestsell', $spBanChay)
                 ->with('bestcheap', $spre)
                 ->with('spVivo', $spViVo)
                 ->with('spSamsung', $spSamSung)
@@ -166,6 +166,11 @@ class PageController extends Controller
 
             EOT
         );
+
+        if($Product == null) //Không có mã sản phẩm thì về trang chủ
+        {
+            return redirect('/');
+        }
 
         $images = DB::select
         (<<<EOT
