@@ -36,16 +36,16 @@ Orders
             <form method="get" action="#" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label style="margin-left:10px; margin-top: 10px;" for="timeCreateReport">Thời gian lập báo cáo</label>
+                    <label style="margin-left:10px; margin-top: 10px;" for="timeCreateReport">Time to report</label>
                     <input type="text" class="form-control" id="timeCreateReport">
                     <span id="timeCreateReportText" class="notice"></span>
                 </div>
                 <div class="form-group" style="display: none;">
-                    <label for="fromDay">Từ ngày</label>
+                    <label for="fromDay">From day</label>
                     <input type="text" class="form-control" id="fromDay" name="fromDay">
                 </div>
                 <div class="form-group" style="display: none;">
-                    <label for="toDay">Đến ngày</label>
+                    <label for="toDay">To day</label>
                     <input type="text" class="form-control" id="toDay" name="toDay">
                 </div>
                 <button style="margin-left: 10px;" type="submit" class="btn btn-primary" id="btnCreatReport">Create</button>
@@ -173,6 +173,7 @@ Orders
                 success: function(response) {
                     var myLabels = [];
                     var myData = [];
+                    console.log(response);
                     $(response.data).each(function() {
                         myLabels.push((this.time));
                         myData.push(this.total);
