@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 
 class ReportController extends Controller
 {
@@ -15,21 +16,18 @@ class ReportController extends Controller
     {
         $parameter = [
             'fromDay' => $request->fromDay,
-            'denNgay' => $request->denNgay
+            'toNgay' => $request->toDay
         ];
         // // dd($parameter);
-        // $data = DB::select('
-        //     SELECT dh.dh_thoiGianDatHang as thoiGian
-        //         , SUM(ctdh.ctdh_soLuong * ctdh.ctdh_donGia) as tongThanhTien
-        //     FROM cusc_donhang dh
-        //     JOIN cusc_chitietdonhang ctdh ON dh.dh_ma = ctdh.dh_ma
-        //     WHERE dh.dh_thoiGianDatHang BETWEEN :tuNgay AND :denNgay
-        //     GROUP BY dh.dh_thoiGianDatHang
-        // ', $parameter);
-        $data = array(['time' => '10-10-2021', 'total'    => '5'],
-                        ['time' => '10-10-2021', 'total'    => '10'],
-                        ['time' => '10-10-2022', 'total'    => '15']
-        );
+        $data = DB::select('
+             SELECT bie.bie_created as time
+                 , SUM(emd.emd_amount * emd.emd_price) as total
+             FROM bill_export bie
+             JOIN export_detail emd ON bie.bie_id = emd.bie_id
+             WHERE bie.bie_created BETWEEN :fromDay AND :toNgay
+             GROUP BY bie.bie_created
+            ', $parameter);
+
 
         return response()->json(array(
             'code'  => 200,
