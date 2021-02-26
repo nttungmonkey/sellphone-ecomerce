@@ -453,12 +453,16 @@
                                                     </div>
                                                     <h4><a class="product_name" href="{{ route('pages.productdetail', ['id' => $sp->pro_sku]) }}">{{$sp->pro_name}}</a></h4>
                                                     <div class="price-box">
+                                                        Giá bán: <span class="old-price">{{ number_format($sp->imd_priceExp * 1000 * 1.2 , 0, ' ', ',') . ' VNĐ'}}</span>
+                                                        <br>
+                                                        Chỉ còn: 
                                                         <span class="new-price">{{ number_format($sp->imd_priceExp * 1000, 0, ' ', ',') . ' VNĐ'}}</span>
+                                                         
                                                     </div>
                                                 </div>
                                                 <div class="add-actions">
                                                     <ul class="add-actions-link">
-                                                        <li class="add-cart active"><a href="#">Add to cart</a></li>
+                                                        <li class="add-cart active"><a href="#">Thêm vào giỏ hàng</a></li>
                                                         <li><a class="links-details" href="#" ><i class="fa fa-heart-o"></i></a></li>
                                                         <li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i></a></li>
                                                     </ul>                                                    
@@ -489,14 +493,14 @@
                             <!-- Begin Li's Static Home Content Area -->
                             <div class="li-static-home-content">
                                 <p>Giá cực rẻ, giảm cực sâu</p>
-                                <h2>Featured Product</h2>
-                                <h2>Sanai Accessories 2018</h2>
+                                <h4>Siêu khuyến mãi cho dòng sản phẩm</h4>
+                                <h2>{{ $bestcheap[0]->mod_name }}</h2>
                                 <p class="schedule">
                                     Giá chỉ từ
-                                    <span> $1209.00</span>
+                                    <span>{{ number_format($bestcheap[0]->imd_priceExp * 1000, 0, ' ', ',') . ' VNĐ'}}</span>
                                 </p>
                                 <div class="default-btn">
-                                    <a href="#" class="links">Mua ngay</a>
+                                    <a href="{{ route('pages.productdetail', ['id' => $bestcheap[0]->pro_sku]) }}" class="links">Mua ngay</a>
                                 </div>
                             </div>
                             <!-- Li's Static Home Content Area End Here -->
