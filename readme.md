@@ -29,7 +29,7 @@ DB_PASSWORD=t7kZ@Uz=!nRYDS3z
 ```
 
 ## Step 3: Tạo database, thực hiện migrate
-- Tạo database <tengido>, chuẩn bảng mã `utf8mb4_unicode_ci`
+- Tạo database sellphone-ecommerce, chuẩn bảng mã `utf8mb4_unicode_ci`
 - Thực thi câu lệnh khởi tạo cấu trúc bảng
 ```
 php artisan migrate
@@ -48,11 +48,8 @@ php artisan db:seed
 Tài khoản Admin:
 admin / 123456
 
-Tài khoản Quản lý kho:
-kho / 123456
-
 Tài khoản Khách hàng:
-khachhang / 123456
+customer / 123456
 ...
 
 
