@@ -62,9 +62,9 @@
 
 /* Google Fonts------------------
 	font-family: 'Poppins', sans-serif;
-	font-family: 'Rubik', sans-serif;
+	font-family: 'Helvetica', sans-serif;
 */
-@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Rubik:300,300i,400,400i,500,500i,700,700i,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Helvetica:300,300i,400,400i,500,500i,700,700i,900,900i');
 /*----------------------------------------*/
 /*  01. Dfault Style
 /*----------------------------------------*/
@@ -73,7 +73,7 @@
 /*----------------------------------------*/
 body {
 	color: #242424;
-	font-family: 'Rubik', sans-serif;
+	font-family: 'Helvetica', sans-serif;
 	font-size: 14px;
 	font-style: normal;
 	font-weight: normal;
@@ -1094,6 +1094,9 @@ textarea:focus {
   line-height: 27px;
   color: #e80f0f;
 }
+.new-price{
+	line-height: 2.0;
+}
 .product-details-view-content .content-center .product-variants {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1458,7 +1461,7 @@ textarea:focus {
 	color: #242424;
 	font-size: 13px;
 	border-radius: 15px 0 0 15px;
-	font-family: 'Rubik',sans-serif;
+	font-family: 'Helvetica',sans-serif;
 	font-weight: 400;
 	position: relative;
 }
@@ -2123,7 +2126,7 @@ textarea:focus {
 	color: #c8c8c8;
 	cursor: pointer;
 	display: inline-block;
-	font-family: 'Rubik', sans-serif;
+	font-family: 'Helvetica', sans-serif;
 	font-size: 20px;
 	font-weight: 500;
 	line-height: 18px;

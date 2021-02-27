@@ -171,7 +171,7 @@
                         <div class="col-lg-12">
                             <div class="li-section-title">
                                 <h2>
-                                    <span>Sản phẩm cùng Model</span>
+                                    <span>Sản phẩm cùng thương hiệu {{ $product[0]->mnf_name }}</span>
                                 </h2>
                             </div>
                             <div class="row">

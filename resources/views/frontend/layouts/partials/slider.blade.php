@@ -30,14 +30,14 @@
                         <div class="col-lg-4 col-md-4 text-center pt-sm-30 pt-xs-30">
                             
                             <div class="li-banner">
-                                <a href="#">
-                                    <img src="{{ asset('storage/images/customer/banner/1_1.jpg') }}" alt="">
+                                <a href="{{ route('pages.productdetail', ['id' => $iQC[0]->pro_sku]) }}">
+                                    <img src="{{ asset('storage/images/products/imgs/'. $iQC[0]->reimg_name ) }}" alt="" height="230px">
                                 </a>
                             </div>
 
                             <div class="li-banner mt-15 mt-md-30 mt-xs-25 mb-xs-5">
-                                <a href="#">
-                                    <img src="{{ asset('storage/images/customer/banner/1_2.jpg') }}" alt="">
+                                <a href="{{ route('pages.productdetail', ['id' => $iQC[1]->pro_sku]) }}">
+                                    <img src="{{ asset('storage/images/products/imgs/'. $iQC[1]->reimg_name ) }}" alt="" height="230px">
                                 </a>
                             </div>
                         </div>
